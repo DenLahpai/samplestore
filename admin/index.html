@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">	
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link rel="stylesheet" href="styles/styles.css">
+	<link rel="Shortcut icon" href="../logo_small.png"/>
+	<title>Welcome</title>
+	<style>
+		#main-data {
+			margin-top: 180px;
+		}
+	</style>	
+</head>
+<body>
+	<!-- wrapper -->
+	<div class="wrapper">		
+		<!-- main-content -->
+		<div class="main-content">			
+			<section id="main-data">
+				<!-- centered-content -->
+				<div class="main-data-contents">
+					<!-- login form -->
+					<div class="login form">
+						<div class="login form title">
+							<h1>Welcome</h1>
+						</div>
+						<form action="" id="login-form" method="post">
+							<input type="text" id="Username" name="Username" placeholder="Username">
+							<input type="password" id="Password" name="Password" placeholder="Password">
+							<input type="text" id="StoresCode" name="StoresCode" placeholder="StoresCode">
+							<button type="submit" class="medium button" id="btn-submit">login</button>
+						</form>
+					</div>
+					<!-- end of main-data-contents -->
+					<!-- end of login form -->
+				</div>
+			</section>
+			<section id="sys_message"></section>
+		</div>
+		<!-- end of main-content -->
+		<footer></footer>
+	</div>
+	<!-- end of wrapper -->
+</body>
+<script src="../scripts/jquery.js"></script>
+<script src="../scripts/scripts.js"></script>
+<script>
+$("document").ready(function () {
+	$("#login-form").on('submit', function (e) {
+		e.preventDefault();
+
+		var Username = $("#Username");
+		var Password = $("#Password");
+		var StoresCode = $("#StoresCode");
+
+		Username.removeClass('input-error');
+		Password.removeClass('input-error');
+		StoresCode.removeClass('input-error');
+		var msg = "";
+
+		if (Username.val() == "") {
+			Username.addClass('input-error');
+			var msg = "<span style='color: red'>Please fill up the field(s) in red! </span>";
+			$("#sys_message").html(msg);
+		}
+
+		if (Password.val() == "") {
+			Password.addClass('input-error');
+			var msg = "<span style='color: red'>Please fill up the field(s) in red! </span>";
+			$("#sys_message").html(msg);
+		}
+
+		if (StoresCode.val() == "") {
+			StoresCode.addClass('input-error');
+			var msg = "<span style='color: red'>Please fill up the field(s) in red! </span>";
+			$("#sys_message").html(msg);
+		}
+
+		else {
+			$.ajax({
+				url: 'login.php',
+				type: 'post',
+				data: $("#login-form").serialize(),
+				success: function (data) {
+					if (data == 0) {
+						$(location).attr('href', 'home.html');
+					}
+					else {
+						$("#sys_message").html(data);
+					}
+				}
+			});
+		}
+		
+	});
+
+});
+</script>
+</html>

@@ -1,0 +1,51 @@
+:root {
+	--wrapper-color: rgba(243, 246, 255, 1);
+	--header-bar: rgba(0, 104, 255, 1);
+}
+
+body{
+	margin: 0px;
+	padding: 0px;
+}
+
+.nav-bar {
+	background-color: var(--header-bar);
+	padding: 6px;
+}
+
+.hamburger {
+	font-size: 1.8em;
+	color: #FFFFFF;
+	padding: 3px;	
+}
+
+.wrapper {
+	background: var(--wrapper-color);	
+}
+
+section {
+	text-align: center;
+}
+
+.form {
+	text-align: center;
+	padding: 6px;
+}
+
+.title{
+	margin-bottom: 0px;
+}
+
+.form input {
+	margin: 12px auto;
+	display: block;		
+}
+
+.medium {
+	padding: 3px 18px;	
+}
+
+.input-error {
+	background: red;
+	color: white;
+}
