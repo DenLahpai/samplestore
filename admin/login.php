@@ -13,7 +13,7 @@ if (isset($_POST)) {
 	$db->bind(":Password", md5($_POST['Password']));
 	$db->bind(":StoresCode", $_POST['StoresCode']);
 	$r = $db->rowCount();
-	$rows = $db->resultset();
+	$rows = $db->resultsetArray();
 
 	if ($r == 1) {
 		foreach ($rows as $_SESSION) {

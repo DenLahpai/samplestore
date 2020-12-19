@@ -55,7 +55,7 @@ class Database {
         return $this->stm->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function resultArray() {
+    public function resultsetArray() {
         $this->execute();
         return $this->stm->fetchAll(PDO::FETCH_ASSOC);
     }

@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	
-	<title>Document</title>
+<head>	
+	<title>Welcome</title>
 </head>
 <body>
 	<!-- wrapper -->
@@ -10,9 +9,36 @@
 		<header></header>
 		<!-- main-content -->
 		<div class="main-content">
-			
+			<section id="page-title">
+				<div class="page-title">
+					<h1 style="text-align: center;">Welcome</h1>
+				</div>
+			</section>
+			<section id="main-data">
+				<div class="desc">
+					<div class="intro-desc">
+						<p>
+							Welcome a bord! Thank you for choosing Link Webstore. <br>
+							On this page, you will find all the necessary information to get you started.
+							Below are the information about all the modules and how to use them. <br>
+							Let's get started by clicking on the &#9776; icon on the top left of your screen.
+						</p>
+					</div>
+					<div class="Brands-desc">
+						<h3>Brands</h3>
+						<p>
+							This is where you start! You must start by creating the brands of the products on your web shevles.
+							This will help your customers to search their products they want to find by filtering their favorite brands.	
+						</p>
+						<p>
+							Click on the &#9776; icon and click on <span style="font-weight: bold;">Brands</span>.
+						</p>
+					</div>
+				</div>
+			</section>
 		</div>
 		<!-- end of main-content -->
+		<footer></footer>
 	</div>
 	<!-- end of wrapper -->
 </body>
@@ -27,6 +53,8 @@ $(document).ready(function () {
 	$.post("includes/header.php", function (data) {
 		$("header").html(data);
 	});
+
+	checkSession();
 });
 </script>
 </html>

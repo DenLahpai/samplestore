@@ -3,6 +3,11 @@
 	--header-bar: rgba(0, 104, 255, 1);
 }
 
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
 body{
 	margin: 0px;
 	padding: 0px;
@@ -11,12 +16,36 @@ body{
 .nav-bar {
 	background-color: var(--header-bar);
 	padding: 6px;
+	display: flex;
+	justify-content: space-between;
 }
 
 .hamburger {
+	background: #E9EBEC;
+	font-size: 1.8em;
+	color: var(--herader-bar);
+	padding: 3px;	
+	border-radius: 6px;
+	cursor: pointer;
+}
+
+.nav-bar-mid {
+	color: #FFFFFF;
+}
+
+.company-name {
+	font-weight: bold;
+}
+
+.expiry {
+	font-style: italic;
+}
+
+.settings-button {
 	font-size: 1.8em;
 	color: #FFFFFF;
-	padding: 3px;	
+	padding: 3px;
+	cursor: pointer;
 }
 
 .wrapper {
@@ -25,6 +54,20 @@ body{
 
 section {
 	text-align: center;
+	padding: 6px;
+	padding-bottom: 30px;	
+}
+
+.page-title > h1 {
+	text-align: left;
+}
+
+.desc {
+	text-align: left;
+}
+
+.desc div {
+	margin-bottom: 24px;
 }
 
 .form {
@@ -48,4 +91,142 @@ section {
 .input-error {
 	background: red;
 	color: white;
+}
+
+.modal-menu {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background: silver;
+	/*opacity: 0.9;*/
+}
+
+.modal-menu-header div {
+	text-align: right;
+	color: red;
+	font-size: 3em;
+}
+
+.modal-menu-body {
+
+}
+
+.cards {
+	display: grid;
+	grid-gap: 1rem;
+    grid-template-columns: 1fr;
+    padding: 30px;
+}
+
+.card {
+	display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-radius: 12px;    
+}
+
+.card > div {
+	margin: 6px;
+}
+
+.card-title h2 {
+	text-align: center;
+}
+
+.card-title div {
+	text-align: center;
+    font-size: 3em;
+}
+
+.card-body {
+	padding-top: 12px;
+}
+
+.card-command {
+	padding: 12px;
+	text-align: center;
+}
+
+.counter {
+	width: 60px;
+	height: 60px;
+	background-color: #FFFFFF;
+	border-radius: 12px;
+	color: black;
+	text-align: center;
+	display: grid;
+	place-items: center;
+}
+
+.counter div {
+	font-size: 1.2em;
+}
+
+.boxes {
+	display: grid;
+	grid-gap: 12px;
+    grid-template-columns: 1fr;
+    padding: 12px;    
+    text-align: center;
+}
+
+.box {
+	border: 1px solid var(--header-bar);
+	cursor: pointer;	
+	position: relative;
+}
+
+.box:active	{
+	background: red;
+	color: white;
+}
+
+.box-img {
+	display: grid;
+	place-items: center;	
+}
+
+.box-img > div > img {
+	width: 100%;
+	height: auto;
+
+}
+
+.box-label {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	background: var(--header-bar);
+	color: #FFFFFF;
+}
+
+#Brands-card {
+	background-color: var(--header-bar);
+	color: #FFFFFF;
+}
+
+/*styles for tablets*/
+@media screen and (min-width: 768px) {
+    .cards {
+    	grid-template-columns: repeat(3, 1fr);
+    }
+
+    .boxes {
+    	grid-template-columns: repeat(5, 1fr);
+    }
+}
+/*styles for computers*/
+@media screen and (min-width: 992px) {
+    .cards {
+    	grid-template-columns: repeat(2, 1fr);
+    }
+
+    .boxes {
+    	grid-template-columns: repeat(8, 1fr);
+    }
 }
