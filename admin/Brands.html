@@ -2,6 +2,14 @@
 <html lang="en">
 <head>	
 	<title>Brands</title>
+	<style>
+		.page-button {
+			background: var(--header-bar);
+			color: #FFFFFF;
+			border: 1px solid #FFFFFF;
+		}
+
+	</style>
 </head>
 <body>
 	<!-- wrapper -->
@@ -14,9 +22,67 @@
 					<h1>Brands</h1>
 				</div>
 			</section>
+			<section id="sub-menu">
+				<!-- sub-menu -->
+				<div class="sub-menu">
+					<!-- sub-menu-contents -->
+					<div class="sub-menu-contents">
+						<div class="sub-menu-bar" >
+							<div class="sub-menu-switch" onclick="Toggle('.sub-menu-items-container');">
+								<h2>Menu</h2>
+							</div>
+							<div class="sub-menu">
+								<div class="sub-menu-items-container">
+									<div class="sub-menu-items">
+										<div class="sub-menu-item" onclick="window.location.href= 'add_Brands.html';">
+											Add
+										</div>
+										<div class="sub-menu-item" onclick="Toggle('#search-form');">
+											Search
+										</div>
+										<div class="sub-menu-item" onclick="Toggle('#sort-form')">
+											Sort
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="search-form">
+							<input type="text" name="Search" id="Search">
+							<button>Search</button>
+						</div>
+						<div id="sort-form">
+							<select name="order" id="order">
+								<option value="ORDER BY BrandsName ASC">Brands Name A &#8645; Z</option>
+		                        <option value="ORDER BY BrandsName DESC">Brands Name Z &#8645; A</option>
+		                        <option value="ORDER BY Created ASC">Create 1 &#8645; 9</option>
+		                        <option value="ORDER BY Created DESC">Create 9 &#8645; 1</option>
+		                        <option value="ORDER BY Updated ASC">Update 1 &#8645; 9</option>
+		                        <option value="ORDER BY Updated DESC">Update 9 &#8645; 1</option>
+							</select>
+						</div>
+					</div>				
+					<!-- end of sub-menu-contents -->
+				</div>
+				<!-- end of sub-menu -->
+			</section>
 			<section id="main-data"></section>
+			<section id="pagination">
+                <div>
+                    <input type="hidden" id="current_page" value="1">
+                </div>
+                <div class="pages">
+                    <input type="button" id="previous" class="page-button" onclick="previousPage('Brands');" value="<<" >
+                    <input type="button" class="page-button" id="page1" value="" onclick="changeCurrentPage(this.value, 'Brands');">
+                    <input type="button" class="page-button" id="page2" value="" onclick="changeCurrentPage(this.value, 'Brands');">
+                    <input type="button" class="page-button" id="page3" value="" onclick="changeCurrentPage(this.value, 'Brands');">
+                    <input type="button" class="page-button" id="page4" value="" onclick="changeCurrentPage(this.value, 'Brands');">
+                    <input type="button" id="next" class="page-button" onclick="nextPage('Brands');"  value=">>">
+                </div>
+            </section>
 		</div>
 		<!-- end of main-content -->
+		<footer></footer>
 	</div>
 	<!-- end of wrapper -->
 </body>
@@ -32,12 +98,10 @@ $(document).ready(function () {
 		$("header").html(data);
 	});
 
-	// need to change
-	$.post("includes/select_Brands.php", function(data) {
-		$("#main-data").html(data);
-	});
-
 	checkSession();
+	getRowCount ('Brands');
+	pagination ('Brands');
+
 });
 </script>
 </html>

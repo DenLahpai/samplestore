@@ -12,11 +12,84 @@ function table_Brands ($job, $var1, $var2, $var3, $order, $limit, $offset) {
 			$db->query($stm);
 			return $db->resultset();
 			break;
+
+		case 'row_count_before_insert':
+			# var1 = BrandsName
+			$stm = "SELECT * FROM Brands WHERE BrandsName = :BrandsName ;";
+			$db->query($stm);
+			$db->bind(":BrandsName", trim($_REQUEST["$var1"]));
+			return $db->rowCount();
+			break;
+
+		case 'insert':
+			$set = "SET NAMES 'utf8';";
+			$db->query($set);
+			$db->execute();
+			# var1 = Image
+			$stm = "INSERT INTO Brands SET 
+                BrandsName = :BrandsName,
+                BrandsLink = :BrandsLink,
+                Image = :var1,
+                Country = :Country
+            ;";
+            $db->query($stm);
+            $db->bind(":BrandsName", trim($_REQUEST['BrandsName']));
+            $db->bind(":BrandsLink", md5(trim($_REQUEST['BrandsName'])));
+            $db->bind(":var1", $var1);
+            $db->bind(":Country", trim($_REQUEST['Country']));
+            if ($db->execute()) {
+                return true;
+            }
+            else {
+                return "<span style='color: red'>There was a connection error! Please try again! </span>";
+            }
+			break;		
 		
 		default:
 			# code...
 			break;
 	}
 }
+
+
+// function to create thumbnail
+function CreateThumbnail($pic, $thumb, $thumbwidth, $quality = 100) {
+    $im1=ImageCreateFromJPEG($pic);
+    
+    if(function_exists("exif_read_data")){
+        $exif = exif_read_data($pic);
+        if(!empty($exif['Orientation'])) {
+
+            switch($exif['Orientation']) {
+            case 8:
+                $im1 = imagerotate($im1,90,0);
+                break;
+            case 3:
+                $im1 = imagerotate($im1,180,0);
+                break;
+            case 6:
+                $im1 = imagerotate($im1,-90,0);
+                break;
+            }
+        }
+    }
+    $info = @getimagesize($pic);
+
+    $width = $info[0];
+
+    $w2=ImageSx($im1);
+    $h2=ImageSy($im1);
+    $w1 = ($thumbwidth <= $info[0]) ? $thumbwidth : $info[0]  ;
+
+    $h1=floor($h2*($w1/$w2));
+    $im2=imagecreatetruecolor($w1,$h1);
+
+    imagecopyresampled ($im2,$im1,0,0,0,0,$w1,$h1,$w2,$h2);
+    $path=addslashes($thumb);
+    ImageJPEG($im2,$path,$quality);
+    ImageDestroy($im1);
+    ImageDestroy($im2);
+}
+
 
 ?>

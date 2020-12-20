@@ -30,31 +30,6 @@ $rows_Brands = table_Brands ('select_all', NULL, NULL, NULL, $order, $limit, $of
 <!-- cards-container -->
 <div class="cards-container">
 	<div class="cards">
-		<!-- box -->
-		<div class="box">
-			<div class="box-title">
-				Alien 
-			</div>
-			<div class="box-img">
-				<img src="../logos/thumbnails/test2.jpg" alt="">
-			</div>
-			<div class="box-label">
-				Add New 
-			</div>
-		</div>
-		<!-- end of box -->
-		<!-- box -->
-		<div class="box">
-			<div class="box-img">
-				<div>
-					<img src="../logos/thumbnails/test.jpeg" alt="">
-				</div>
-			</div>
-			<div class="box-label">
-				Add
-			</div>
-		</div>
-		<!-- end of box -->
 		<?php foreach($rows_Brands as $row_Brands): ?>
 		<!-- box -->
 		<div class="box">

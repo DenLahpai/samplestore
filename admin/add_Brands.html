@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Add Brand</title>
+	<style>
+		label {
+			background-color: var(--header-bar);
+			color: #FFFFFF;			
+		}
+	</style>
+</head>
+<body>
+	<!-- wrapper -->
+	<div class="wrapper">
+		<header></header>
+		<!-- main-content -->
+		<div class="main-content">
+			<section id="page-title">
+				<div class="page-title">
+					<h1>Brands</h1>
+				</div>
+			</section>
+			<section id="main-data">
+				<!-- form -->
+				<div class="form">
+					<form action="#" method="post" enctype="multipart/form-data">
+						<div>
+							<input type="text" Name="BrandsName" id="BrandsName" placeholder="BrandsName">
+						</div>
+						<div>
+							<input type="text" Name="Country" id="Country" placeholder="Country">
+						</div>
+						<div>
+                            <label for="Image">Upload Image</label>
+                            <input type="file" style="display: none;" name="Image" id="Image" onchange="imagePreview(this);">
+                        </div>
+                        <div class="image_preview">
+                            <img id="image_preview">
+                        </div>
+                        <div>
+                            <button type="button" id="btn-submit" class="medium-button" onclick="insertBrands();">Submit</button>
+                        </div>
+					</form>
+				</div>
+				<!-- end of form -->
+			</section>
+			<section id="sys_message"></section>
+		</div>
+		<!-- end of main-content -->
+		<footer></footer>
+	</div>
+	<!-- end of wrapper -->
+</body>
+<script src="../scripts/jquery.js"></script>
+<script src="../scripts/scripts.js"></script>
+<script>
+$(document).ready(function () {
+	$.post("includes/head.php", function (data) {
+		$("head").prepend(data);
+	});
+
+	$.post("includes/header.php", function (data) {
+		$("header").html(data);
+	});
+	
+
+	checkSession();
+});
+</script>
+</html>
+
