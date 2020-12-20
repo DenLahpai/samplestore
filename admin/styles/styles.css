@@ -24,13 +24,27 @@ body{
 	background: #E9EBEC;
 	font-size: 1.8em;
 	color: var(--herader-bar);
-	padding: 3px;	
-	border-radius: 6px;
+	/*padding: 3px;	*/
+	/*border-radius: 6px;*/
 	cursor: pointer;
+	box-shadow: 6px 6px 6px #000000;
+}
+
+.hamburger:active {
+	box-shadow: 3px 3px 3px #000000;
+}
+
+.nav-bar-left {
+	/*border: 1px solid green;*/
 }
 
 .nav-bar-mid {
 	color: #FFFFFF;
+	/*border: 1px solid red;*/
+}
+
+.nav-bar-right {
+	/*border: 1px solid black;*/
 }
 
 .company-name {
@@ -178,6 +192,7 @@ section {
 	background: none;
 	border: none;
 	border-bottom: 1px solid #FFFFFF;
+	color: #FFFFFF;
 }
 
 #search-form > button {
@@ -250,10 +265,8 @@ section {
 }
 
 .box {
-	border: 1px solid #FFFFFF;
 	cursor: pointer;	
-	position: relative;
-	padding: 12px;
+	position: relative;	
 }
 
 .box:active	{
@@ -261,23 +274,51 @@ section {
 	color: white;
 }
 
+.box-header {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	left: 0;
+	background: #FFFFFF;
+	color: var(--header-bar);
+	height: 36px;
+}
+
 .box-img {
 	display: grid;
 	place-items: center;	
 }
 
-.box-img > div > img {
+.box-img > div {
 	width: 100%;
-	height: auto;
+	height: 180px;
+
+}
+
+.box-img > div > img {
+	max-width: 100%;
+	max-height: 100%;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.box-img > div > button {
+	width: 100%;
+	height: 180px;
+	border: 0;
 }
 
 .box-label {
-	position: absolute;
+	position: relative;
 	bottom: 0;
 	width: 100%;
 	left: 0;
 	background: var(--header-bar);
 	color: #FFFFFF;
+	display: grid;
+	place-items: center;
+	height: 48px;
 }
 
 #Brands-card {
@@ -308,12 +349,16 @@ section {
     max-width: 90%;
 }
 
-
 .page-button {
 	width: 33px;
 	height: 33px;
 	margin-right: 12px;
 	font-size: 1.2em;
+}
+
+.page-button:disabled {
+	color: black;
+	background: #FFFFFF;
 }
 
 /*styles for tablets*/
@@ -323,7 +368,7 @@ section {
     }
 
     .boxes {
-    	grid-template-columns: repeat(5, 1fr);
+    	grid-template-columns: repeat(3, 1fr);
     }
 
     .page-button {
@@ -341,7 +386,7 @@ section {
     }
 
     .boxes {
-    	grid-template-columns: repeat(8, 1fr);
+    	grid-template-columns: repeat(5, 1fr);
     }
 
     .sub-menu-switch {

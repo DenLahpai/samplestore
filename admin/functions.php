@@ -22,9 +22,9 @@ function table_Brands ($job, $var1, $var2, $var3, $order, $limit, $offset) {
 			break;
 
 		case 'insert':
-			$set = "SET NAMES 'utf8';";
-			$db->query($set);
-			$db->execute();
+			// $set = "SET NAMES 'utf8';";
+			// $db->query($set);
+			// $db->execute();
 			# var1 = Image
 			$stm = "INSERT INTO Brands SET 
                 BrandsName = :BrandsName,
@@ -43,14 +43,72 @@ function table_Brands ($job, $var1, $var2, $var3, $order, $limit, $offset) {
             else {
                 return "<span style='color: red'>There was a connection error! Please try again! </span>";
             }
-			break;		
+			break;	
+
+        case 'select_by_link':
+            # code...
+            $stm = "SELECT * FROM Brands WHERE BrandsLink = :BrandsLink ;";
+            $db->query($stm);
+            $db->bind(":BrandsLink", $_REQUEST['link']);
+            return $db->resultset();
+            break;  
+        case 'update':
+            # var1 = Image
+            $stm = "UPDATE Brands SET 
+                BrandsName = :BrandsName,
+                Country = :Country,
+                Image = :var1
+                WHERE BrandsLink = :BrandsLink
+            ;";
+            $db->query($stm);
+            $db->bind(':BrandsName', trim($_REQUEST['BrandsName']));
+            $db->bind(':Country', trim($_REQUEST['Country']));
+            $db->bind(':var1', $var1);
+            $db->bind(':BrandsLink', $_REQUEST['link']);
+            if ($db->execute()) {
+                return true;
+            }
+            else {
+                return "<span style='color: red'>There was a connection error! Please try again! </span>";
+            }
+            break;
+
+        case 'update_without_image':
+            # code...
+            $stm = "UPDATE Brands SET 
+                BrandsName = :BrandsName,
+                Country = :Country
+                WHERE BrandsLink = :BrandsLink
+            ;";
+            $db->query($stm);
+            $db->bind(':BrandsName', trim($_REQUEST['BrandsName']));
+            $db->bind(':Country', trim($_REQUEST['Country']));            
+            $db->bind(':BrandsLink', $_REQUEST['link']);
+            if ($db->execute()) {
+                return true;
+            }
+            else {
+                return "<span style='color: red'>There was a connection error! Please try again! </span>";
+            }
+            break;
+            
+        case 'search':
+            # var1 = :Search 
+            $stm = "SELECT * FROM Brands WHERE CONCAT (
+                BrandsName,
+                Country
+                ) LIKE :Search $order LIMIT $limit OFFSET $offset
+            ;";
+            $db->query($stm);
+            $db->bind(':Search', $var1);
+            return $db->resultset();
+            break;      	
 		
 		default:
 			# code...
 			break;
 	}
 }
-
 
 // function to create thumbnail
 function CreateThumbnail($pic, $thumb, $thumbwidth, $quality = 100) {

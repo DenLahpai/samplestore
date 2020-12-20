@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="styles/styles.css">
+	<link rel="Shortcut icon" href="../logo_small.png"/>
 	<title>Add Brand</title>
 	<style>
 		label {
@@ -55,15 +60,10 @@
 <script src="../scripts/scripts.js"></script>
 <script>
 $(document).ready(function () {
-	$.post("includes/head.php", function (data) {
-		$("head").prepend(data);
-	});
-
 	$.post("includes/header.php", function (data) {
 		$("header").html(data);
 	});
 	
-
 	checkSession();
 });
 </script>

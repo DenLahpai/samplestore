@@ -100,7 +100,7 @@ function pagination (table) {
         var source = "row_count.php";
     }    
     else {
-        var source = "search_row_count.php";
+        var source = "search_" + table + "_row_count.php";
     }
 
     getData(table);
@@ -192,10 +192,10 @@ function getData(table){
     var page = $("#current_page").val();
     var order = $("#order").val();
     if (!Search || Search == "" || Search == null) {
-        var source = "select_Brands.php";
+        var source = "select_" + table + ".php";
     } 
     else {
-        var source = "search_Brands.php";
+        var source = "search_" + table + ".php";
     }
     $.post("includes/" + source, {
         Search: Search,
@@ -225,4 +225,40 @@ function nextPage (table) {
     var new_page = page + 1;
     $("#current_page").val(new_page);
     pagination (table);
+}
+
+
+
+/****** function to update Brands  ******/
+function updateBrands (link) {
+    var BrandsName = $("#BrandsName");
+    var Country = $("#Country");
+    if (!BrandsName.val() || BrandsName.val() == null || BrandsName.val() == "") {
+        var errorMsg = "<span style='color: red'>Please enter the brand's name!";
+        BrandsName.addClass('input-error');
+        $("#response").html(errorMsg);
+    }
+    else {
+        BrandsName.removeClass('input-error');
+        var fdata = new FormData();
+        var files = $("#Image")[0].files[0];
+        fdata.append('Image', files);
+        $.ajax({
+            // adding BrandsName and Country through the link
+            url: "includes/updating_Brands.php?BrandsName=" + BrandsName.val() + "&Country=" + Country.val() + "&link=" + link, 
+            type: 'post',
+            data: fdata,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                
+                if (!data || data == "" || data == null) {
+                    window.location.href = 'Brands.html';
+                }
+                else {
+                    $("#response").html(data);
+                }
+            }
+        });
+    }
 }

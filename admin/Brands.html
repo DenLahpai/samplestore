@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>	
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="styles/styles.css">
+	<link rel="Shortcut icon" href="../logo_small.png"/>
 	<title>Brands</title>
 	<style>
 		.page-button {
@@ -49,10 +54,10 @@
 						</div>
 						<div id="search-form">
 							<input type="text" name="Search" id="Search">
-							<button>Search</button>
+							<button type="button" onclick="pagination('Brands');">Search</button>
 						</div>
 						<div id="sort-form">
-							<select name="order" id="order">
+							<select name="order" id="order" onchange="pagination('Brands');">
 								<option value="ORDER BY BrandsName ASC">Brands Name A &#8645; Z</option>
 		                        <option value="ORDER BY BrandsName DESC">Brands Name Z &#8645; A</option>
 		                        <option value="ORDER BY Created ASC">Create 1 &#8645; 9</option>

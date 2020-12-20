@@ -3,9 +3,7 @@
 	<div class="nav-bar-left" onclick="openMenu();">
 		<div class="hamburger">&#9776;</div>
 	</div>
-	<div class="nav-bar-mid">
-		
-	</div>
+	<div class="nav-bar-mid"></div>
 	<div class="nav-bar-right">
 		<div class="settings-button">&#9881;</div>
 	</div>
@@ -31,8 +29,7 @@
 							</div>
 						</div>
 						<div class="card-body">
-							This is where you start! You must start by creating the brands of the products on your web shevles.
-							This will help your customers to search their products they want to find by filtering their favorite brands.
+							This is where you start! Create and manage the brands of your products.
 						</div>
 						<div class="card-command">
 							<div class=counter>

@@ -9,7 +9,7 @@ if (isset($_SESSION['Username'])) {
 		echo "<div class='expiry' style='font-weight: bold;'>Exp: ".date('d-M-Y', strtotime($_SESSION['Expiry']))." &#10071; &#10071; &#10071;</div>";
 	}
 	else {
-		echo "<div class='expiry'>Exp. date: ".date('d-M-Y', strtotime($_SESSION['Expiry']))."</div>";
+		echo "<div class='expiry'>Exp: ".date('d-M-Y', strtotime($_SESSION['Expiry']))."</div>";
 	}
 }
 else {
