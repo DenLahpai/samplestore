@@ -353,7 +353,7 @@ section {
 	width: 33px;
 	height: 33px;
 	margin-right: 12px;
-	font-size: 1.2em;
+	font-size: 1.2em;	
 }
 
 .page-button:disabled {
@@ -418,6 +418,6 @@ section {
 		width: 99px;
 		height: 99px;
 		margin-right: 12px;
-		font-size: 3em;
+		font-size: 3em;		
 	}
 }

@@ -256,9 +256,22 @@ function updateBrands (link) {
                     window.location.href = 'Brands.html';
                 }
                 else {
-                    $("#response").html(data);
+                    $("#sys_message").html(data);
                 }
             }
         });
     }
+}
+
+
+/****** function to update Image  ******/
+function exportTable (Table) {
+    var Search = $("#Search").val();
+    var order = $("#order").val();
+    var limit = $("#limit").val();
+    var offset = $("#offset").val();
+
+    window.location.href = 'includes/export_' + Table + '.php?Search=' + Search + '&order=' + 
+    order + '&limit=' + limit + '&offset=' + offset; 
+
 }
