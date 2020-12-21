@@ -357,8 +357,15 @@ section {
 }
 
 .page-button:disabled {
-	color: black;
+	color: #000000;
 	background: #FFFFFF;
+}
+
+footer {
+	text-align: center;
+	margin-top: 120px;
+	background: #FFFFFF;
+	padding-top: 60px;
 }
 
 /*styles for tablets*/

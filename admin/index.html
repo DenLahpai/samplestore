@@ -48,6 +48,9 @@
 <script src="../scripts/scripts.js"></script>
 <script>
 $("document").ready(function () {
+	$.post("includes/footer.php", function (data) {
+		$("footer").html(data);
+	});
 	$("#login-form").on('submit', function (e) {
 		e.preventDefault();
 

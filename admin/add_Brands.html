@@ -63,6 +63,10 @@ $(document).ready(function () {
 	$.post("includes/header.php", function (data) {
 		$("header").html(data);
 	});
+
+	$.post("includes/footer.php", function(data) {
+		$("footer").html(data);
+	});
 	
 	checkSession();
 });

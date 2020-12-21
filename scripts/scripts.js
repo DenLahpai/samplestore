@@ -18,6 +18,96 @@ function Toggle (item) {
 }
 
 
+/****** function to validate email  ******/
+// Note function copied from Stackoverflow.com
+function validateEmail(sEmail) {
+    var reEmail = /^(?:[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+\.)*[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+@(?:(?:(?:[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!\.)){0,61}[a-zA-Z0-9]?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!$)){0,61}[a-zA-Z0-9]?)|(?:\[(?:(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\]))$/;
+
+    if(!sEmail.match(reEmail)) {
+    alert("Invalid email address!");
+    return false;
+    }
+    return true;
+}
+
+/****** Function to request for forgotten password ******/
+function forgotPasswordRequest() {
+    var Email = $("#Email");
+    var Mobile = $("#Mobile");
+
+    Email.removeClass('input-error');
+    Mobile.removeClass('input-error');
+    var inputError = false;
+    // var errorMsg = ""; 
+
+    if (Email.val() == "") {
+        var inputError = true;
+        errorMsg = "<span style='color:red'>Please input all the filed(s) in red!</span>";
+        Email.addClass('input-error');
+        $("#sys_message").html(errorMsg);
+    }
+
+    if (Mobile.val() == "") {
+        var inputError = true;
+        errorMsg = "<span style='color:red'>Please input all the field(s) in red!</span>";
+        Mobile.addClass('input-error');
+        $("#sys_message").html(errorMsg);
+    }
+
+    if (inputError == false) {
+        errorMsg = "";
+        $.post("includes/forgot_password.php", {
+            Email: Email.val(), 
+            Mobile: Mobile.val()
+            }, function (data) {
+                $("#sys_message").html(data);
+                //TODO need to continue after uploading on a webserver
+            }        
+        );        
+    }
+}
+
+/***** function to check if 2 passwords match ******/
+function checkPasswords () {
+    var password = $("#password");
+    var repassword = $("#repassword");
+    var errorMsg = "";
+    $("#button-submit").attr("disabled", "disabled");
+    
+    if (password.val() === repassword.val()) {
+        $("#button-submit").removeAttr("disabled", "disabled");
+    }
+    else {
+        errorMsg = "<span style='color: red;'>The two passwords do NOT match!</span>";
+        $("#response").html(errorMsg);
+    }
+}
+
+/***** function to update password match ******/
+function updatePassword () {
+    var password = $("#password");
+    var repassword = $("#repassword");
+    var DOB = $("#DOB");
+    var Email = $("#Email");
+
+    if (password.val() === repassword.val()) {
+        $.post("includes/update_password.php", {
+            Password: password.val(),
+            Email: Email.val(),
+            DOB: DOB.val()
+            }, function (data) {
+                $("#response").html(data);
+            }
+        
+        );
+    }
+    else {
+        errorMsg = "<span style='color: red;'>The two passwords do NOT match!</span>";
+        $("#response").html(errorMsg);
+    }
+}
+
+
 //function to dispaly preview of an image to be uploaded
 function imagePreview(input) {
     if (input.files && input.files[0]) {
@@ -93,7 +183,8 @@ function getRowCount (table) {
 /****** function to get data from the table  ******/
 function pagination (table) {
     var limit = 10;    
-    var page = Number($("#current_page").val());
+    var current_page = Number($("#current_page").val());
+    // var current_page = 1;
     var Search = $("#Search").val();
 
     if (!Search) {
@@ -112,78 +203,57 @@ function pagination (table) {
             var numRows = data;
             //calculating number of pages
             // var totalPages = Math.ceil(numRows / limit);
-            var totalPages = 25; //DUMMY to test pagination
-                     
-            if (page == 1) {
-                var page1 = Number(page);
-                var page2 = Number(page + 1);
-                var page3 = Number(page + 2);
-                var page4 = Number(page + 3);
-                // var page5 = Number(page + 4);
-                // var page6 = Number(page + 5);
-                //hiding previous button
+            var totalPages = 9; //DUMMY to test pagination
+
+            if (current_page == 1) {
+                $("#page1").val(current_page);
+                $("#page2").val(current_page + 1);
+                $("#page3").val(current_page + 2);
+                $("#page4").val(current_page + 3);
                 $("#previous").attr('disabled', true);
             }
 
-            else if (page == totalPages) {
-            	var page1 = Number(page - 3);
-            	var page2 = Number(page -2);
-            	var page3 = Number(page -1)
-            	var page4 = Number(page);
-            	//hiding next button
-            	$("#next").attr('disabled', true); 
-            }
-
             else {
-                var page1 = Number(page - 1);
-                var page2 = Number(page);
-                var page3 = Number(page + 1);
-                var page4 = Number(page + 2);
-                // var page5 = Number(page + 3);
-                // var page6 = Number(page + 4);   
-                // showing previous button
-                $("#previous").removeAttr('disabled');             
-            } 
-
-            if (page == totalPages) {
-                //hiding next button
-                $("#next").attr('disabled', true);
+                $("#previous").attr('disabled', false);
+                $("#page1").val(current_page - 1);
+                $("#page2").val(current_page);
+                $("#page3").val(current_page + 1);
+                $("#page4").val(current_page + 2);
             }
-            else {
-                //showing next button
-                $("#next").removeAttr('disabled');
-            }
-
-            // setting up the page numbers
-            $("#page1").val(page1);
-            $("#page2").val(page2);
-            $("#page3").val(page3);
-            $("#page4").val(page4);
-            // $("#page5").val(page5);
-            // $("#page6").val(page6);
 
             var i = 1;
             while (i <= 4) {
                 var page_num = $("#page" + i).val();
-                if (page_num > totalPages) {
+                if (page_num == current_page) {
                     $("#page" + i).attr('disabled', true);
-                }
-                else {
-                    $("#page" + i).removeAttr('disabled');  
-                }
-                if (page_num == page) {
-                    $("#page" + i).attr('disabled', true);                    
                 }
                 else {
                     $("#page" + i).removeAttr('disabled');
                 }
-                i++;
-            }           
-        }    
-    );
-    //getting data
-}
 
+                if (page_num == totalPages) {
+                    $("#next").attr('disabled', true);
+                }
+
+                else {
+                    $("#next").attr('disabled', true);
+                }
+
+                if (page_num < 1) {
+                    $("#page" + i).attr('disabled', true);
+                    $("#page" + i).css({"color": "#FFFFFF"});
+                }
+
+                if (page_num > totalPages) {
+                    $("#page" + i).attr('disabled', true);
+                    $("#page" + i).css({"color": "#FFFFFF"});
+                }
+
+                i++;
+            }            
+        }
+    );    
+}
 
 
 /****** function to get data from the table  ******/

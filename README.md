@@ -1,5 +1,3 @@
-# samplestore
-
 /****** function to get data from the table  ******/
 function pagination (table) {
     var limit = 10;    
@@ -10,7 +8,7 @@ function pagination (table) {
         var source = "row_count.php";
     }    
     else {
-        var source = "search_row_count.php";
+        var source = "search_" + table + "_row_count.php";
     }
 
     getData(table);
@@ -21,18 +19,27 @@ function pagination (table) {
         }, function (data) {
             var numRows = data;
             //calculating number of pages
-            // var totalPages = Math.ceil(numRows / limit);
-            var totalPages = 25; DUMMY to test pagination
+            var totalPages = Math.ceil(numRows / limit);
+           // var totalPages = 25; //DUMMY to test pagination
                      
             if (page == 1) {
                 var page1 = Number(page);
                 var page2 = Number(page + 1);
                 var page3 = Number(page + 2);
                 var page4 = Number(page + 3);
-                var page5 = Number(page + 4);
-                var page6 = Number(page + 5);
+                // var page5 = Number(page + 4);
+                // var page6 = Number(page + 5);
                 //hiding previous button
-                $("#previous").hide();
+                $("#previous").attr('disabled', true);
+            }
+
+            else if (page == totalPages) {
+                var page1 = Number(page - 3);
+                var page2 = Number(page -2);
+                var page3 = Number(page -1)
+                var page4 = Number(page);
+                //hiding next button
+                $("#next").attr('disabled', true); 
             }
 
             else {
@@ -40,19 +47,19 @@ function pagination (table) {
                 var page2 = Number(page);
                 var page3 = Number(page + 1);
                 var page4 = Number(page + 2);
-                var page5 = Number(page + 3);
-                var page6 = Number(page + 4);   
+                // var page5 = Number(page + 3);
+                // var page6 = Number(page + 4);   
                 // showing previous button
-                $("#previous").show();             
+                $("#previous").removeAttr('disabled');             
             } 
 
             if (page == totalPages) {
                 //hiding next button
-                $("#next").hide();
+                $("#next").attr('disabled', true);
             }
             else {
                 //showing next button
-                $("#next").show();
+                $("#next").removeAttr('disabled');
             }
 
             // setting up the page numbers
@@ -60,23 +67,23 @@ function pagination (table) {
             $("#page2").val(page2);
             $("#page3").val(page3);
             $("#page4").val(page4);
-            $("#page5").val(page5);
-            $("#page6").val(page6);
+            // $("#page5").val(page5);
+            // $("#page6").val(page6);
 
             var i = 1;
-            while (i <= 6) {
+            while (i <= 4) {
                 var page_num = $("#page" + i).val();
                 if (page_num > totalPages) {
-                    $("#page" + i).hide();
+                    $("#page" + i).attr('disabled', true);
                 }
                 else {
-                    $("#page" + i).show();  
+                    $("#page" + i).removeAttr('disabled');  
                 }
                 if (page_num == page) {
-                    $("#page" + i).css({"background": "#FFFFFF", "color": "rgba(0, 104, 255, 1)"});                    
+                    $("#page" + i).attr('disabled', true);                    
                 }
                 else {
-                    $("#page" + i).css({"background": "rgba(0, 104, 255, 1)", "color": "#FFFFFF"});
+                    $("#page" + i).removeAttr('disabled');
                 }
                 i++;
             }           
@@ -85,61 +92,3 @@ function pagination (table) {
     //getting data
 }
 
-
-<!-- boxes -->
-	<div class="boxes">
-		<!-- box -->
-		<div class="box">
-			<div class="box-img">
-				<div style="font-size: 6em;">+</div>
-			</div>
-			<div class="box-label">
-				Add New 
-			</div>
-		</div>
-		<!-- end of box -->
-		<!-- box -->
-		<div class="box">
-			<div class="box-img">
-				<div>
-					<img src="../logos/thumbnails/test.jpeg" alt="">
-				</div>
-			</div>
-			<div class="box-label">
-				Add
-			</div>
-		</div>
-		<!-- end of box -->
-		<?php foreach($rows_Brands as $row_Brands): ?>
-		<!-- box -->
-		<div class="box">
-			
-		</div>
-		<!-- end of box -->
-		<?php endforeach; ?>	
-	</div>
-<!-- end of boxes -->
-
-<!-- cards -->
-	<div class="cards">
-		<!-- card -->
-		<div class="card" id="Brands-card" onclick="window.location.href='Brands.html';">
-			<div class="card-title">
-				<h2>Gentlemen's Glass</h2>
-				<div>
-					
-				</div>
-			</div>
-			<div class="card-body">
-				<img src="../logos/thumbnails/test.jpeg" alt="">
-			</div>
-			<div class="card-command">
-				<div class=counter>
-					<div id="Brands-rowCount"></div>
-				</div>
-				<div>
-					Entries
-				</div>
-			</div>
-		</div>
-		<!-- end of card -->

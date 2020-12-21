@@ -29,6 +29,7 @@
 			<section id="sys_message"></section>
 		</div>
 		<!-- end of main-content -->
+		<footer></footer>
 	</div>
 	<!-- end of wrapper -->
 </body>
@@ -49,6 +50,10 @@ $(document).ready(function () {
 		link: link
 		}, function (data) {
 		$("#main-data").html(data);
+	});
+
+	$.post("includes/footer.php", function(data) {
+		$("footer").html(data);
 	});
 	
 	checkSession();
