@@ -6,13 +6,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="styles/styles.css">
 	<link rel="Shortcut icon" href="../logo_small.png"/>
-	<title>Brands</title>
+	<title>Products</title>
 	<style>
-		.page-button {
-			background: var(--header-bar);
-			color: #FFFFFF;
-			border: 1px solid #000000;
+		.sub-menu-bar, .sub-menu-item, #search-form, #sort-form {
+ 			background-color: var(--products-color);
 		}
+
 	</style>
 </head>
 <body>
@@ -23,7 +22,7 @@
 		<div class="main-content">
 			<section id="page-title">
 				<div class="page-title">
-					<h1>Brands</h1>					
+					<h1>Products</h1>
 				</div>
 			</section>
 			<section id="sub-menu">
@@ -38,7 +37,7 @@
 							<div class="sub-menu">
 								<div class="sub-menu-items-container">
 									<div class="sub-menu-items">
-										<div class="sub-menu-item" onclick="window.location.href= 'add_Brands.html';">
+										<div class="sub-menu-item" onclick="window.location.href= 'add_Products.html';">
 											Add
 										</div>
 										<div class="sub-menu-item" onclick="Toggle('#search-form');">
@@ -47,7 +46,7 @@
 										<div class="sub-menu-item" onclick="Toggle('#sort-form')">
 											Sort
 										</div>
-										<div class="sub-menu-item" onclick="exportTable('Brands')">
+										<div class="sub-menu-item" onclick="exportTable('Products">
 											Xls
 										</div>										
 									</div>
@@ -56,10 +55,10 @@
 						</div>
 						<div id="search-form">
 							<input type="text" name="Search" id="Search">
-							<button type="button" onclick="pagination('Brands');">Search</button>
+							<button type="button" onclick="pagination('Products');">Search</button>
 						</div>
 						<div id="sort-form">
-							<select name="order" id="order" onchange="pagination('Brands');">
+							<select name="order" id="order" onchange="pagination('Products');">
 								<option value="ORDER BY BrandsName ASC">Brands Name A &#8645; Z</option>
 		                        <option value="ORDER BY BrandsName DESC">Brands Name Z &#8645; A</option>
 		                        <option value="ORDER BY Created ASC">Create 1 &#8645; 9</option>
@@ -79,12 +78,12 @@
                     <input type="hidden" id="current_page" value="1">
                 </div>
                 <div class="pages">
-                    <input type="button" id="previous" class="page-button" onclick="previousPage('Brands');" value="<<" >
-                    <input type="button" class="page-button" id="page1" value="" onclick="changeCurrentPage(this.value, 'Brands');">
-                    <input type="button" class="page-button" id="page2" value="" onclick="changeCurrentPage(this.value, 'Brands');">
-                    <input type="button" class="page-button" id="page3" value="" onclick="changeCurrentPage(this.value, 'Brands');">
-                    <input type="button" class="page-button" id="page4" value="" onclick="changeCurrentPage(this.value, 'Brands');">
-                    <input type="button" id="next" class="page-button" onclick="nextPage('Brands');"  value=">>">
+                    <input type="button" id="previous" class="page-button" onclick="previousPage('Products');" value="<<" >
+                    <input type="button" class="page-button" id="page1" value="" onclick="changeCurrentPage(this.value, 'Products');">
+                    <input type="button" class="page-button" id="page2" value="" onclick="changeCurrentPage(this.value, 'Products');">
+                    <input type="button" class="page-button" id="page3" value="" onclick="changeCurrentPage(this.value, 'Products');">
+                    <input type="button" class="page-button" id="page4" value="" onclick="changeCurrentPage(this.value, 'Products');">
+                    <input type="button" id="next" class="page-button" onclick="nextPage('Products');"  value=">>">
                 </div>
             </section>
 		</div>
@@ -107,8 +106,8 @@ $(document).ready(function () {
 	});
 
 	checkSession();
-	getRowCount ('Brands');
-	pagination ('Brands');
+	getRowCount ('Products');
+	pagination ('Products');
 
 });
 </script>

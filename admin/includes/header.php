@@ -15,11 +15,14 @@
 		<div onclick="closeMenu();">&#10008;</div>
 	</div>
 	<div class="modal-menu-body">
+		<div style="text-align: center; font-size: 3em;">
+			<a href="home.html">Home</a>
+		</div>
 		<!-- cards-container -->
 		<div class="cards-container">
 			<!-- cards -->
 				<div class="cards">
-
+					
 					<!-- Brands-card -->
 					<div class="card" id="Brands-card" onclick="window.location.href='Brands.html';">
 						<div class="card-title">
@@ -29,7 +32,7 @@
 							</div>
 						</div>
 						<div class="card-body">
-							This is where you start! Create and manage the brands of your products.
+							This is where you start! Add and manage the brands of your products.
 						</div>
 						<div class="card-command">
 							<div class=counter>
@@ -43,16 +46,15 @@
 					<!-- end of Brands-card -->
 
 					<!-- Products-card -->
-					<div class="card">
+					<div class="card" id="Products-card" onclick="window.location.href='Products.html';">
 						<div class="card-title">
-							<h2>Brands</h2>
+							<h2>Products</h2>
 							<div>
 								&#9934
 							</div>
 						</div>
 						<div class="card-body">
-							Lorem, ipsum, dolor sit amet consectetur adipisicing elit. Ipsa eos dignissimos nulla beatae expedita amet quis, accusantium atque aliquam et alias, necessitatibus officia, excepturi non perferendis facilis magnam quam cupiditate!
-							Lorem, ipsum dolor sit amet consectetur adipisicing, elit. Vitae ducimus eligendi quae assumenda corrupti illum repudiandae, culpa eveniet dolores quaerat quisquam veritatis ipsam consequatur, placeat quidem quas, necessitatibus tenetur itaque.
+							Add and manage your products for your online store. 
 						</div>
 						<div class="card-command">
 							<div class=counter>
@@ -95,4 +97,5 @@
         }
     }
     getRowCount ('Brands');
+    getRowCount ('Products');
 </script>

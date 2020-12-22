@@ -297,8 +297,6 @@ function nextPage (table) {
     pagination (table);
 }
 
-
-
 /****** function to update Brands  ******/
 function updateBrands (link) {
     var BrandsName = $("#BrandsName");
@@ -343,5 +341,74 @@ function exportTable (Table) {
 
     window.location.href = 'includes/export_' + Table + '.php?Search=' + Search + '&order=' + 
     order + '&limit=' + limit + '&offset=' + offset; 
+}
+
+/****** function to get data from a table as option ******/
+function getOptions (Table) {
+    $.post("includes/get_options_" + Table + ".php", function (data) {
+        $("#" + Table + "Id").append(data);
+    });
+}
+
+/****** function to preview color ******/
+function previewColor (str) {
+    if ($("#color").val() != "") {
+        $(".color-preview").css({"background": str});
+    }
+    else {
+        $(".color-preview").css({"background": "white"});
+    }
+}
+
+/****** function to insert Products ******/
+function insertProducts () {
+    var ProductsCode = $("#ProductsCode");
+    var BrandsId = $("#BrandsId");
+    var Name = $("#Name");
+    var Gender = $("#Gender");
+    var Size = $("#Size");
+    var Color = $("#Color");
+
+    var error = false;
+    ProductsCode.removeClass("input-error");
+    BrandsId.removeClass("input-error");
+    Name.removeClass("input-error");
+    Gender.removeClass("input-error");
+
+    if (ProductsCode.val() == "" || ProductsCode.val() == " " || ProductsCode.val() == null) {
+        error = true;
+        ProductsCode.addClass("input-error");
+    }
+
+    if (BrandsId.val() == "") {
+        error = true;
+        BrandsId.addClass("input-error");
+    }
+
+    if (Name.val() == "" ||  Name.val() == " " || Name.val() == null) {
+        error = true;
+        Name.addClass("input-error");
+    }
+
+    if (Gender.val == "") {
+        error = true;
+        Gender.addClass("input-error");
+    }
+
+    if (error == true) {
+        var error_msg = "<span style='color: red'>Please fill out all the field(s) in red!</span>";
+        $("#sys_message").html(error_msg);
+    }
+
+    else {
+        $.ajax({
+            url: "includes/add_Products.php",
+            type: 'post',
+            data:$("#add-Products").serialize(),
+            success: function (data) {
+                alert(data);
+            }
+        });
+    }
 
 }

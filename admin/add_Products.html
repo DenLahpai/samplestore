@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="styles/styles.css">
+	<link rel="Shortcut icon" href="../logo_small.png"/>
+	<title>Products</title>	
+</head>
+<body>
+	<!-- wrapper -->
+	<div class="wrapper">
+		<header></header>
+		<!--  main-content -->
+		<div class="main-content">
+			<section id="page-title">
+				<div class="page-title">
+					<h1>Add Product</h1>
+				</div>
+			</section>
+			<section id="main-data">
+				<!-- form -->
+				<div class="form" style="text-align: left;">
+					<form action="#" method="post" id="add-Products">
+						<div>
+							<input type="text" id="ProductsCode" name="ProductsCode" placeholder="Product Code">
+							<div class="help-button" onclick="Toggle('#ProductsCodeHelp');">?</div>							
+						</div>
+						<div>
+							<div id="ProductsCodeHelp" class="help-box" style="display:none;">
+								<div class="help-box-header" onclick="Toggle('#ProductsCodeHelp');">Close</div>
+								<div class="help-box-body">
+									The product code can be any combination of letters and numbers. <br>
+									In case you have a product with different colors and sizes, we suggest that you set up the same product code.<br>
+									For instance, a white T-shirt and back T-shirt of the same brand and model can be under the same product code as it will ease your clients to browse for variation of your products in your store. 
+								</div>
+							</div>
+						</div>
+						<div>
+							<select name="BrandsId" id="BrandsId">
+								<option value="">Select the Brand</option>
+							</select>
+						</div>
+						<div>
+							<input type="text" name="Name" id="Name" placeholder="Product Name">
+						</div>
+						<div>
+							<select name="Gender" id="Gender">
+								<option value="">Select Gender</option>
+								<option value="F">F - Women</option>
+								<option value="M">F - Men</option>
+								<option value="U">U - Unisex</option>
+							</select>
+						</div>
+						<div>
+							<select name="Size" id="Size">
+								<option value="Free Size">Free Size</option>
+								<option value="S">Small</option>
+								<option value="M">Medium</option>
+								<option value="L">Large</option>
+								<option value="XL">XL</option>
+								<option value="XXL">XXL</option>
+							</select>
+						</div>
+						<div>
+							<input type="text" name="Color" id="Color" placeholder="Color" onblur="previewColor(this.value);">	
+							<div class="help-button" onclick="Toggle('#colorHelp');">?</div>						
+						</div>
+						<div>
+							<div id="colorHelp" class="help-box" style="display:none;">
+								<div class="help-box-header" onclick="Toggle('#colorHelp');">Close</div>
+								<div class="help-box-body">
+									The box below will display the color name you have entered.<br>
+									If you do not know the name of the color, you can use mobile apps such as Pixel Pickers or Colorpicker. <br>
+									Norally the app will display the hex code (ex. #9D7559) or RGB (ex. R:157, G:117, B:87). <br>
+									If it is a hex, you can enter it with "#" followed by the code bbb9er. <br>
+									If it is in RGB, enter it as follow: <span style="font-style: italic">rgb(193, 123, 000)</span>. 
+								</div>
+							</div>
+						</div>
+						<div style="text-align: center;">
+							Preview Color: <br>
+							<div class="color-preview" style="border: 1px solid black; background: #FFFFFF;"></div>
+						</div>
+						<div style="text-align: center;">
+							<button type="button" class="medium-button" onclick="insertProducts();">Submit</button>
+						</div>
+					</form>
+				</div>
+				<!-- end of form  -->
+			</section>
+			<section id="sys_message"></section>
+		</div>
+		<!-- end of main-content -->
+		<footer></footer>
+	</div>
+	<!-- end of wrapper -->
+</body>
+<script src="../scripts/jquery.js"></script>
+<script src="../scripts/scripts.js"></script>
+<script>
+$(document).ready(function () {
+	
+	$.post("includes/header.php", function (data) {
+		$("header").html(data);
+	});
+
+	$.post("includes/footer.php", function (data) {
+		$("footer").html(data);
+	});
+
+	getOptions ('Brands');
+
+	checkSession();
+});
+</script>
+</html>

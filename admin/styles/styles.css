@@ -1,6 +1,7 @@
 :root {
 	--wrapper-color: rgba(243, 246, 255, 1);
 	--header-bar: rgba(0, 104, 255, 1);
+	--products-color: rgba(207, 117, 255, 1);
 }
 
 * {
@@ -9,6 +10,7 @@
 }
 
 body{
+	background: #FFFFFF;
 	margin: 0px;
 	padding: 0px;
 }
@@ -72,7 +74,7 @@ section {
 	padding-bottom: 30px;	
 }
 
-.page-title > h1 {
+.page-title > h1{
 	text-align: left;
 }
 
@@ -121,7 +123,7 @@ section {
 	width: 100%;
 	height: 100%;
 	overflow: auto;
-	background: silver;
+	background: #FFFFFF;
 	/*opacity: 0.9;*/
 }
 
@@ -131,8 +133,12 @@ section {
 	font-size: 3em;
 }
 
-.modal-menu-body {
+.modal-menu-body > div > a {
+	color: black;
+}
 
+.modal-menu-body > div > a:visited {
+	color: black;
 }
 
 .sub-menu-bar {
@@ -259,7 +265,7 @@ section {
 .boxes {
 	display: grid;
 	grid-gap: 12px;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     padding: 12px;    
     text-align: center;
 }
@@ -318,13 +324,27 @@ section {
 	color: #FFFFFF;
 	display: grid;
 	place-items: center;
-	height: 48px;
+	height: 30px;
 }
 
 #Brands-card {
 	background-color: var(--header-bar);
 	color: #FFFFFF;
 }
+
+#Products-card {
+	background-color: var(--products-color);
+	color: #FFFFFF;
+}
+
+.form > form > div {
+	margin-bottom: 12px;
+}
+
+.form > form > div > input, .form > form > div > div {
+	display: inline-block;
+}
+
 
 .form > form > div > label {
 	padding: 3px 12px;
@@ -336,8 +356,34 @@ section {
 	box-shadow: 3px 3px 3px black;
 }
 
+.form > form > div > input {
+	width: 200px;
+}
+
+.form > form > div > select {
+	width: 204px;
+}
+
 .form > form > div > button {
 	padding: 6px 18px;
+}
+
+.help-box {
+	display: none;
+	background: #E9DE8F;
+	padding: 3px;
+	width: 270px;
+}
+
+.help-box-header {
+	text-align: right;
+	color: blue;
+	margin-bottom: 6px;
+	text-decoration: underline;
+}
+
+.help-box-body {
+	text-align: left;
 }
 
 .image_preview {
@@ -347,6 +393,21 @@ section {
 
 .image_preview img {
     max-width: 90%;
+}
+
+.color-preview {
+	width: 60px;
+	height: 60px;	
+}
+
+.help-button {
+	background: var(--header-bar);
+	color: #FFFFFF;
+	border-radius: 50%;
+	border: 1px solid #FFFFFF;
+	font-size: 1.2em;
+	padding: 0px 6px;
+	cursor: pointer;
 }
 
 .page-button {
