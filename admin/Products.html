@@ -12,6 +12,16 @@
  			background-color: var(--products-color);
 		}
 
+		.card {
+			border: 2px solid var(--products-color);
+		}
+
+		.card-title > div > div {
+			background: var(--products-color);
+			color: #FFFFFF;
+			cursor: pointer;
+		}
+
 	</style>
 </head>
 <body>
@@ -59,12 +69,14 @@
 						</div>
 						<div id="sort-form">
 							<select name="order" id="order" onchange="pagination('Products');">
-								<option value="ORDER BY BrandsName ASC">Brands Name A &#8645; Z</option>
-		                        <option value="ORDER BY BrandsName DESC">Brands Name Z &#8645; A</option>
+								<option value="ORDER BY Name ASC">Products A &#8645; Z</option>
+		                        <option value="ORDER BY Name DESC">Products Name Z &#8645; A</option>
+		                        <option value="ORDER BY Brands.BrandsName ASC">Brands A &#8645; Z</option>
+		                        <option value="ORDER BY Brands.BrandsName">Brands Name Z &#8645; A</option>
 		                        <option value="ORDER BY Created ASC">Create 1 &#8645; 9</option>
 		                        <option value="ORDER BY Created DESC">Create 9 &#8645; 1</option>
 		                        <option value="ORDER BY Updated ASC">Update 1 &#8645; 9</option>
-		                        <option value="ORDER BY Updated DESC">Update 9 &#8645; 1</option>
+		                        <option value="ORDER BY Updated DESC" selected>Update 9 &#8645; 1</option>
 							</select>
 						</div>
 					</div>				

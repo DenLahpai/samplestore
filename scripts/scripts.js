@@ -107,7 +107,6 @@ function updatePassword () {
     }
 }
 
-
 //function to dispaly preview of an image to be uploaded
 function imagePreview(input) {
     if (input.files && input.files[0]) {
@@ -406,7 +405,12 @@ function insertProducts () {
             type: 'post',
             data:$("#add-Products").serialize(),
             success: function (data) {
-                alert(data);
+                if (data == 0) {
+                    window.location.href= 'Products.html';
+                }
+                else {
+                    $("#sys_message").html(data);
+                }
             }
         });
     }

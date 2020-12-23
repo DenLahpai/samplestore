@@ -102,7 +102,7 @@ section {
 
 .form input {
 	margin: 12px auto;
-	display: block;		
+	display: inline;		
 }
 
 .medium {
@@ -163,8 +163,9 @@ section {
 }
 
 .sub-menu-items {
-	display: flex;
-	justify-content: center;	
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	/*place-items: center;*/
 }
 
 .sub-menu-item {
@@ -192,6 +193,7 @@ section {
 	display: none;
 	padding: 12px;	
 	background: var(--header-bar);
+	border-top: 1px solid white;
 }
 
 #search-form > input {
@@ -209,6 +211,7 @@ section {
 	display: none;
 	padding: 12px;
 	background: var(--header-bar);
+	border-top: 1px solid #FFFFFF;
 }
 
 .cards {
@@ -233,13 +236,25 @@ section {
 	text-align: center;
 }
 
-.card-title div {
-	text-align: center;
-    font-size: 3em;
+.card-title > div {
+	text-align: center;    
+}
+
+.card-title > div > div {
+	width: 60px;
+	height: 60px;
+	font-size: 1em;
+	display: grid;
+	place-items: center;
+	border-radius: 12px;
 }
 
 .card-body {
 	padding-top: 12px;
+}
+
+.card-body > div {
+	text-align: left;
 }
 
 .card-command {
@@ -337,14 +352,21 @@ section {
 	color: #FFFFFF;
 }
 
-.form > form > div {
-	margin-bottom: 12px;
-}
-
-.form > form > div > input, .form > form > div > div {
+.form {
+	/*background: red;*/
+	text-align: center;
 	display: inline-block;
 }
 
+.form > form > div {
+	margin-bottom: 12px;
+	text-align: left; 
+}
+
+.form > form > div > div {
+	text-align: center;
+	display: inline;
+}
 
 .form > form > div > label {
 	padding: 3px 12px;
@@ -405,9 +427,9 @@ section {
 	color: #FFFFFF;
 	border-radius: 50%;
 	border: 1px solid #FFFFFF;
-	font-size: 1.2em;
+	font-weight: bold;
 	padding: 0px 6px;
-	cursor: pointer;
+	cursor: pointer;	
 }
 
 .page-button {
@@ -446,6 +468,12 @@ footer {
 		font-size: 2em;
 	}
 
+	.sub-menu-items {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		place-items: center;
+	}
+
 }
 /*styles for computers*/
 @media screen and (min-width: 992px) {
@@ -467,7 +495,9 @@ footer {
 	}
 
 	.sub-menu-items {
+		display: flex;		
 		justify-content: left;
+		place-items: left;
 	}
 
 	.sub-menu-item {

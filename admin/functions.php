@@ -208,6 +208,40 @@ function table_Brands ($job, $var1, $var2, $var3, $order, $limit, $offset) {
 	}
 }
 
+// functions to use data from the table Products
+function table_Products ($job, $var1, $var2, $var3, $order, $limit, $offset) {
+    $db = new Database();
+
+    switch ($job) {
+        case 'select_all':
+            # code...
+            $stm = "SELECT 
+                Products.Id, 
+                Products.ProductsLink,
+                Products.ProductsCode, 
+                Products.MainImg, 
+                Products.BrandsId, 
+                Brands.BrandsName, 
+                Brands.Country,
+                Products.Name,
+                Products.Gender, 
+                Products.Size, 
+                Products.Color, 
+                Products.UsersId, 
+                Products.Created, 
+                Products.Updated
+                FROM Products LEFT OUTER JOIN Brands ON Brands.Id = Products.BrandsId
+                $order limit $limit OFFSET $offset ;";
+            $db->query($stm);
+            return $db->resultset();
+            break;
+        
+        default:
+            # code...
+            break;
+    }
+}
+
 // function to create thumbnail
 function CreateThumbnail($pic, $thumb, $thumbwidth, $quality = 100) {
     $im1=ImageCreateFromJPEG($pic);

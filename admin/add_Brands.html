@@ -29,20 +29,20 @@
 				<!-- form -->
 				<div class="form">
 					<form action="#" method="post" enctype="multipart/form-data">
-						<div>
+						<div style="text-align: center;">
 							<input type="text" Name="BrandsName" id="BrandsName" placeholder="BrandsName">
 						</div>
-						<div>
+						<div style="text-align: center;">
 							<input type="text" Name="Country" id="Country" placeholder="Country">
 						</div>
-						<div>
+						<div style="text-align: center;">
                             <label for="Image">Upload Image</label>
                             <input type="file" style="display: none;" name="Image" id="Image" onchange="imagePreview(this);">
                         </div>
-                        <div class="image_preview">
+                        <div class="image_preview" style="text-align: center;">
                             <img id="image_preview">
                         </div>
-                        <div>
+                        <div style="text-align: center;">
                             <button type="button" id="btn-submit" class="medium-button" onclick="insertBrands();">Submit</button>
                         </div>
 					</form>

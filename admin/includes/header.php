@@ -27,7 +27,7 @@
 					<div class="card" id="Brands-card" onclick="window.location.href='Brands.html';">
 						<div class="card-title">
 							<h2>Brands</h2>
-							<div>
+							<div style="font-size: 3em;">
 								&#9934
 							</div>
 						</div>
@@ -49,8 +49,8 @@
 					<div class="card" id="Products-card" onclick="window.location.href='Products.html';">
 						<div class="card-title">
 							<h2>Products</h2>
-							<div>
-								&#9934
+							<div style="font-size: 3em; color: black; ">
+								&#9917
 							</div>
 						</div>
 						<div class="card-body">

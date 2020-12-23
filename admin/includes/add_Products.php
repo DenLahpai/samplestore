@@ -26,11 +26,12 @@ if (isset($_REQUEST)) {
 	$db->bind(":Color", trim($_REQUEST['Color']));
 	$db->bind(":UsersId", $_SESSION['Id']);
 	if ($db->execute()) {
-		$i = true;
+		echo 0;
 	}
 	else {
 		echo "<span style='color: red'>There was a connection problem! Please try again!</span>";
-	}	
+	}
+	
 }
 else {
 	echo "<span style='color: red'>There was a connection problem! Please try again!</span>";
