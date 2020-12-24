@@ -1,4 +1,4 @@
-<?php  
+<?php
 require_once "../functions.php";
 if (empty($_POST['order'])) {
     $order = "ORDER BY Id ASC ";
@@ -11,7 +11,7 @@ if (empty($_POST['limit'])) {
     $limit = 10;
 }
 else {
-    $limit = $_POST['limit'];   
+    $limit = $_POST['limit'];
 }
 
 if (empty($_POST['page'])) {
@@ -45,16 +45,19 @@ $rows_Products = table_Products ('select_all', NULL, NULL, NULL, $order, $limit,
 				<div>
 					<? echo $row_Products->Name; ?>
 				</div>
-				<div style="font-style: italic;">
-					PC: <? echo $row_Products->ProductsCode; ?>
+				<div>
+					<? echo $row_Products->ProductsCode; ?>
 				</div>
 				<div style="font-weight: bold">
-					<? echo $row_Products->Gender.", ".$row_Products->Size; ?>
+					<?
+                        echo "Gd: ".$row_Products->Gender."<br>";
+                        echo "Sz: ".$row_Products->Size;
+                    ?>
 				</div>
 			</div>
 			<div class="card-command" onclick="window.location.href='<? echo "edit_Products.html?link=$row_Products->ProductsLink"; ?>';">
-				<div class=counter style="background-color: <? echo $row_Products->Color; ?>"></div>
-				<div style="text-decoration: underline;">
+				<div class=counter style="cursor: pointer; background-color: <? echo $row_Products->Color; ?>"></div>
+				<div style="text-decoration: underline; cursor: pointer">
 					Edit
 				</div>
 			</div>

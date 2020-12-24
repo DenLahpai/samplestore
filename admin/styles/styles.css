@@ -65,13 +65,13 @@ body{
 }
 
 .wrapper {
-	background: var(--wrapper-color);	
+	background: var(--wrapper-color);
 }
 
 section {
 	text-align: center;
 	padding: 6px;
-	padding-bottom: 30px;	
+	padding-bottom: 30px;
 }
 
 .page-title > h1{
@@ -102,11 +102,11 @@ section {
 
 .form input {
 	margin: 12px auto;
-	display: inline;		
+	display: inline;
 }
 
 .medium {
-	padding: 3px 18px;	
+	padding: 3px 18px;
 }
 
 .input-error {
@@ -191,7 +191,7 @@ section {
 
 #search-form {
 	display: none;
-	padding: 12px;	
+	padding: 12px;
 	background: var(--header-bar);
 	border-top: 1px solid white;
 }
@@ -217,7 +217,7 @@ section {
 .cards {
 	display: grid;
 	grid-gap: 1rem;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(258px, 1fr));
     padding: 30px;
 }
 
@@ -225,7 +225,7 @@ section {
 	display: flex;
     flex-direction: row;
     justify-content: space-between;
-    border-radius: 12px;    
+    border-radius: 12px;
 }
 
 .card > div {
@@ -237,7 +237,7 @@ section {
 }
 
 .card-title > div {
-	text-align: center;    
+	text-align: center;
 }
 
 .card-title > div > div {
@@ -281,13 +281,13 @@ section {
 	display: grid;
 	grid-gap: 12px;
     grid-template-columns: repeat(2, 1fr);
-    padding: 12px;    
+    padding: 12px;
     text-align: center;
 }
 
 .box {
-	cursor: pointer;	
-	position: relative;	
+	cursor: pointer;
+	position: relative;
 }
 
 .box:active	{
@@ -307,7 +307,7 @@ section {
 
 .box-img {
 	display: grid;
-	place-items: center;	
+	place-items: center;
 }
 
 .box-img > div {
@@ -360,7 +360,7 @@ section {
 
 .form > form > div {
 	margin-bottom: 12px;
-	text-align: left; 
+	text-align: left;
 }
 
 .form > form > div > div {
@@ -419,7 +419,7 @@ section {
 
 .color-preview {
 	width: 60px;
-	height: 60px;	
+	height: 60px;
 }
 
 .help-button {
@@ -429,14 +429,14 @@ section {
 	border: 1px solid #FFFFFF;
 	font-weight: bold;
 	padding: 0px 6px;
-	cursor: pointer;	
+	cursor: pointer;
 }
 
 .page-button {
 	width: 33px;
 	height: 33px;
 	margin-right: 12px;
-	font-size: 1.2em;	
+	font-size: 1.2em;
 }
 
 .page-button:disabled {
@@ -454,7 +454,7 @@ footer {
 /*styles for tablets*/
 @media screen and (min-width: 768px) {
     .cards {
-    	grid-template-columns: repeat(1, 1fr);
+    	/* grid-template-columns: repeat(1, 1fr); */
     }
 
     .boxes {
@@ -478,7 +478,7 @@ footer {
 /*styles for computers*/
 @media screen and (min-width: 992px) {
     .cards {
-    	grid-template-columns: repeat(2, 1fr);
+    	/* grid-template-columns: repeat(2, 1fr); */
     }
 
     .boxes {
@@ -495,7 +495,7 @@ footer {
 	}
 
 	.sub-menu-items {
-		display: flex;		
+		display: flex;
 		justify-content: left;
 		place-items: left;
 	}
@@ -516,6 +516,6 @@ footer {
 		width: 99px;
 		height: 99px;
 		margin-right: 12px;
-		font-size: 3em;		
+		font-size: 3em;
 	}
 }
