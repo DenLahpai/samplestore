@@ -22,13 +22,13 @@
 		<div class="cards-container">
 			<!-- cards -->
 				<div class="cards">
-					
+
 					<!-- Brands-card -->
 					<div class="card" id="Brands-card" onclick="window.location.href='Brands.html';">
 						<div class="card-title">
 							<h2>Brands</h2>
 							<div style="font-size: 3em;">
-								&#9934
+								&#9934;
 							</div>
 						</div>
 						<div class="card-body">
@@ -50,11 +50,11 @@
 						<div class="card-title">
 							<h2>Products</h2>
 							<div style="font-size: 3em; color: black; ">
-								&#9917
+								&#9917;
 							</div>
 						</div>
 						<div class="card-body">
-							Add and manage your products for your online store. 
+							Add and manage your products for your online store.
 						</div>
 						<div class="card-command">
 							<div class=counter>
@@ -66,6 +66,7 @@
 						</div>
 					</div>
 					<!-- end of Products-cards -->
+
 				</div>
 			<!-- end of cards -->
 		</div>

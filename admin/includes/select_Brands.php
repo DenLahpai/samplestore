@@ -1,4 +1,4 @@
-<?php  
+<?php
 require_once "../functions.php";
 
 if (empty($_POST['order'])) {
@@ -12,7 +12,7 @@ if (empty($_POST['limit'])) {
     $limit = 10;
 }
 else {
-    $limit = $_POST['limit'];   
+    $limit = $_POST['limit'];
 }
 
 if (empty($_POST['page'])) {
@@ -39,7 +39,7 @@ $rows_Brands = table_Brands ('select_all', NULL, NULL, NULL, $order, $limit, $of
 					<?
 					//getting the extension to find out whether the image is .png
 	                $ext = explode('.', $row_Brands->Image);
-	                $file_ext = strtolower(end($ext)); 
+	                $file_ext = strtolower(end($ext));
 	                if ($file_ext == 'png'):
 	                //if image is .png, getting the image from ../logos folder as no thumbnails
 	                ?>
@@ -48,16 +48,24 @@ $rows_Brands = table_Brands ('select_all', NULL, NULL, NULL, $order, $limit, $of
 	                    <img src="<? echo '../logos/thumbnails/'.$row_Brands->Image; ?>" alt="" onclick="<? echo "window.location.href='../logos/".$row_Brands->Image."'";?>">
 	                <? endif; ?>
 	            <? else: ?>
-	                <button type="button" onclick="<? echo "window.location.href='update_Brands.html?link=".$row_Brands->BrandsLink."'"; ?>">Click here to add a logo!</button>    
+	                <button type="button" onclick="<? echo "window.location.href='update_Brands.html?link=".$row_Brands->BrandsLink."'"; ?>">Add a logo!</button>
 	            <? endif;?>
 	            </div>
 			</div>
 			<!-- end of box-img -->
-			<!-- box-label -->
-			<div class="box-label" onclick="<? echo "window.location.href='update_Brands.html?link=".$row_Brands->BrandsLink."'"; ?>">
-				<?php echo $row_Brands->BrandsName." | ".$row_Brands->Country;?>
-			</div>
-			<!-- end of box-label -->
+			<!-- box-desc -->
+            <div class="box-desc">
+                <div class="box-desc-title">
+                    <h3><? echo $row_Brands->BrandsName; ?></h3>
+                </div>
+                <div class="box-desc-body">
+                    <p><? echo $row_Brands->Country; ?></p>
+                </div>
+                <div class="box-desc-footer">
+                    <a href="update_Brands.html?link=<? echo $row_Brands->BrandsLink; ?>">Edit</a>
+                </div>
+            </div>
+            <!-- end of box-desc -->
 		</div>
 		<!-- end of box -->
 		<?php endforeach; ?>

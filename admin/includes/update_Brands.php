@@ -18,7 +18,7 @@ if (isset($_REQUEST['link'])) {
             <input type="text" id="Country" placeholder="Country of the brand" value="<? echo $row_Brands->Country; ?>">
         </div>
         <?php if (empty($row_Brands->Image) ): ?>
-        <div>
+        <div style="text-align: center;">
             <label for="Image">Upload Image</label>
             <input type="file" style="display: none;" name="Image" id="Image" onchange="imagePreview(this);">   
         </div>
@@ -26,15 +26,15 @@ if (isset($_REQUEST['link'])) {
             <img id="image_preview">
         </div>
         <?php else: ?>
-        <div>
-            <label for="Image">Change Image</label>
+        <div style="text-align: center;">
+            <label for="Image" style="text-align: center;">Change Image</label>
             <input type="file" style="display: none;" name="Image" id="Image" onchange="imagePreview(this);">   
         </div>
         <div class="image_preview">
             <img id="image_preview" src="<? echo "../logos/".$row_Brands->Image; ?>">
         </div>
         <?php endif; ?>    
-        <div>
+        <div style="text-align: center;">
             <button type="button" id="btn-submit" class="medium-button" onclick="updateBrands('<? echo $_REQUEST['link']?>');">Submit</button>
         </div>                        
     </form>    

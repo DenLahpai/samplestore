@@ -226,6 +226,11 @@ section {
     flex-direction: row;
     justify-content: space-between;
     border-radius: 12px;
+	box-shadow: 6px 6px 6px rgba(0,0, 0, 0.6);
+}
+
+.card:active {
+	box-shadow: 3px 3px 3px rgba(0,0,0,0.3);
 }
 
 .card > div {
@@ -280,29 +285,26 @@ section {
 .boxes {
 	display: grid;
 	grid-gap: 12px;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
     padding: 12px;
     text-align: center;
 }
 
 .box {
+	background: #FFFFFF;
+	padding: 12px;
 	cursor: pointer;
-	position: relative;
+	display: flex;
+	box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.6);
 }
 
 .box:active	{
-	background: red;
+	box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3)
 	color: white;
 }
 
-.box-header {
-	position: absolute;
-	top: 0;
-	width: 100%;
-	left: 0;
-	background: #FFFFFF;
-	color: var(--header-bar);
-	height: 36px;
+.box > div {
+	margin-right: 12px;
 }
 
 .box-img {
@@ -311,9 +313,8 @@ section {
 }
 
 .box-img > div {
-	width: 100%;
+	max-width:200px ;
 	height: 180px;
-
 }
 
 .box-img > div > img {
@@ -330,16 +331,15 @@ section {
 	border: 0;
 }
 
-.box-label {
-	position: relative;
-	bottom: 0;
-	width: 100%;
-	left: 0;
-	background: var(--header-bar);
-	color: #FFFFFF;
-	display: grid;
-	place-items: center;
-	height: 30px;
+.box-desc {
+	text-align: left;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.box-desc-footer {
+	align-items: bottom
 }
 
 #Brands-card {
