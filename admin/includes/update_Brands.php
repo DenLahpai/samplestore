@@ -38,4 +38,4 @@ if (isset($_REQUEST['link'])) {
             <button type="button" id="btn-submit" class="medium-button" onclick="updateBrands('<? echo $_REQUEST['link']?>');">Submit</button>
         </div>                        
     </form>    
-</div>   
+</div>
