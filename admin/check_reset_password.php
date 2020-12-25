@@ -34,7 +34,7 @@ $rowCount = 3;
                         <div>
                             <input type="date" id="DOB" name="DOB" value="<? if(isset($_REQUEST['DOB'])) { echo $_REQUEST['DOB'];}?>">
                         </div>
-                        <div>
+                        <div style="text-align: center;">
                             <button type="button" id="btn-submit" class="medium button">Submit</button>
                         </div>
                     </form>
