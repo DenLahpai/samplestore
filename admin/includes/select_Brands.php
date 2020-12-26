@@ -48,24 +48,23 @@ $rows_Brands = table_Brands ('select_all', NULL, NULL, NULL, $order, $limit, $of
 	                    <img src="<? echo '../logos/thumbnails/'.$row_Brands->Image; ?>" alt="" onclick="<? echo "window.location.href='../logos/".$row_Brands->Image."'";?>">
 	                <? endif; ?>
 	            <? else: ?>
-	                <button type="button" onclick="<? echo "window.location.href='update_Brands.html?link=".$row_Brands->BrandsLink."'"; ?>">Add a logo!</button>
+	               <div class="" onclick="<? echo "window.location.href='update_Brands.html?link=".$row_Brands->BrandsLink."'"; ?>">
+                       Add a logo!
+                   </div>
 	            <? endif;?>
 	            </div>
 			</div>
 			<!-- end of box-img -->
-			<!-- box-desc -->
-            <div class="box-desc">
-                <div class="box-desc-title">
-                    <h3><? echo $row_Brands->BrandsName; ?></h3>
-                </div>
-                <div class="box-desc-body">
-                    <p><? echo $row_Brands->Country; ?></p>
-                </div>
-                <div class="box-desc-footer">
-                    <a href="update_Brands.html?link=<? echo $row_Brands->BrandsLink; ?>">Edit</a>
-                </div>
-            </div>
-            <!-- end of box-desc -->
+			<!-- box-label -->
+			<div class="box-label">
+				<div>
+					<? echo $row_Brands->BrandsName.", ".$row_Brands->Country; ?>
+				</div>
+				<div>
+					<a href="update_Brands.html?link=<? echo $row_Brands->BrandsLink; ?>">Edit</a>
+				</div>
+			</div>		
+			<!-- end of box-label -->
 		</div>
 		<!-- end of box -->
 		<?php endforeach; ?>

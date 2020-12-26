@@ -11,10 +11,10 @@ if (isset($_REQUEST['link'])) {
 ?>
 <div class="form">
     <form id="post-form" method="post" action="" enctype="multipart/form-data">
-        <div>
+        <div style="text-align: center;">
             <input type="text" id="BrandsName" placeholder="Brand's Name" value="<? echo $row_Brands->BrandsName; ?>">
         </div>
-        <div>
+        <div  style="text-align: center;">
             <input type="text" id="Country" placeholder="Country of the brand" value="<? echo $row_Brands->Country; ?>">
         </div>
         <?php if (empty($row_Brands->Image) ): ?>
@@ -22,7 +22,7 @@ if (isset($_REQUEST['link'])) {
             <label for="Image">Upload Image</label>
             <input type="file" style="display: none;" name="Image" id="Image" onchange="imagePreview(this);">   
         </div>
-        <div class="image_preview">
+        <div class="image_preview"  style="text-align: center;">
             <img id="image_preview">
         </div>
         <?php else: ?>
@@ -30,7 +30,7 @@ if (isset($_REQUEST['link'])) {
             <label for="Image" style="text-align: center;">Change Image</label>
             <input type="file" style="display: none;" name="Image" id="Image" onchange="imagePreview(this);">   
         </div>
-        <div class="image_preview">
+        <div class="image_preview"  style="text-align: center;">
             <img id="image_preview" src="<? echo "../logos/".$row_Brands->Image; ?>">
         </div>
         <?php endif; ?>    

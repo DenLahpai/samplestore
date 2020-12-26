@@ -26,45 +26,51 @@ $offset = ($page * $limit) - $limit;
 
 $rows_Products = table_Products ('select_all', NULL, NULL, NULL, $order, $limit, $offset);
 ?>
-<!-- cards-container -->
-<div class="cards-container">
-	<!-- cards -->
-	<div class="cards">
-		<?php foreach ($rows_Products as $row_Products): ?>
-		<!-- card -->
-		<div class="card" id="<? echo $row_Products->ProductsLink; ?>">
-			<div class="card-title">
+<!-- products-box-container -->
+<div class="products-box-container">
+	<!-- products-boxes -->
+	<div class="products-boxes">
+		<? foreach ($rows_Products as $row_Products): ?>
+		<!-- products-box -->
+		<div class="products-box">
+			<div class="products-box-desc">
 				<div>
-					<? echo $row_Products->BrandsName;?>
-				</div>
-				<div>
-					<div>Upload Image!</div>
-				</div>
-			</div>
-			<div class="card-body">
-				<div>
+					<h4 style="display: inline;"><? echo $row_Products->BrandsName.": "?></h4>
 					<? echo $row_Products->Name; ?>
 				</div>
 				<div>
 					<? echo $row_Products->ProductsCode; ?>
 				</div>
-				<div style="font-weight: bold">
-					<?
-                        echo "Gd: ".$row_Products->Gender."<br>";
-                        echo "Sz: ".$row_Products->Size;
-                    ?>
+				<div>
+					<? echo $row_Products->Gender; ?>
+					| Size: <? echo $row_Products->Size; ?>
 				</div>
+				<div class="color-preview" style="background: <? echo $row_Products->Color; ?>"></div>
 			</div>
-			<div class="card-command" onclick="window.location.href='<? echo "edit_Products.html?link=$row_Products->ProductsLink"; ?>';">
-				<div class=counter style="cursor: pointer; background-color: <? echo $row_Products->Color; ?>"></div>
-				<div style="text-decoration: underline; cursor: pointer">
-					Edit
-				</div>
+			<div class='products-box-img'>
+				<? if (empty($row_Products->MainImg) || $row_Products->MainImg == ""): ?>
+					<div class="img-upload" onclick="window.location.href = 'upload_main_img_Products.html?link=<? echo $row_Products->ProductsLink; ?>';">Upload image!</div>
+				<? else: ?>
+					<?php
+					//getting the extension to find out whether the image is .png
+	                $ext = explode('.', $row_Products->MainImg);
+					$file_ext = strtolower(end($ext));
+					if ($ext == 'png') {
+						$img_path = "../images/".$row_Products->MainImg;
+					}
+					else {
+						$img_path = "../images/thumbnails/".$row_Products->MainImg;
+					}
+					?>
+					<div class="products-img">
+						<img src="<? echo $img_path; ?>" alt="">
+					</div>
+				<? endif;?>
 			</div>
 		</div>
-		<!-- end of card -->
-		<?php endforeach ?>
+		<!-- end of products-box  -->
+		<? endforeach; ?>
 	</div>
-	<!-- end of cards -->
+	<!-- end of products-boxes -->
 </div>
-<!-- end of cards-container -->
+<!-- end fo products-box-container  -->

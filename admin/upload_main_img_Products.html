@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="styles/styles.css">
+	<link rel="Shortcut icon" href="../logo_small.png"/>
+    <title>Upload_Image</title>
+</head>
+<body>
+    <!-- wrapper -->
+    <div class="wrapper">
+        <header></header>
+        <!-- main-content -->
+        <div class="main-content">
+            <section id="page-title">
+                <div class="page-title">
+                    <h1>Upload Main Image</h1>
+                </div>
+            </section>
+            <section id="main-data">
+                <!-- form -->
+                <div class="form">
+                    <form action="#" method="post" enctype="multipart/form-data">
+                        <div style="text-align: center;">
+                            <label for="Image">Upload Image</label>
+                            <input type="file" style="display: none;" id="Image" Name="Image" onchange="imagePreview(this);">
+                        </div>
+                        <div class="image_preview" style="text-align: center;">
+                            <img id="image_preview">
+                        </div>
+                        <div style="text-align: center;">
+                            <button type="button" id="btn-submit" class="medium-button">Submit</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- end of form  -->
+            </section>
+            <section id="sys_message"></section>
+        </div>
+        <!-- end of main-content -->
+        <footer></footer>
+    </div>
+    <!-- end of wrapper -->
+</body>
+<script src="../scripts/jquery.js"></script>
+<script src="../scripts/scripts.js"></script>
+<script>
+$(document).ready(function () {
+
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const link = urlParams.get('link');
+	
+	$.post("includes/header.php", function (data) {
+		$("header").html(data);
+	});
+
+	$.post("includes/footer.php", function (data) {
+		$("footer").html(data);
+    });
+    
+    $("#btn-submit").on("click", function () {
+        if ($("#Image").val() == null || $("#Image").val() == "") {
+            var msg = "<span style='color: red'>Please choose an image to upload!</span>";
+            $("#sys_message").html(msg);
+        }
+        else {
+            var fdata = new FormData();
+            var files = $("#Image")[0].files[0];
+            fdata.append('Image', files);
+            $.ajax({
+                url: "includes/upload_img_Products.php?link=" + link + "&src=main",
+                type: "post",
+                data: fdata,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    $("#sys_message").html(data);
+                }
+            });
+        }
+    });
+
+	checkSession();
+});
+</script>
+</html>

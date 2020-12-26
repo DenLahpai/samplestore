@@ -414,5 +414,9 @@ function insertProducts () {
             }
         });
     }
+}
+
+//function to upload Image for Products
+function uploadImageProducts (image) {
 
 }

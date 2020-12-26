@@ -73,10 +73,6 @@ function table_Brands ($job, $var1, $var2, $var3, $order, $limit, $offset) {
 			break;
 
 		case 'insert':
-			// $set = "SET NAMES 'utf8';";
-			// $db->query($set);
-			// $db->execute();
-			# var1 = Image
 			$stm = "INSERT INTO Brands SET 
                 BrandsName = :BrandsName,
                 BrandsLink = :BrandsLink,
@@ -234,6 +230,20 @@ function table_Products ($job, $var1, $var2, $var3, $order, $limit, $offset) {
                 $order limit $limit OFFSET $offset ;";
             $db->query($stm);
             return $db->resultset();
+            break;
+
+        case 'update_MainImg':
+            # $var1 = MainImg
+            $stm = "UPDATE Products SET MainImg = :var1 WHERE ProductsLink = :ProductsLink ;";
+            $db->query($stm);
+            $db->bind(":var1", $var1);
+            $db->bind(":ProductsLink", $_REQUEST['link']);
+            if ($db->execute()) {
+                return true;
+            }
+            else {
+                echo "<span style='color: red'>There was a connection problem! Please try again!</span>";
+            }
             break;
         
         default:

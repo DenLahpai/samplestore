@@ -26,67 +26,51 @@ $offset = ($page * $limit) - $limit;
 
 if (isset($_REQUEST['Search']) || !empty($_REQUEST['Search'])) {
     $Search = '%'.$_REQUEST['Search'].'%';
-    $rows_Brands = table_Brands ('search', $Search, NULL, NULL, $order, $limit, $offset);
-    
+    $rows_Brands = table_Brands ('search', $Search, NULL, NULL, $order, $limit, $offset);    
 }
 ?>
-
-<!-- module-cards-container -->
-<div class="module-cards-container">
-<?php foreach($rows_Brands as $row_Brands): ?>
-    <!-- module-card -->
-    <div class="module-card" id="module-brands">
-        <!-- module-card-body -->
-        <div class="module-card-body">
-            <!-- module-card-body-contents -->
-            <div class="module-card-body-contents">
-                <!-- module-card-title -->
-                <div class="module-card-title">                    
-                    <div class="logo">
-                    <? if (!empty($row_Brands->Image)):?>
-                        <?  
-                        $ext = explode('.', $row_Brands->Image);
-                        $file_ext = strtolower(end($ext)); 
-                        if ($file_ext == 'png'):   
-                        ?>
-                            <img src="<? echo '../logos/'.$row_Brands->Image; ?>" alt="" onclick="<? echo "window.location.href='../logos/".$row_Brands->Image."'";?>">
-                        <? else: ?>
-                            <img src="<? echo '../logos/thumbnails/'.$row_Brands->Image; ?>" alt="" onclick="<? echo "window.location.href='../logos/".$row_Brands->Image."'";?>">
-                        <? endif; ?>    
-                    <? else: ?>
-                        <button type="button" onclick="<? echo "window.location.href='update_image_Brands.html?link=".$row_Brands->BrandsLink."'"; ?>">Add a logo!</button>    
-                    <? endif;?>    
-                    </div>
-                </div>
-                <!-- end of module-card-title  -->
-            </div>
-            <!-- end of module-card-body-contents -->
-            <!-- module-card-body-contents -->
-            <div class="module-card-body-contents">
-                <div class="module-card-body-contents-desc">
-                    <h3><? echo $row_Brands->BrandsName; ?></h3>
-                    <div>
-                        <? echo $row_Brands->Country; ?>
-                    </div>
-                </div>
-            </div>                                
-            <!-- end of module-card-body-contents -->            
-            <!-- module-card-body-contents  -->
-            <div class="module-card-body-contents">
-                <div class="module-card-body-contents-count" onclick="window.location.href='<? echo "update_Brands.html?link=$row_Brands->BrandsLink";?>'">
-                    <div class="row-counts">
-                        <p>Edit</p>
-                    </div>
-                    <div>
-                        <a href="<? echo "update_image_Brands.html?link=$row_Brands->BrandsLink"; ?>">Update Logo</a>
-                    </div>                    
-                </div>
-            </div>
-            <!-- end of module-card-body-contents -->
-        </div>
-        <!-- end of module-card-body -->
-    </div>
-    <!-- end of module-card -->
-<? endforeach;?>    
+<!-- cards-container -->
+<div class="cards-container">
+	<div class="boxes">
+		<?php foreach($rows_Brands as $row_Brands): ?>
+		<!-- box -->
+		<div class="box">
+			<div class="box-img">
+				<div>
+				<? if (!empty($row_Brands->Image)): ?>
+					<?
+					//getting the extension to find out whether the image is .png
+	                $ext = explode('.', $row_Brands->Image);
+	                $file_ext = strtolower(end($ext));
+	                if ($file_ext == 'png'):
+	                //if image is .png, getting the image from ../logos folder as no thumbnails
+	                ?>
+	                	<img src="<? echo '../logos/'.$row_Brands->Image; ?>" alt="" onclick="<? echo "window.location.href='../logos/".$row_Brands->Image."'";?>">
+	                <? else: ?>
+	                    <img src="<? echo '../logos/thumbnails/'.$row_Brands->Image; ?>" alt="" onclick="<? echo "window.location.href='../logos/".$row_Brands->Image."'";?>">
+	                <? endif; ?>
+	            <? else: ?>
+	               <div class="" onclick="<? echo "window.location.href='update_Brands.html?link=".$row_Brands->BrandsLink."'"; ?>">
+                       Add a logo!
+                   </div>
+	            <? endif;?>
+	            </div>
+			</div>
+			<!-- end of box-img -->
+			<!-- box-label -->
+			<div class="box-label">
+				<div>
+					<? echo $row_Brands->BrandsName.", ".$row_Brands->Country; ?>
+				</div>
+				<div>
+					<a href="update_Brands.html?link=<? echo $row_Brands->BrandsLink; ?>">Edit</a>
+				</div>
+			</div>		
+			<!-- end of box-label -->
+		</div>
+		<!-- end of box -->
+		<?php endforeach; ?>
+	</div>
+	<!-- end of boxes -->
 </div>
-<!-- end of module-cards-container -->
+<!-- end of cards-container -->
