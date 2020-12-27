@@ -32,7 +32,7 @@ $rows_Products = table_Products ('select_all', NULL, NULL, NULL, $order, $limit,
 	<div class="products-boxes">
 		<? foreach ($rows_Products as $row_Products): ?>
 		<!-- products-box -->
-		<div class="products-box">
+		<div class="products-box" style= "border: 3px solid  <? echo $row_Products->Color; ?>">
 			<div class="products-box-desc">
 				<div>
 					<h4 style="display: inline;"><? echo $row_Products->BrandsName.": "?></h4>
@@ -43,11 +43,18 @@ $rows_Products = table_Products ('select_all', NULL, NULL, NULL, $order, $limit,
 				</div>
 				<div>
 					<? echo $row_Products->Gender; ?>
-					| Size: <? echo $row_Products->Size; ?>
+					| <? echo $row_Products->Size; ?>
 				</div>
-				<div class="color-preview" style="background: <? echo $row_Products->Color; ?>"></div>
-				<div style="margin-top: 12px;">
+				<div>
+					<? echo $row_Products->Price; ?> MMK
+				</div>
+				<div class="color-preview" style="background: <? echo $row_Products->Color; ?>;"></div>
+				<div style="margin-top: 12px; display: flex; justify-content: space-between;">
 					<a href="update_Products.html?link=<? echo $row_Products->ProductsLink; ?>">Edit</a>
+					<a href="view_Products.html?link=<? echo $row_Products->ProductsLink; ?>">View</a>
+				</div>
+				<div>
+					
 				</div>
 			</div>
 			<div class='products-box-img'>

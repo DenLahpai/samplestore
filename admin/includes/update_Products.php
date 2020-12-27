@@ -18,7 +18,7 @@ if (isset($_REQUEST['link'])) {
 <div class="form">
     <form action="#" method="post" id="update_Products">
         <div>
-            <input type="text" id="ProductsLink" name="ProductsLink" value="<? echo $_REQUEST['link']; ?>">
+            <input type="hidden" id="ProductsLink" name="ProductsLink" value="<? echo $_REQUEST['link']; ?>">
         </div>
         <div>
             Brand:<br>
@@ -111,6 +111,17 @@ if (isset($_REQUEST['link'])) {
             </select>        
         </div>
         <div>
+            <textarea name="Description" id="Description" cols="27" rows="10"><? echo $row_Products->Description; ?></textarea>
+        </div>
+        <div>
+            Price:<br>
+            <input type="number" name="Price" id="Price" value="<? echo $row_Products->Price; ?>">
+        </div>
+        <div>
+            Discount:<br>
+            <input type="number" step="0.01" name="Discount" id="Discount" value="<? echo $row_Products->Discount; ?>">
+        </div>
+        <div>
             Color:<br>
             <input type="text" name="Color" id="Color" placeholder="Color" value="<? echo $row_Products->Color; ?>" onblur="previewColor(this.value);">
         </div>
@@ -127,7 +138,7 @@ if (isset($_REQUEST['link'])) {
             <a href="update_main_img_Products.html?link=<? echo $_REQUEST['link']; ?>">Change main Image</a>
         </div>
         <div>
-            <a href="">Add more Images</a>
+            <a href="uplaod_img_Products.html?link=<? echo $_REQUEST['link'];?>">Add more Images</a>
         </div>
     </div>
 </div>

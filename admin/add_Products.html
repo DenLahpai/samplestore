@@ -63,8 +63,17 @@
 							</select>
 						</div>
 						<div>
+							<textarea name="Description" id="Description" name="Description" cols="27" rows="10" placeholder="Describe of your product"></textarea>
+						</div>
+						<div>
+							<input type="number" name="Price" id="Price" placeholder="Price in MMK">
+						</div>
+						<div>
+							<input type="number" name="Discount" id="Discount" value="0.00" step="0.01">%
+						</div>
+						<div>
 							<input type="text" name="Color" id="Color" placeholder="Color" onblur="previewColor(this.value);">	
-							<div class="help-button" onclick="Toggle('#colorHelp');">?</div>						
+							<div class="help-button" onclick="Toggle('#colorHelp');">?</div>		
 						</div>
 						<div>
 							<div id="colorHelp" class="help-box" style="display:none;">

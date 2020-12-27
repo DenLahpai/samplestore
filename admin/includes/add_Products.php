@@ -12,7 +12,10 @@ if (isset($_REQUEST)) {
 		BrandsId = :BrandsId, 
 		Name = :Name, 
 		Gender = :Gender, 
-		Size = :Size, 
+		Size = :Size,
+		Description = :Description,
+		Price = :Price, 
+		Discount = :Discount,
 		Color = :Color,
 		UsersId = :UsersId
 	;";
@@ -24,6 +27,9 @@ if (isset($_REQUEST)) {
 	$db->bind(":Gender", $_REQUEST['Gender']);
 	$db->bind(":Size", $_REQUEST['Size']);
 	$db->bind(":Color", trim($_REQUEST['Color']));
+	$db->bind(":Price", trim($_REQUEST['Price']));
+	$db->bind(":Description", trim($_REQUEST['Description']));
+	$db->bind("Discount", trim($_REQUEST['Discount']));
 	$db->bind(":UsersId", $_SESSION['Id']);
 	if ($db->execute()) {
 		echo 0;

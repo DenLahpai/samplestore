@@ -366,6 +366,7 @@ function insertProducts () {
     var Name = $("#Name");
     var Gender = $("#Gender");
     var Size = $("#Size");
+    var Price = $("#Price");
     var Color = $("#Color");
 
     var error = false;
@@ -373,6 +374,8 @@ function insertProducts () {
     BrandsId.removeClass("input-error");
     Name.removeClass("input-error");
     Gender.removeClass("input-error");
+    Size.removeClass("input-error");
+    Price.removeClass("input-error");
 
     if (ProductsCode.val() == "" || ProductsCode.val() == " " || ProductsCode.val() == null) {
         error = true;
@@ -389,10 +392,15 @@ function insertProducts () {
         Name.addClass("input-error");
     }
 
-    if (Gender.val == "") {
+    if (Gender.val() == "") {
         error = true;
         Gender.addClass("input-error");
     }
+
+    if (Price.val() == "") {
+        error = true;
+        Price.addClass("input-error");
+    } 
 
     if (error == true) {
         var error_msg = "<span style='color: red'>Please fill out all the field(s) in red!</span>";
