@@ -77,7 +77,12 @@ $(document).ready(function () {
                 contentType: false,
                 processData: false,
                 success: function (data) {
-                    $("#sys_message").html(data);
+                    if (!data) {
+                        window.location.href = "Products.html";
+                    }
+                    else {
+                        $("#sys_message").html(data);
+                    }
                 }
             });
         }

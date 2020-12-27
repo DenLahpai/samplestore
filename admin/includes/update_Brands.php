@@ -20,7 +20,7 @@ if (isset($_REQUEST['link'])) {
         <?php if (empty($row_Brands->Image) ): ?>
         <div style="text-align: center;">
             <label for="Image">Upload Image</label>
-            <input type="file" style="display: none;" name="Image" id="Image" onchange="imagePreview(this);">   
+            <input type="file" style="display: none;" name="Image" id="Image" onchange="imagePreview(this);">
         </div>
         <div class="image_preview"  style="text-align: center;">
             <img id="image_preview">

@@ -227,7 +227,8 @@ function table_Products ($job, $var1, $var2, $var3, $order, $limit, $offset) {
                 Products.Created, 
                 Products.Updated
                 FROM Products LEFT OUTER JOIN Brands ON Brands.Id = Products.BrandsId
-                $order limit $limit OFFSET $offset ;";
+                $order limit $limit OFFSET $offset 
+            ;";
             $db->query($stm);
             return $db->resultset();
             break;
@@ -243,6 +244,32 @@ function table_Products ($job, $var1, $var2, $var3, $order, $limit, $offset) {
             }
             else {
                 echo "<span style='color: red'>There was a connection problem! Please try again!</span>";
+            }
+            break;
+        
+        case 'select_by_link':
+            $stm = "SELECT 
+                Products.Id, 
+                Products.ProductsLink,
+                Products.ProductsCode, 
+                Products.MainImg, 
+                Products.BrandsId, 
+                Brands.BrandsName, 
+                Brands.Country,
+                Products.Name,
+                Products.Gender, 
+                Products.Size, 
+                Products.Color, 
+                Products.UsersId, 
+                Products.Created, 
+                Products.Updated
+                FROM Products LEFT OUTER JOIN Brands ON Brands.Id = Products.BrandsId
+                WHERE Products.ProductsLink = :link
+            ;";
+            $db->query($stm);
+            $db->bind(':link', $_REQUEST['link']);
+            if ($db->execute()) {
+                return $db->resultset();
             }
             break;
         

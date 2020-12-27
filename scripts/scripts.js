@@ -416,7 +416,77 @@ function insertProducts () {
     }
 }
 
-//function to upload Image for Products
-function uploadImageProducts (image) {
+/****** function to update Products ******/
+function updateProducts () {
+    var ProductsCode = $("#ProductsCode");
+    var Name = $("#Name");
+    var Color = $("#Color");
+    ProductsCode.removeClass("input-error");
+    Name.removeClass("input-error");
+    Color.removeClass("input-error");
+    var msg =  null;
+    var error = false;
+    
+    if (ProductsCode.val() == "" || ProductsCode.val() == null) {
+        ProductsCode.attr("input-error");
+        var msg = "Please fill out all the field(s) in red!";
+        error = true;
+    }
 
+    if (Name.val() == "" || Name.val() == null) {
+        Name.attr("input-error");
+        var msg = "Please fill out all the field(s) in red!";
+        error = true;
+    }
+
+    if (Color.val() == "" || Color.val() == null) {
+        Color.attr("input-error");
+        var msg = "Please fill out all the field(s) in red!";
+        error = true;
+    }
+
+    if (error == false) {
+        $.ajax({
+            url: "includes/updating_Products.php",
+            type: "post", 
+            data: $("#update_Products").serialize(),
+            success: function (data) {
+                if (!data) {
+                    window.location.href = 'Products.html';
+                }
+                else {
+                    $("#sys_message").html(data);
+                }
+            }
+        });
+    }
+}
+
+/****** function to update main Img ******/
+function updateMainImg (link) {
+    
+    if ($("#Image").val() == null || $("#Image").val() == "") {
+        var msg = "<span style='color: red'>Please choose an image to upload!</span>";
+        $("#sys_message").html(msg);
+    }
+    else {
+        var fdata = new FormData();
+        var files = $("#Image")[0].files[0];
+        fdata.append('Image', files);
+        $.ajax({
+            url: "includes/upload_img_Products.php?link=" + link + "&src=main",
+            type: "post",
+            data: fdata,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                if (!data) {
+                    window.location.href = "Products.html";
+                }
+                else {
+                    $("#sys_message").html(data);
+                }
+            }
+        });
+    }
 }

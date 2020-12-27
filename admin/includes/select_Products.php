@@ -46,6 +46,9 @@ $rows_Products = table_Products ('select_all', NULL, NULL, NULL, $order, $limit,
 					| Size: <? echo $row_Products->Size; ?>
 				</div>
 				<div class="color-preview" style="background: <? echo $row_Products->Color; ?>"></div>
+				<div style="margin-top: 12px;">
+					<a href="update_Products.html?link=<? echo $row_Products->ProductsLink; ?>">Edit</a>
+				</div>
 			</div>
 			<div class='products-box-img'>
 				<? if (empty($row_Products->MainImg) || $row_Products->MainImg == ""): ?>
@@ -62,7 +65,7 @@ $rows_Products = table_Products ('select_all', NULL, NULL, NULL, $order, $limit,
 						$img_path = "../images/thumbnails/".$row_Products->MainImg;
 					}
 					?>
-					<div class="products-img">
+					<div class="products-img" onclick="window.location.href= '<? echo $img_path; ?>';">
 						<img src="<? echo $img_path; ?>" alt="">
 					</div>
 				<? endif;?>
