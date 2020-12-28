@@ -287,6 +287,40 @@ function table_Products ($job, $var1, $var2, $var3, $order, $limit, $offset) {
     }
 }
 
+// function to use data from the table Images
+function table_Images ($job, $var1, $var2, $var3, $order, $limit, $offset) {
+    $db = new Database();
+    
+    switch ($job) {
+        case 'check_before_insert':
+            $stm = "SELECT * FROM Images WHERE ProductsLink = :ProductsLink ;";
+            $db->query($stm);
+            return $db->rowCount();
+            break;
+
+        case 'insert':
+            # var1 = Img
+            $stm = "INSERT INTO Images SET 
+                ProductsLink = :ProductsLink, 
+                Img = :var1
+            ;";
+            $db->query($stm);
+            $db->bind(":ProductsLink", $_REQUEST['link']);
+            $db->bind(":var1", $var1);
+            if ($db->execute()) {
+                return true;
+            }
+            else {
+                echo "<span style='color: red';>There was a connection error! Please try again!</span>";
+            }
+            break;
+        
+        default:
+            # code..
+            break;    
+    }
+}
+
 // function to create thumbnail
 function CreateThumbnail($pic, $thumb, $thumbwidth, $quality = 100) {
     $im1=ImageCreateFromJPEG($pic);

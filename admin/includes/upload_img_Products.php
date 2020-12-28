@@ -25,16 +25,21 @@ if (isset($_FILES['Image']) || !empty($_FILES['Image'])) {
         // updating to the table
         if ($_REQUEST['src'] == 'main') {
             $i = table_Products ('update_MainImg', $file_name, NULL, NULL, NULL, NULL, NULL);
-            
-            if ($i == true) {
-                return true;
-            }
-            else {
-                echo $i;
-            }
+                        
         }
         elseif ($_REQUEST['src'] == 'not_main') {
-            echo "not main!";
+            $i = table_Images ('insert', $file_name, NULL, NULL, NULL, NULL, NULL);
+        }
+
+        else {
+            # code...
+        }
+
+        if ($i == true) {
+            return true;
+        }
+        else {
+            echo $i;
         }
     }
     else {

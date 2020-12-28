@@ -138,7 +138,7 @@ if (isset($_REQUEST['link'])) {
             <a href="update_main_img_Products.html?link=<? echo $_REQUEST['link']; ?>">Change main Image</a>
         </div>
         <div>
-            <a href="uplaod_img_Products.html?link=<? echo $_REQUEST['link'];?>">Add more Images</a>
+            <a href="upload_img_Products.html?link=<? echo $_REQUEST['link'];?>&src=not_main" >Add more Images</a>
         </div>
     </div>
 </div>

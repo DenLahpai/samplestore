@@ -17,13 +17,23 @@ if (isset($_REQUEST['link'])) {
     </div>
 </section>
 <section id="main-data">
+    <!-- view-product -->
     <div class="view-product">
-        <div>
+        <!-- view-product-img -->
+        <div class="view-product-img">
             
+            <!-- view-product-img-cmd  -->
+            <div class="view-product-img-cmd">
+            
+            </div>
+            <!-- end of view-product-img-cmd  -->
         </div>
-        <div>
-             Code:
-            <? echo $row_Products->ProductsCode; ?>
+        <!-- end of view-product-img -->
+        <!-- view-product-desc -->
+        <div class="view-product-desc">
+            Code:  <? echo $row_Products->ProductsCode; ?>
         </div>
+        <!-- end of view-product-desc  -->
     </div>
+    <!-- end of view-product  -->
 </section>
