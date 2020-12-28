@@ -15,13 +15,26 @@
 		<div onclick="closeMenu();">&#10008;</div>
 	</div>
 	<div class="modal-menu-body">
-		<div style="text-align: center; font-size: 3em;">
+		<!-- <div style="text-align: center; font-size: 3em;">
 			<a href="home.html">Home</a>
-		</div>
+		</div> -->
 		<!-- cards-container -->
 		<div class="cards-container">
 			<!-- cards -->
 				<div class="cards">
+					<!-- Home-card -->
+					<div class="card" id="Home-card" onclick="window.location.href='Home.html';">
+						<div class="card-title">
+							<h2>Home</h2>
+							<div>
+								<img src="../images/home.svg" alt="">
+							</div>
+						</div>
+						<div class="card-body">
+							Home page, this is where you will find more information about modules. 
+						</div>
+					</div>
+					<!-- end of Home-card -->
 
 					<!-- Brands-card -->
 					<div class="card" id="Brands-card" onclick="window.location.href='Brands.html';">
@@ -50,7 +63,7 @@
 						<div class="card-title">
 							<h2>Products</h2>
 							<div style="font-size: 3em; color: black; ">
-								&#9917;
+								<img src="../images/t-shirt-181707.png" alt="">
 							</div>
 						</div>
 						<div class="card-body">

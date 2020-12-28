@@ -1,12 +1,32 @@
 <?php
-require_once "../functions.php";
-$rows_Products = table_Products ('select_by_link', NULL, NULL, NULL, NULL, NULL, NULL);
-foreach ($rows_Products as $row_Products) {
-    # code...
+require_once "functions.php";
+
+if (isset($_REQUEST['link'])) {
+    
+    $rows_Products = table_Products ('select_by_link', NULL, NULL, NULL, NULL, NULL, NULL);
+    foreach ($rows_Products as $row_Products) {
+        # code...
+    }
 }
 ?>
-
-<section id="page-title">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/glider.css">
+    <link rel="stylesheet" href="styles/styles.css">
+	<link rel="Shortcut icon" href="../logo_small.png"/>
+    <title>View Product</title>
+</head>
+<body>
+    <!-- wrapper -->
+    <div class="wrapper">
+        <header></header>
+        <!-- main-content -->
+        <div class="main-content">
+        <section id="page-title">
             <div class="page-title">
                 <h1>
                     <? echo $row_Products->BrandsName." - ".$row_Products->Name; ?>
@@ -60,3 +80,41 @@ foreach ($rows_Products as $row_Products) {
             </div>
             <!-- end of view-product  -->
         </section>
+        </div>
+        <!-- end of main-content -->
+        <footer></footer>
+    </div>
+    <!-- end of wrapper -->
+</body>
+<script src="../scripts/jquery.js"></script>
+<script src="../scripts/scripts.js"></script>
+<script src="../scripts/glider.js"></script>
+<script>
+$(document).ready(function () {
+
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const link = urlParams.get('link');
+	
+	$.post("includes/header.php", function (data) {
+		$("header").html(data);
+	});
+
+	$.post("includes/footer.php", function (data) {
+		$("footer").html(data);
+    });    
+   
+	checkSession();    
+});
+
+new Glider(document.querySelector('.glider'), {
+    slidesToShow: 1,
+    dots: '#dots',
+    draggable: true,
+    arrows: {
+    prev: '.glider-prev',
+    next: '.glider-next'
+    }
+});
+</script>
+</html>

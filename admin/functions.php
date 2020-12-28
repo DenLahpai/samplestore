@@ -1,5 +1,5 @@
 <?php 
-require_once "../../conn.php";
+require_once "conn.php";
 
 //function to use data from the table Users 
 function table_Users ($job, $var1, $var2, $var3, $order, $limit) {
@@ -314,6 +314,13 @@ function table_Images ($job, $var1, $var2, $var3, $order, $limit, $offset) {
                 echo "<span style='color: red';>There was a connection error! Please try again!</span>";
             }
             break;
+
+        case 'select_by_link':
+            $stm = "SELECT * FROM Images WHERE ProductsLink = :ProductsLink ;";
+            $db->query($stm);
+            $db->bind(":ProductsLink", $_REQUEST['link']);
+            return $db->resultset();
+            break;    
         
         default:
             # code..

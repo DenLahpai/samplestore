@@ -51,7 +51,7 @@ $rows_Products = table_Products ('select_all', NULL, NULL, NULL, $order, $limit,
 				<div class="color-preview" style="background: <? echo $row_Products->Color; ?>;"></div>
 				<div style="margin-top: 12px; display: flex; justify-content: space-between;">
 					<a href="update_Products.html?link=<? echo $row_Products->ProductsLink; ?>">Edit</a>
-					<a href="view_Products.html?link=<? echo $row_Products->ProductsLink; ?>">View</a>
+					<a href="view_Products.php?link=<? echo $row_Products->ProductsLink; ?>">View</a>
 				</div>
 				<div>
 					
