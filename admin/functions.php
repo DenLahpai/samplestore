@@ -81,7 +81,7 @@ function table_Brands ($job, $var1, $var2, $var3, $order, $limit, $offset) {
             ;";
             $db->query($stm);
             $db->bind(":BrandsName", trim($_REQUEST['BrandsName']));
-            $db->bind(":BrandsLink", md5(trim($_REQUEST['BrandsName'])));
+            $db->bind(":BrandsLink", uniqid('Brd_', true));
             $db->bind(":var1", $var1);
             $db->bind(":Country", trim($_REQUEST['Country']));
             if ($db->execute()) {
@@ -295,6 +295,7 @@ function table_Images ($job, $var1, $var2, $var3, $order, $limit, $offset) {
         case 'check_before_insert':
             $stm = "SELECT * FROM Images WHERE ProductsLink = :ProductsLink ;";
             $db->query($stm);
+            $db->bind(":ProductsLink", $_REQUEST['link']);
             return $db->rowCount();
             break;
 

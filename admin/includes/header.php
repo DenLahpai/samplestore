@@ -23,7 +23,7 @@
 			<!-- cards -->
 				<div class="cards">
 					<!-- Home-card -->
-					<div class="card" id="Home-card" onclick="window.location.href='Home.html';">
+					<div class="card" id="Home-card" onclick="window.location.href='home.html';">
 						<div class="card-title">
 							<h2>Home</h2>
 							<div>

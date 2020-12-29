@@ -41,7 +41,6 @@ foreach ($rows_Products as $row_Products) {
                         <button class="glider-next">
                             >
                         </button>
-
                         <div id="dots" class="glider-dots"></div>
                     </div>
                     <!-- end of glider-contain multiple  -->
@@ -54,7 +53,12 @@ foreach ($rows_Products as $row_Products) {
                 <!-- end of view-product-img -->
                 <!-- view-product-desc -->
                 <div class="view-product-desc">
-                    Code:  <? echo $row_Products->ProductsCode; ?>
+                   <div>
+                        Code:  <? echo $row_Products->ProductsCode; ?>
+                    </div>
+                    <div>
+                        Brand: <? echo $row_Products->BrandsName; ?>
+                    </div>                    
                 </div>
                 <!-- end of view-product-desc  -->
             </div>

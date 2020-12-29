@@ -28,7 +28,14 @@ if (isset($_FILES['Image']) || !empty($_FILES['Image'])) {
                         
         }
         elseif ($_REQUEST['src'] == 'not_main') {
-            $i = table_Images ('insert', $file_name, NULL, NULL, NULL, NULL, NULL);
+            $rowCount = table_Images ('check_before_insert', NULL, NULL, NULL, NULL, NULL, NULL);
+            if ($rowCount >= 5) {
+                echo "<span style='color: red'>The limit of images for each product is 6 including main image.</span>";
+                $i = false;
+            }
+            else {
+                $i = table_Images ('insert', $file_name, NULL, NULL, NULL, NULL, NULL);
+            }
         }
 
         else {

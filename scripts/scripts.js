@@ -201,8 +201,8 @@ function pagination (table) {
         }, function (data) {
             var numRows = data;
             //calculating number of pages
-            // var totalPages = Math.ceil(numRows / limit);
-            var totalPages = 9; //DUMMY to test pagination
+            var totalPages = Math.ceil(numRows / limit);
+            // var totalPages = 9; //DUMMY to test pagination
 
             if (current_page == 1) {
                 $("#page1").val(current_page);
@@ -495,6 +495,24 @@ function updateMainImg (link) {
                     $("#sys_message").html(data);
                 }
             }
+        });
+    }
+}
+
+/****** function to duplicate Products ******/
+function duplicateProduct (field, value, link) {
+    if ($("#" + field).val() == value) {
+        var msg = "<span style='color: red;'>Duplicate entry! Please choose another size or color!</span>";
+        $("#sys_message").html(msg);
+    }
+    else {
+        
+        $.post("includes/duplicate_products_" + field + ".php", {
+            field: field,
+            new_value: $("#" + field).val(),
+            link: link
+            }, function(data) {
+                $("#sys_message").html(data);
         });
     }
 }
