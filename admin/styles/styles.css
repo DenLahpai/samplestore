@@ -516,6 +516,10 @@ section {
 	margin-bottom: 24px;
 }
 
+.view-product-img-cmd {
+	padding: 30px;
+}
+
 .products-cmd {
 	padding: 6px 12px;
 	background: var(--products-color);
@@ -529,37 +533,15 @@ section {
 }
 
 .glider-img img {
+	width: 100%;
+	height: auto;
 	border-radius: 12px;
 }
 
-.main-img img {
-	width: 270px;
-	height: auto;
-} 
-
-.img-slider {
-	width: 99%;
-	display: flex;
-	/* background: blue;  */
-}
-
-.img-slider-button button {
-	font-size: 3em;
-	height: 100%;
-	background:rgba(255, 255, 255, 0.8);
-	color: silver;
-	border: 0px;
-	outline: 0px;
-}
-
-.img-slider-button button:active {
-	color: #000000;
-}
-
-.img-slider-bar {
-	width: 100%;
-	border: 1px solid #FFFFFF;
-	height: 60px;
+.glider-dot {
+	width: 21px;
+	height: 21px;
+	margin: 9px;
 }
 
 .page-button {

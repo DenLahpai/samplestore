@@ -123,14 +123,20 @@ if (isset($_REQUEST['link'])) {
                         <!-- glider -->
                         <div class="glider">
                             <div class="glider-img">
-                                <img src="../images/<? echo $row_Products->MainImg; ?>" alt="">
+                                <div style="padding: 12px;">
+                                    <button type="button" class="products-cmd" onclick="window.location.href='update_main_img_Products.html?link=<? echo $row_Products->ProductsLink; ?>';">Change</button>
+                                </div>
+                                <img src="../images/<? echo $row_Products->MainImg; ?>" alt="">                                
                             </div>
                             <? 
                                 $rows_Images = table_Images ('select_by_link', NULL, NULL, NULL, NULL, NULL, NULL); 
                                 foreach ($rows_Images as $row_Images):
                             ?>
-                            <div class="glider-img">
-                                <img src="../images/<? echo $row_Images->Img; ?>" alt="">
+                            <div class="glider-img" style="postion: relative;">
+                                <div style="padding: 12px; ">
+                                    <button type="button" class="products-cmd" onclick="removeImg('<? echo $row_Images->Img; ?>')">Remove</button>
+                                </div>
+                                <img src="../images/<? echo $row_Images->Img; ?>" alt=""><br>
                             </div>    
                             <? endforeach; ?>    
                         </div>                
@@ -143,7 +149,7 @@ if (isset($_REQUEST['link'])) {
                     <!-- end of glider-contain multiple  -->
                     <!-- view-product-img-cmd  -->
                     <div class="view-product-img-cmd">
-                        <button class="products-cmd" onclick="window.location.href='upload_img_Products.html?link=<? echo $_REQUEST['link']; ?>&src=not_main'"; >Add Image</button>
+                        <button type="button" class="products-cmd" onclick="window.location.href='upload_img_Products.html?link=<? echo $_REQUEST['link']; ?>&src=not_main'"; >Add Image</button>                       
                     </div>
                     <!-- end of view-product-img-cmd  -->
                 </div>

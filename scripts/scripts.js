@@ -516,3 +516,21 @@ function duplicateProduct (field, value, link) {
         });
     }
 }
+
+/****** function to remove Img ******/
+function removeImg (Img) {
+    $.post("includes/remove_img.php", {
+        Img: Img
+        }, function (data) {
+            if (!data) {
+                var msg = "The image has been removed!";
+                location.reload();
+                alert(msg);
+            }
+            else {
+                alert(data);
+            }
+        }
+        
+    );
+}
