@@ -35,19 +35,18 @@ if (isset($_FILES['Image']) || !empty($_FILES['Image'])) {
             }
             else {
                 $i = table_Images ('insert', $file_name, NULL, NULL, NULL, NULL, NULL);
+                if ($i == true) {
+                    return true;
+                }
+                else {
+                    echo $i;
+                }
             }
         }
 
         else {
             # code...
-        }
-
-        if ($i == true) {
-            return true;
-        }
-        else {
-            echo $i;
-        }
+        }       
     }
     else {
         echo "<span style='color: red'>There was an error! Please try again!</span>";

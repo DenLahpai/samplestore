@@ -280,6 +280,45 @@ function table_Products ($job, $var1, $var2, $var3, $order, $limit, $offset) {
                 return $db->resultset();
             }
             break;
+
+        case 'search':
+            # var1 = Search
+            $stm = "SELECT 
+                Products.Id, 
+                Products.ProductsLink,
+                Products.ProductsCode, 
+                Products.MainImg, 
+                Products.BrandsId, 
+                Brands.BrandsName, 
+                Brands.Country,
+                Products.Name,
+                Products.Gender,
+                Products.Description, 
+                Products.Size,
+                Products.Price, 
+                Products.Discount, 
+                Products.Status, 
+                Products.Color, 
+                Products.UsersId, 
+                Products.Created, 
+                Products.Updated
+                FROM Products LEFT OUTER JOIN Brands ON Brands.Id = Products.BrandsId
+                WHERE CONCAT(
+                    Products.ProductsCode, 
+                    Brands.BrandsName, 
+                    Brands.Country, 
+                    Products.Name, 
+                    Products.Gender,
+                    Products.Description,
+                    Products.Size, 
+                    Products.Color,
+                    Products.Status
+                ) LIKE :Search $order LIMIT $limit OFFSET $offset
+            ;";
+            $db->query($stm);
+            $db->bind(":Search", $var1);
+            return $db->resultset();
+            break;
         
         default:
             # code...

@@ -40,6 +40,37 @@ if (isset($_REQUEST['link'])) {
     $db->bind(":Size", $row_Products->Size);
     $rows_Size = $db->resultset();
 
+    // looking for products with different colors
+    $stm = "SELECT 
+        Products.Id, 
+        Products.ProductsLink,
+        Products.ProductsCode, 
+        Products.MainImg, 
+        Products.BrandsId, 
+        Brands.BrandsName, 
+        Brands.Country,
+        Products.Name,
+        Products.Gender,
+        Products.Description, 
+        Products.Size,
+        Products.Price, 
+        Products.Discount, 
+        Products.Status, 
+        Products.Color, 
+        Products.UsersId, 
+        Products.Created, 
+        Products.Updated
+        FROM Products LEFT OUTER JOIN Brands ON Products.BrandsId = Brands.Id 
+        WHERE Products.ProductsCode = :ProductsCode
+        AND Products.Color != :Color
+        AND Products.Size = :Size 
+    ;";
+    $db->query($stm);
+    $db->bind(":ProductsCode", $row_Products->ProductsCode);
+    $db->bind(":Color", $row_Products->Color);
+    $db->bind(":Size", $row_Products->Size);
+    $rows_Color = $db->resultset();
+
 }
 ?>
 <!DOCTYPE html>
@@ -52,6 +83,19 @@ if (isset($_REQUEST['link'])) {
     <link rel="stylesheet" href="styles/styles.css">
 	<link rel="Shortcut icon" href="../logo_small.png"/>
     <title>View Product</title>
+    <style>
+        .color-box {
+            width: 60px; 
+            height: 60px; 
+            border-radius: 12px; 
+            box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.6);
+        }
+
+        .color-box:active {
+            box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+        }
+
+    </style>
 </head>
 <body>
     <!-- wrapper -->
@@ -94,13 +138,12 @@ if (isset($_REQUEST['link'])) {
                         <button class="glider-next">
                             >
                         </button>
-
                         <div id="dots" class="glider-dots"></div>
                     </div>
                     <!-- end of glider-contain multiple  -->
                     <!-- view-product-img-cmd  -->
                     <div class="view-product-img-cmd">
-                    
+                        <button class="products-cmd" onclick="window.location.href='upload_img_Products.html?link=<? echo $_REQUEST['link']; ?>&src=not_main'"; >Add Image</button>
                     </div>
                     <!-- end of view-product-img-cmd  -->
                 </div>
@@ -128,7 +171,7 @@ if (isset($_REQUEST['link'])) {
                     </div>
                     <div>
                         Color: <? echo $row_Products->Color; ?>
-                        <div class="color" style="background: <? echo $row_Products->Color; ?>; width: 60px; height: 60px; border-radius: 12px; box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.6); "></div>            
+                        <div class="color-box" style="background: <? echo $row_Products->Color; ?>;"></div>            
                     </div>
                     <div style="border-bottom: 3px double #000000;">
                         Status:
@@ -163,9 +206,19 @@ if (isset($_REQUEST['link'])) {
                         <button type="button" class="products-cmd" onclick="Toggle('.Color-form')">Create another Color</button>
                         <div class="Color-form" style="margin-top: 12px; display: none;" >
                             <input type="text" name="Color" id="Color" onblur="previewColor(this.value)";>
-                            <button type="button" class="products-cmd">Create</button>
+                            <button type="button" class="products-cmd" onclick="duplicateProduct('Color', '<? echo $row_Products->Color; ?>', '<? echo $_REQUEST['link']; ?>');">Create</button>
                             <div class="color-preview"></div>
                         </div>
+                        <br>
+                        <br>
+                        <br>
+                        View other colors: 
+                        <br>
+                        <? foreach ($rows_Color as $row_Color): ?>
+                            <? if (isset($row_Color->Color) || !empty($row_Color->Color)): ?>
+                                <div class="color-box" style="background: <? echo $row_Color->Color; ?>" onclick="window.location.href = 'view_Products.php?link=<? echo $row_Color->ProductsLink; ?>' "></div>
+                            <? endif; ?>    
+                        <? endforeach; ?>    
                     </div>
                 </div>
                 <!-- end of view-product-desc  -->
