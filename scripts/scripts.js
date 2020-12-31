@@ -199,6 +199,7 @@ function pagination (table) {
         Table: table,
         Search: Search
         }, function (data) {
+            alert(data);
             var numRows = data;
             //calculating number of pages
             var totalPages = Math.ceil(numRows / limit);

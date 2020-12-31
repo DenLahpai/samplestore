@@ -9,7 +9,7 @@ if (isset($_REQUEST['Search']) || !empty($_REQUEST['Search'])) {
     $stm = "SELECT Products.Id FROM Products 
         LEFT OUTER JOIN Brands ON Products.BrandsId = Brands.Id
         WHERE CONCAT (
-            Prodicts.ProductsCode, 
+            Products.ProductsCode, 
             Brands.BrandsName, 
             Brands.Country,
             Products.Name, 
@@ -21,7 +21,7 @@ if (isset($_REQUEST['Search']) || !empty($_REQUEST['Search'])) {
             Products.Status
         ) LIKE :Search
     ;";
-    $db->query($db);
+    $db->query($stm);
     $db->bind(":Search", $Search);
     echo $db->rowCount(); 
 
