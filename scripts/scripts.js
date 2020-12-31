@@ -199,7 +199,6 @@ function pagination (table) {
         Table: table,
         Search: Search
         }, function (data) {
-            alert(data);
             var numRows = data;
             //calculating number of pages
             var totalPages = Math.ceil(numRows / limit);
@@ -254,7 +253,6 @@ function pagination (table) {
         }
     );    
 }
-
 
 /****** function to get data from the table  ******/
 function getData(table){
@@ -365,6 +363,7 @@ function insertProducts () {
     var ProductsCode = $("#ProductsCode");
     var BrandsId = $("#BrandsId");
     var Name = $("#Name");
+    var Cat1 = $("#Cat.1");
     var Gender = $("#Gender");
     var Size = $("#Size");
     var Price = $("#Price");
@@ -391,6 +390,11 @@ function insertProducts () {
     if (Name.val() == "" ||  Name.val() == " " || Name.val() == null) {
         error = true;
         Name.addClass("input-error");
+    }
+
+    if (Cat1.val() == "" || Cat1.val() == " " || Cat1.val() == null) {
+        error = true;
+        Cat1.addClass("input-error");
     }
 
     if (Gender.val() == "") {

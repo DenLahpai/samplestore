@@ -455,7 +455,6 @@ section {
 
 .help-box {
 	display: none;
-	background: #E9DE8F;
 	padding: 3px;
 	width: 270px;
 }
@@ -463,12 +462,18 @@ section {
 .help-box-header {
 	text-align: right;
 	color: blue;
-	margin-bottom: 6px;
+	padding-bottom: 6px;
 	text-decoration: underline;
+	background: var(--products-color);
+	width: 270px;
+	padding: 3px;
 }
 
 .help-box-body {
+	padding: 3px;
 	text-align: left;
+	background: var(--products-color);
+	width: 270px;
 }
 
 .image_preview {
@@ -495,6 +500,7 @@ section {
 	font-weight: bold;
 	padding: 0px 6px;
 	cursor: pointer;
+	position: relative;
 }
 
 .view-product {

@@ -42,6 +42,9 @@ $rows_Products = table_Products ('select_all', NULL, NULL, NULL, $order, $limit,
 					<? echo $row_Products->ProductsCode; ?>
 				</div>
 				<div>
+					<? echo $row_Products->Cat1; ?>
+				</div>
+				<div>
 					<? echo $row_Products->Gender; ?>
 					| <? echo $row_Products->Size; ?>
 				</div>
