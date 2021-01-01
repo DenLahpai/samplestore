@@ -587,7 +587,7 @@ function rowCountShowcase (num) {
     $.post("includes/check_Showcases.php", {
         table: num,
         }, function (data) {
-            $("label[for='Showcase1']").append(" (" + data + " remains)");
+            $("label[for='Showcase1']").append(" (" + data + " spots remain.)");
         }
 
     );
