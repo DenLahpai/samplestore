@@ -44,6 +44,10 @@ if (isset($_REQUEST['link'])) {
             <input type="text" name="Name" id="Name" value="<? echo $row_Products->Name; ?>">
         </div>
         <div>
+            Category: <br>
+            <input type="text" name="Cat1" id="Cat1" value="<? echo $row_Products->Cat1; ?>">
+        </div>
+        <div>
             Gender:<br>
             <select name="Gender" id="Gender">
                 <? if ($row_Products->Gender == "F"): ?>

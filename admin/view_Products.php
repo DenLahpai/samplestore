@@ -160,6 +160,9 @@ if (isset($_REQUEST['link'])) {
                         Code:  <? echo $row_Products->ProductsCode; ?>
                     </div>
                     <div>
+                        Category: <? $row_Products->Cat1; ?>
+                    </div>
+                    <div>
                         Gender: <? echo $row_Products->Gender; ?>
                     </div>
                     <div>
@@ -179,9 +182,19 @@ if (isset($_REQUEST['link'])) {
                         Color: <? echo $row_Products->Color; ?>
                         <div class="color-box" style="background: <? echo $row_Products->Color; ?>;"></div>            
                     </div>
-                    <div style="border-bottom: 3px double #000000;">
+                    <div>
                         Status:
                         <? echo $row_Products->Status; ?>
+                    </div>
+                    <div style="border: 1px solid #000000;">
+                        Sales: <br><br>
+                        <input type="checkbox" id="Showcase1" name="Showcase1"  >
+                        <label for="Showcase1">Hot Item</label><br><br><br>
+                        <input type="checkbox" id="Showcase2" name="Showcase2">
+                        <label for="Showcase2">Featured</label>
+                        <!-- <div style="text-align: center">
+                            <button type="button" class="btn-medium" id="btn-Showcase" style="padding: 6px 18px;">Update</button>
+                        </div> -->
                     </div>
                     <div style="text-align: center;">
                         <h3>Variants</h3>                        
@@ -220,12 +233,14 @@ if (isset($_REQUEST['link'])) {
                         <br>
                         View other colors: 
                         <br>
-                        <? foreach ($rows_Color as $row_Color): ?>
-                            <? if (isset($row_Color->Color) || !empty($row_Color->Color)): ?>
-                                <div class="color-box" style="background: <? echo $row_Color->Color; ?>" onclick="window.location.href = 'view_Products.php?link=<? echo $row_Color->ProductsLink; ?>' "></div>
-                            <? endif; ?>    
-                        <? endforeach; ?>    
-                    </div>
+                        <div class="color-boxes">
+                            <? foreach ($rows_Color as $row_Color): ?>
+                                <? if (isset($row_Color->Color) || !empty($row_Color->Color)): ?>
+                                    <div class="color-box" style="background: <? echo $row_Color->Color; ?>" onclick="window.location.href = 'view_Products.php?link=<? echo $row_Color->ProductsLink; ?>' "></div>
+                                <? endif; ?>    
+                            <? endforeach; ?>
+                        </div>    
+                    </div>                           
                 </div>
                 <!-- end of view-product-desc  -->
             </div>
@@ -254,8 +269,18 @@ $(document).ready(function () {
 
 	$.post("includes/footer.php", function (data) {
 		$("footer").html(data);
-    });    
-   
+    });
+
+    $("#Showcase1").on("change", function () {
+        updateShowcase (1, link);
+    });
+
+    $("#Showcase2").on("change", function () {
+        updateShowcase (2, link);
+    });
+
+    checkShowcases (link);
+    rowCountShowcase (1);
 	checkSession();    
 });
 

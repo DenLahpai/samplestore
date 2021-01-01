@@ -510,6 +510,10 @@ function duplicateProduct (field, value, link) {
         var msg = "<span style='color: red;'>Duplicate entry! Please choose another size or color!</span>";
         $("#sys_message").html(msg);
     }
+    else if ($("#" + field).val() == "") {
+        var msg = "<span style='color: red'>Please input a color!</span>";
+        $("#sys_message").html(msg);
+    }
     else {
         
         $.post("includes/duplicate_products_" + field + ".php", {
@@ -517,7 +521,12 @@ function duplicateProduct (field, value, link) {
             new_value: $("#" + field).val(),
             link: link
             }, function(data) {
-                $("#sys_message").html(data);
+                if (!data) {
+                    location.reload();
+                }
+                else {
+                    $("#sys_message").html(data);
+                }
         });
     }
 }
@@ -538,4 +547,73 @@ function removeImg (Img) {
         }
         
     );
+}
+
+/****** function to check if a product is in a showcase */
+function checkShowcases (link) {
+    //checking in Showcase1
+    $.post("includes/check_Showcases.php", {
+        link: link,
+        table: 1
+        }, function (data) {
+            if (data == 1) {
+                $("#Showcase1").prop("checked", true);
+                
+            }
+            else {
+                $("#Showcase1").prop("checked", false);
+            }
+        }    
+    );
+
+    $.post("includes/check_Showcases.php", {
+        link: link,
+        table: 2,
+        }, function (data) {
+            if (data == 1) {
+                $("#Showcase2").prop("checked", true);
+                
+            }
+            else {
+                $("#Showcase2").prop("checked", false);
+            }
+        }
+    );
+}
+
+
+/****** function to rowCount a Showcase ******/
+function rowCountShowcase (num) {
+    $.post("includes/check_Showcases.php", {
+        table: num,
+        }, function (data) {
+            $("label[for='Showcase1']").append(" (" + data + " remains)");
+        }
+
+    );
+}
+
+/****** function to change Showcase  ******/
+function updateShowcase (num, link) {
+    var showcase = document.getElementById('Showcase' + num);
+    if (showcase.checked == true) {
+        var task = 'insert';        
+    }
+    else {
+        var task = 'remove';        
+    }
+    $.post("includes/update_Showcase.php", {
+        num: num,
+        task: task,
+        link: link
+        }, function (data) {
+            if (!data) {
+                location.reload();
+            }
+            else {
+                $("#sys_message").html(data);   
+            }
+        }
+    );
+    
 }
