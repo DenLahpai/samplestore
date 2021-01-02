@@ -221,7 +221,9 @@ function table_Products ($job, $var1, $var2, $var3, $order, $limit, $offset) {
                 Brands.Country,
                 Products.Name,
                 Products.Cat1,
-                Products.Gender, 
+                Products.TargetsId, 
+                Targets.TargetsCode, 
+                Targets.Target, 
                 Products.Size,
                 Products.Description,
                 Products.Price, 
@@ -232,6 +234,7 @@ function table_Products ($job, $var1, $var2, $var3, $order, $limit, $offset) {
                 Products.Created, 
                 Products.Updated
                 FROM Products LEFT OUTER JOIN Brands ON Brands.Id = Products.BrandsId
+                LEFT OUTER JOIN Targets ON Products.TargetsId = Targets.Id
                 $order limit $limit OFFSET $offset 
             ;";
             $db->query($stm);
@@ -263,7 +266,9 @@ function table_Products ($job, $var1, $var2, $var3, $order, $limit, $offset) {
                 Brands.Country,
                 Products.Name,
                 Products.Cat1, 
-                Products.Gender,
+                Products.TargetsId,
+                Targets.TargetsCode,
+                Targets.Target,
                 Products.Description, 
                 Products.Size,
                 Products.Price, 
@@ -274,6 +279,7 @@ function table_Products ($job, $var1, $var2, $var3, $order, $limit, $offset) {
                 Products.Created, 
                 Products.Updated
                 FROM Products LEFT OUTER JOIN Brands ON Brands.Id = Products.BrandsId
+                LEFT OUTER JOIN Targets ON Products.TargetsId = Targets.Id
                 WHERE Products.ProductsLink = :link
             ;";
             $db->query($stm);
@@ -295,7 +301,9 @@ function table_Products ($job, $var1, $var2, $var3, $order, $limit, $offset) {
                 Brands.Country,
                 Products.Name,
                 Products.Cat1,
-                Products.Gender,
+                Products.TargetsId,
+                Targets.TargetsCode,
+                Targets.Target, 
                 Products.Description, 
                 Products.Size,
                 Products.Price, 
@@ -306,6 +314,7 @@ function table_Products ($job, $var1, $var2, $var3, $order, $limit, $offset) {
                 Products.Created, 
                 Products.Updated
                 FROM Products LEFT OUTER JOIN Brands ON Brands.Id = Products.BrandsId
+                LEFT OUTER JOIN Targets ON Products.TargetsId = Targets.Id
                 WHERE CONCAT(
                     Products.ProductsCode, 
                     Brands.BrandsName, 
@@ -370,6 +379,25 @@ function table_Images ($job, $var1, $var2, $var3, $order, $limit, $offset) {
             break;    
     }
 }
+
+//function to use data from the table Targats 
+function table_Targets ($job, $var1, $var2, $var3, $order, $limit, $offset) {
+    $db = new Database();
+
+    switch ($job) {
+        case 'select_all':
+            # code...
+            $stm = "SELECT * FROM Targets ;";
+            $db->query($stm);
+            return $db->resultset();
+            break;
+        
+        default:
+            # code...
+            break;
+    }
+}
+
 
 // function to create thumbnail
 function CreateThumbnail($pic, $thumb, $thumbwidth, $quality = 100) {

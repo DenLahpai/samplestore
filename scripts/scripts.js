@@ -363,8 +363,7 @@ function insertProducts () {
     var ProductsCode = $("#ProductsCode");
     var BrandsId = $("#BrandsId");
     var Name = $("#Name");
-    var Cat1 = $("#Cat.1");
-    var Gender = $("#Gender");
+    var Cat1 = $("#Cat1");
     var Size = $("#Size");
     var Price = $("#Price");
     var Color = $("#Color");
@@ -373,38 +372,37 @@ function insertProducts () {
     ProductsCode.removeClass("input-error");
     BrandsId.removeClass("input-error");
     Name.removeClass("input-error");
-    Gender.removeClass("input-error");
     Size.removeClass("input-error");
     Price.removeClass("input-error");
 
     if (ProductsCode.val() == "" || ProductsCode.val() == " " || ProductsCode.val() == null) {
         error = true;
         ProductsCode.addClass("input-error");
+        alert("Prdcode");
     }
 
     if (BrandsId.val() == "") {
         error = true;
         BrandsId.addClass("input-error");
+        alert("BId1");
     }
 
     if (Name.val() == "" ||  Name.val() == " " || Name.val() == null) {
         error = true;
         Name.addClass("input-error");
+        alert("Name");
     }
 
     if (Cat1.val() == "" || Cat1.val() == " " || Cat1.val() == null) {
         error = true;
         Cat1.addClass("input-error");
+        alert("Ca1");
     }
-
-    if (Gender.val() == "") {
-        error = true;
-        Gender.addClass("input-error");
-    }
-
+    
     if (Price.val() == "") {
         error = true;
         Price.addClass("input-error");
+        alert("Price");
     } 
 
     if (error == true) {
@@ -616,4 +614,21 @@ function updateShowcase (num, link) {
         }
     );
     
+}
+
+/****** function to select Targets ******/
+function selectTargets (selected) {
+    $.post ("includes/select_Targets.php", {
+        selected: selected
+        }, function(data) {
+            // alert(data);
+            $("#TargetsId").html(data);
+        }
+    );
+}
+
+
+function setTwoNumberDecimal(num, Id) {
+    num = parseFloat(num).toFixed(2);
+    document.getElementById(Id).value = num;
 }

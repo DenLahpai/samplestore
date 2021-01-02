@@ -12,7 +12,7 @@ getSession($ip);
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <!-- <meta http-equiv="refresh" content="3;home.html"> -->
+    <meta http-equiv="refresh" content="3;home.html">
 	<link rel="stylesheet" href="css/styles.css">
 	<link rel="Shortcut icon" href="lotus-flower.png"/>
 	<title>Welcome</title>

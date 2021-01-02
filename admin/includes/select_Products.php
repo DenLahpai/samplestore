@@ -35,7 +35,7 @@ $rows_Products = table_Products ('select_all', NULL, NULL, NULL, $order, $limit,
 		<div class="products-box" style= "border: 3px solid  <? echo $row_Products->Color; ?>">
 			<div class="products-box-desc">
 				<div>
-					<h4 style="display: inline;"><? echo $row_Products->BrandsName.": "?></h4>
+					<h4 style="display: inline;"><? echo $row_Products->BrandsName." | "?></h4>
 					<? echo $row_Products->Name; ?>
 				</div>
 				<div>
@@ -45,7 +45,7 @@ $rows_Products = table_Products ('select_all', NULL, NULL, NULL, $order, $limit,
 					<? echo $row_Products->Cat1; ?>
 				</div>
 				<div>
-					<? echo $row_Products->Gender; ?>
+					<? echo $row_Products->TargetsCode; ?>
 					| <? echo $row_Products->Size; ?>
 				</div>
 				<div>
@@ -68,7 +68,7 @@ $rows_Products = table_Products ('select_all', NULL, NULL, NULL, $order, $limit,
 					//getting the extension to find out whether the image is .png
 	                $ext = explode('.', $row_Products->MainImg);
 					$file_ext = strtolower(end($ext));
-					if ($ext == 'png') {
+					if ($file_ext == 'png') {
 						$img_path = "../images/".$row_Products->MainImg;
 					}
 					else {

@@ -7,6 +7,10 @@
     --theme-color1: #fadb39; 
 }
 
+body {
+    background: silver;
+}
+
 .header-bar {
     display: flex;
     width: 100%;
@@ -46,7 +50,105 @@
     height: 24px;    
 }
 
+.container {
+    background: #FFFFFF;
+}
 
 section {
     padding: 24px;
+}
+
+.box-showcase1-title h1 {
+    text-align: center;
+}
+
+.box-showcase1 {
+    max-height: 30%;
+    display: grid;
+    place-items: center;
+}
+
+.box-showcase1-img img {
+    max-height: 300px;
+    border-radius: 12px;
+}
+
+.box-showcase1-desc {
+    width: 100%;    
+}
+
+.box-showcase1-desc div {
+    display: block;
+    text-align: center;
+    border-radius: 6px;
+}
+
+.boxes {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(114px, 1fr));
+    place-items: center;
+}
+
+.box {
+    display: grid;
+    place-items: center;
+    border: 1px solid silver;
+    border-radius: 6px 6px 3px 3px;
+}
+
+.box-img {
+    width: 99px;
+    height: 99px;
+    display: grid;
+    overflow: hidden;
+}
+
+.box-img img {
+    width: 100%;
+    max-height: 100%;
+    border-radius: 6px;
+}
+
+.box-desc-title {
+    text-align: center;
+    font-size: 0.6em;
+}
+
+.box-desc-body {
+    font-style: italic;
+    font-size: 0.6em;    
+}
+
+.box-price-discount div {
+    background-color: red;
+    color: #FFFFFF;
+    padding: 6px;
+    border-radius: 3px;
+}
+
+.box-price-norm {
+    font-size: 0.6em;
+    padding: 6px;
+}
+
+.glider-dot {
+    width: 24px;
+    height: 24px;
+    margin-right: 12px;
+}
+
+/*styles for tablets*/
+@media screen and (min-width: 768px) {
+    
+}
+
+/*styles for computers*/
+@media screen and (min-width: 992px) {
+    .container {
+        margin: 0px 240px;
+        height: 100%;
+    }
+
+    
 }

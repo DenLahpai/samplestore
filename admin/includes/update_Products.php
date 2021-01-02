@@ -48,71 +48,25 @@ if (isset($_REQUEST['link'])) {
             <input type="text" name="Cat1" id="Cat1" value="<? echo $row_Products->Cat1; ?>">
         </div>
         <div>
-            Gender:<br>
-            <select name="Gender" id="Gender">
-                <? if ($row_Products->Gender == "F"): ?>
-                    <option value="F" selected>F - Women</option>
-                    <option value="M">M - Men</option>
-                    <option value="U">U - Unisex</option>
-                <? elseif ($row_Products->Gender == "M"): ?>
-                    <option value="F">F - Women</option>
-                    <option value="M" selected>M - Men</option>
-                    <option value="U">U - Unisex</option>
-                <? else: ?>
-                    <option value="F">F - Women</option>
-                    <option value="M">M - Men</option>
-                    <option value="U" selected>U - Unisex</option>
-                <? endif; ?>    
+            For: <br>
+            <select name="TargetsId" id="TargetsId">
+                <?php  
+                $rows_Targets = table_Targets ('select_all', NULL, NULL, NULL, NULL, NULL, NULL);
+                foreach ($rows_Targets as $row_Targets) {
+                    if ($row_Targets->Id == $row_Products->TargetsId) {
+                        
+                        echo "<option value=\"$row_Targets->Id\" selected>".$row_Targets->TargetsCode.' - '.$row_Targets->Target."</option>";
+                    }
+                    else {
+                        echo "<option value=\"$row_Targets->Id\">".$row_Targets->TargetsCode.' - '.$row_Targets->Target."</option>";
+                    }
+                }
+                ?>
             </select>
         </div>
         <div>
             Size:<br>
-            <select name="Size" id="Size">
-                <? if ($row_Products->Size == 'FREE'): ?>
-                    <option value="FREE" selected>Free Size</option>
-                    <option value="S">Small</option>
-                    <option value="M">Medium</option>
-                    <option value="L">Large</option>
-                    <option value="XL">XL</option>
-                    <option value="XXL">XXL</option>
-                <? elseif ($row_Products->Size == 'S'): ?>
-                    <option value="FREE">Free Size</option>
-                    <option value="S" selected>Small</option>
-                    <option value="M">Medium</option>
-                    <option value="L">Large</option>
-                    <option value="XL">XL</option>
-                    <option value="XXL">XXL</option>
-                <? elseif ($row_Products->Size == "M"): ?>
-                    <option value="FREE">Free Size</option>
-                    <option value="S">Small</option>
-                    <option value="M" selected>Medium</option>
-                    <option value="L">Large</option>
-                    <option value="XL">XL</option>
-                    <option value="XXL">XXL</option>
-                <? elseif ($row_Products->Size == "L"): ?>
-                    <option value="FREE">Free Size</option>
-                    <option value="S">Small</option>
-                    <option value="M">Medium</option>
-                    <option value="L" selected>Large</option>
-                    <option value="XL">XL</option>
-                    <option value="XXL">XXL</option>
-                <? elseif ($row_Products->Size == "XL"): ?>
-                    <option value="FREE">Free Size</option>
-                    <option value="S">Small</option>
-                    <option value="M">Medium</option>
-                    <option value="L">Large</option>
-                    <option value="XL" selected>XL</option>
-                    <option value="XXL">XXL</option>
-                <? elseif ($row_Products->Size == "XXL"): ?>
-                    <option value="FREE">Free Size</option>
-                    <option value="S">Small</option>
-                    <option value="M">Medium</option>
-                    <option value="L">Large</option>
-                    <option value="XL">XL</option>
-                    <option value="XXL" selected>XXL</option>
-                <? else : ?>
-                <? endif; ?>
-            </select>        
+            <input type="text" name="Size" id="Size" value="<? echo $row_Products->Size; ?>">
         </div>
         <div>
             <textarea name="Description" id="Description" cols="27" rows="10"><? echo $row_Products->Description; ?></textarea>
@@ -123,7 +77,7 @@ if (isset($_REQUEST['link'])) {
         </div>
         <div>
             Discount:<br>
-            <input type="number" step="0.01" name="Discount" id="Discount" value="<? echo $row_Products->Discount; ?>">
+            <input type="number" step="0.01" name="Discount" id="Discount" onchange="setTwoNumberDecimal(this.value, 'Discount');" value="<? echo $row_Products->Discount; ?>">
         </div>
         <div>
             Color:<br>

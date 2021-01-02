@@ -8,7 +8,7 @@ if (isset($_REQUEST)) {
         BrandsId = :BrandsId, 
         Name = :Name, 
         Cat1 = :Cat1,
-        Gender = :Gender,
+        TargetsId = :TargetsId,
         Size = :Size,
         Price = :Price, 
         Discount = :Discount,          
@@ -20,7 +20,7 @@ if (isset($_REQUEST)) {
     $db->bind(":BrandsId", $_REQUEST['BrandsId']);
     $db->bind(":Name", trim($_REQUEST['Name']));
     $db->bind(":Cat1", trim($_REQUEST['Cat1']));
-    $db->bind(":Gender", $_REQUEST['Gender']);
+    $db->bind(":TargetsId", $_REQUEST['TargetsId']);
     $db->bind(':Size', $_REQUEST['Size']);
     $db->bind(":Price", $_REQUEST['Price']);
     $db->bind(":Discount", $_REQUEST['Discount']);

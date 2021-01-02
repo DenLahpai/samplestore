@@ -15,6 +15,11 @@
         <!-- container -->
         <div class="container">
             <section id="top-banner"></section>
+            <section id="main-data">
+                <div class="sub-title">
+                    <h3>Featuring</h3>
+                </div>
+            </section>
         </div>
         <!-- end of container -->
     </div>
@@ -31,6 +36,10 @@ $(document).ready(function () {
 
     $.post("incl/select_showcase1.php", function (data) {
         $("#top-banner").html(data);
+    });
+
+    $.post("incl/select_showcase2.php", function (data) {
+        $("#main-data").append(data);
     });
 });
 </script>

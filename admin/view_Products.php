@@ -19,7 +19,10 @@ if (isset($_REQUEST['link'])) {
         Brands.BrandsName, 
         Brands.Country,
         Products.Name,
-        Products.Gender,
+        Products.Cat1,
+        Products.TargetsId, 
+        Targets.TargetsCode, 
+        Targets.Target,
         Products.Description, 
         Products.Size,
         Products.Price, 
@@ -30,6 +33,7 @@ if (isset($_REQUEST['link'])) {
         Products.Created, 
         Products.Updated
         FROM Products LEFT OUTER JOIN Brands ON Products.BrandsId = Brands.Id 
+        LEFT OUTER JOIN Targets ON Products.TargetsId = Targets.Id
         WHERE Products.ProductsCode = :ProductsCode
         AND Products.Color = :Color
         AND Products.Size != :Size 
@@ -50,7 +54,10 @@ if (isset($_REQUEST['link'])) {
         Brands.BrandsName, 
         Brands.Country,
         Products.Name,
-        Products.Gender,
+        Products.Cat1,
+        Products.TargetsId, 
+        Targets.TargetsCode,
+        Targets.Target,
         Products.Description, 
         Products.Size,
         Products.Price, 
@@ -61,6 +68,7 @@ if (isset($_REQUEST['link'])) {
         Products.Created, 
         Products.Updated
         FROM Products LEFT OUTER JOIN Brands ON Products.BrandsId = Brands.Id 
+        LEFT OUTER JOIN Targets ON Products.TargetsId = Targets.Id
         WHERE Products.ProductsCode = :ProductsCode
         AND Products.Color != :Color
         AND Products.Size = :Size 
@@ -117,9 +125,7 @@ if (isset($_REQUEST['link'])) {
                 <div class="view-product-img">
                     <!-- glider-contain multiple  -->
                     <div class="glider-contain multiple">
-                        <button class="glider-prev">
-                            <
-                        </button>
+                        <button class="glider-prev"><</button>
                         <!-- glider -->
                         <div class="glider">
                             <div class="glider-img">
@@ -141,9 +147,7 @@ if (isset($_REQUEST['link'])) {
                             <? endforeach; ?>    
                         </div>                
                         <!-- end of glider  -->
-                        <button class="glider-next">
-                            >
-                        </button>
+                        <button class="glider-next">></button>
                         <div id="dots" class="glider-dots"></div>
                     </div>
                     <!-- end of glider-contain multiple  -->
@@ -160,10 +164,10 @@ if (isset($_REQUEST['link'])) {
                         Code:  <? echo $row_Products->ProductsCode; ?>
                     </div>
                     <div>
-                        Category: <? $row_Products->Cat1; ?>
+                        Category: <? echo $row_Products->Cat1; ?>
                     </div>
                     <div>
-                        Gender: <? echo $row_Products->Gender; ?>
+                        For: <? echo $row_Products->TargetsCode; ?>
                     </div>
                     <div>
                         Size: <? echo $row_Products->Size; ?>
@@ -191,26 +195,17 @@ if (isset($_REQUEST['link'])) {
                         <input type="checkbox" id="Showcase1" name="Showcase1"  >
                         <label for="Showcase1">Hot Item</label><br><br><br>
                         <input type="checkbox" id="Showcase2" name="Showcase2">
-                        <label for="Showcase2">Featured</label>
+                        <label for="Showcase2">Featuring</label>
                         <!-- <div style="text-align: center">
                             <button type="button" class="btn-medium" id="btn-Showcase" style="padding: 6px 18px;">Update</button>
                         </div> -->
                     </div>
                     <div style="text-align: center;">
-                        <h3>Variants</h3>                        
+                        <h3>Create Variants</h3>                        
                     </div>
                     <div>
-                        Size:
-                        <button type="button" class="products-cmd" onclick="Toggle('#Size')">Create another Size</button>
-                        <select class="products-cmd" name="Size" id="Size" style="display: none;" onchange="duplicateProduct('Size', '<? echo $row_Products->Size;?>', '<? echo $_REQUEST['link']; ?>');">
-                                <option value="">Select One</option>
-                                <option value="FREE">Free Size</option>
-								<option value="S">Small</option>
-								<option value="M">Medium</option>
-								<option value="L">Large</option>
-								<option value="XL">XL</option>
-								<option value="XXL">XXL</option>
-                        </select>            
+                        Size: <input type="text" name="Size" id="Size" placeholder="Enter another size">
+                        <button type="button" class="products-cmd" onclick="duplicateProduct('Size', '<? echo $row_Products->Size;?>', '<? echo $_REQUEST['link']; ?>');">Create</button>
                         <br>
                         <? foreach ($rows_Size as $row_Size): ?>
                             <? if (isset($row_Size->Size) || !empty($row_Size->Size)): ?>
@@ -225,8 +220,9 @@ if (isset($_REQUEST['link'])) {
                         <button type="button" class="products-cmd" onclick="Toggle('.Color-form')">Create another Color</button>
                         <div class="Color-form" style="margin-top: 12px; display: none;" >
                             <input type="text" name="Color" id="Color" onblur="previewColor(this.value)";>
-                            <button type="button" class="products-cmd" onclick="duplicateProduct('Color', '<? echo $row_Products->Color; ?>', '<? echo $_REQUEST['link']; ?>');">Create</button>
                             <div class="color-preview"></div>
+                            <br>
+                            <button type="button" class="products-cmd" onclick="duplicateProduct('Color', '<? echo $row_Products->Color; ?>', '<? echo $_REQUEST['link']; ?>');">Create</button>
                         </div>
                         <br>
                         <br>

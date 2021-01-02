@@ -9,9 +9,15 @@ if (isset($_REQUEST['Img'])) {
     $db->bind(":Img", $_REQUEST['Img']);
     if ($db->execute()) {
         $file = "../../images/".$_REQUEST['Img'];
-        $thumb = "../../images/thumbnails/".$_REQUEST['Img'];
         unlink($file);
-        unlink($thumb);
+        $ext = explode('.', $_REQUEST['Img']);
+        $file_ext = end($ext);
+
+        if ($file_ext != 'png') {
+            $thumb = "../../images/thumbnails/".$_REQUEST['Img'];
+            unlink($thumb);    
+        }
+        
         die();
     }
     else {

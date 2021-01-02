@@ -38,7 +38,7 @@ if (isset($_REQUEST['Search']) || !empty($_REQUEST['Search'])) {
 		<div class="products-box" style= "border: 3px solid  <? echo $row_Products->Color; ?>">
 			<div class="products-box-desc">
 				<div>
-					<h4 style="display: inline;"><? echo $row_Products->BrandsName.": "?></h4>
+					<h4 style="display: inline;"><? echo $row_Products->BrandsName." | "?></h4>
 					<? echo $row_Products->Name; ?>
 				</div>
 				<div>
@@ -71,8 +71,8 @@ if (isset($_REQUEST['Search']) || !empty($_REQUEST['Search'])) {
 					//getting the extension to find out whether the image is .png
 	                $ext = explode('.', $row_Products->MainImg);
 					$file_ext = strtolower(end($ext));
-					if ($ext == 'png') {
-						$img_path = "../images/".$row_Products->MainImg;
+					if ($file_ext == 'png') {
+						$img_path = "../images/".$row_Products->MainImg;				
 					}
 					else {
 						$img_path = "../images/thumbnails/".$row_Products->MainImg;
