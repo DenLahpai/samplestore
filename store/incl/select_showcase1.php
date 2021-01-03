@@ -1,5 +1,5 @@
 <?php
-require_once "../fonctions.php";
+require_once "../functions.php";
 
 //getting data from the table Showcase1
 $db = new Database ();
@@ -28,7 +28,7 @@ $rows_Showcase1 = $db->resultset();
             <!-- box-showcase1 -->
             <div class="box-showcase1" onclick="window.location.href='view_item.html?link=<? echo $row_Showcase1->ProductsLink; ?>' ">
                 <div class="box-showcase1-img">
-                    <img src="images/<? echo $row_Products->MainImg; ?>" alt="">
+                    <img src="../images/<? echo $row_Products->MainImg; ?>" alt="">
                 </div>
                 <div class="box-showcase1-desc">
                     <div>
@@ -49,9 +49,9 @@ $rows_Showcase1 = $db->resultset();
     <div id="dots" class="glider-dots"></div>
 </div>
 <!-- end of glider-contain multiple -->
-<script src="scripts/jquery.js"></script>
-<script src="scripts/glider.js"></script>
-<script src="scripts/main.js"></script>
+<script src="../scripts/jquery.js"></script>
+<script src="../scripts/glider.js"></script>
+<script src="../scripts/main.js"></script>
 <script>
     new Glider(document.querySelector('.glider'), {
         slidesToShow: 1,

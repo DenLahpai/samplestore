@@ -1,5 +1,5 @@
 <?php  
-require_once "../fonctions.php";
+require_once "../functions.php";
 
 // getting data fromt the table Showcase2
 $db = new Database();
@@ -26,10 +26,10 @@ $rows_Showcase2 = $db->resultset();
 			$ext = explode ('.', $row_Products->MainImg);
 			$file_ext = strtolower(end($ext));
 			if ($file_ext == 'png') {
-				$path = "images/".$row_Products->MainImg;
+				$path = "../images/".$row_Products->MainImg;
 			}
 			else {
-				$path = "images/thumbnails/".$row_Products->MainImg;
+				$path = "../images/thumbnails/".$row_Products->MainImg;
 			}
 			?>
 			<img src="<? echo $path;?>" alt="">

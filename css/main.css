@@ -4,7 +4,9 @@
 }
 
 :root {
-    --theme-color1: #fadb39; 
+    --theme-color1: rgba(250, 219, 57, 1);
+    --box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.6);
+    --box-shadow-active: 3px 3px 3px rgba(0, 0, 0, 0.3);
 }
 
 body {
@@ -50,6 +52,79 @@ body {
     height: 24px;    
 }
 
+nav {
+    padding: 9px;
+    background: rgba(171, 177, 186, 0.6);
+    border-radius: 6px;   
+}
+
+.nav-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 1em;
+}
+
+.nav-item {
+    display: grid;
+    place-items: center;
+    box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.6);
+    border-radius: 6px;    
+}
+
+.nav-item:active {
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+}
+
+.nav-item img {
+    width: 24px;
+    height: 24px;    
+}
+
+.nav-item-desc {
+    padding: 3px;
+    font-size: 60%;
+}
+
+.menu-collection {
+    padding: 6px;
+    background: rgba(0, 0, 0, 0.3);
+    display: none;
+    border-radius: 6px;
+}
+
+.menu-collection-items-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    grid-gap: 1rem;
+    place-items: center;
+}
+
+.menu-collection-item {
+    background: var(--theme-color1);
+    width: 100px;
+    height: 100px;
+    display: grid;
+    place-items: center;
+    border: 1px solid #FFFFFF;
+    box-shadow: var(--box-shadow);
+    border-radius: 12px;
+}
+
+.menu-collection-item:active {
+    box-shadow: var(--box-shadow-active);
+    color: var(--theme-color1);
+    background: #FFFFFF;
+}
+
+.menu-collection-item-name {
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.menu-collection-item-count {
+    font-weight: bold;
+}
+
 .container {
     background: #FFFFFF;
 }
@@ -86,7 +161,7 @@ section {
 .boxes {
     display: grid;
     grid-gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(114px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     place-items: center;
 }
 
@@ -98,16 +173,16 @@ section {
 }
 
 .box-img {
-    width: 99px;
-    height: 99px;
-    display: grid;
-    overflow: hidden;
+    width: 100px;
+    height: 100px;
+    /*display: grid;*/
+    overflow: hidden;    
 }
 
 .box-img img {
     width: 100%;
     max-height: 100%;
-    border-radius: 6px;
+    border-radius: 6px;    
 }
 
 .box-desc-title {

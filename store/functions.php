@@ -45,6 +45,14 @@ function table_Products ($job, $var1, $var2, $var3, $order, $limit, $offset) {
 			$db->bind(":ProductsLink", $var1);
 			return $db->resultset();
 			break;
+
+		case 'row_Count_for_each_cat1':
+			# var1 = Cat1
+			$stm = "SELECT * FROM Products WHERE Cat1 = :var1 ;";
+			$db->query($stm);
+			$db->bind(":var1", $var1);
+			return $db->rowCount();
+			break;		
 		
 		default:
 			# code...

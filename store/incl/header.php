@@ -3,7 +3,7 @@
     <!-- header-bar-content -->
     <div class="header-bar-content">
         <div class="header-bar-logo">
-            <a href="home.html"><img src="logo.png" alt=""></a>
+            <a href="home.html"><img src="docs/logo.png" alt=""></a>
         </div>
     </div>
     <!-- end of header-bar-content -->
@@ -11,10 +11,10 @@
     <div class="header-bar-content">
         <div class="header-bar-menu">
             <div class="header-bar-menu-item">
-                <img src="search.png" alt="">
+                <img src="docs/search.png" alt="">
             </div>
             <div class="header-bar-menu-item">
-                <img src="cart.png" alt="">
+                <img src="docs/cart.png" alt="">
             </div>
         </div>
     </div>
