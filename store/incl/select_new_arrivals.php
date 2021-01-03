@@ -1,23 +1,40 @@
 <?php  
 require_once "../functions.php";
 
-// getting data fromt the table Showcase2
+$order = "ORDER BY Products.Created DESC";
+$limit = 12;
+$offset = 0;
+
 $db = new Database();
-$stm = "SELECT * FROM Showcase2 WHERE Status = 1 ORDER BY Updated DESC;";
+$stm = "SELECT 
+	Products.ProductsLink,
+	Products.ProductsCode,
+	Products.MainImg,
+	Products.BrandsId,  
+	Brands.BrandsName, 
+	Brands.Country, 
+	Products.Name, 
+	Products.TargetsId, 
+	Targets.TargetsCode, 
+	Targets.Target, 
+	Products.Size, 
+	Products.Color, 
+	Products.Price,
+	Products.Discount,
+	Products.Description,
+	Products.Status, 
+	Products.Created,
+	Products.Updated 
+	FROM Products LEFT OUTER JOIN Brands ON Products.BrandsId = Brands.Id 
+	LEFT OUTER JOIN Targets ON Products.TargetsId = Targets.Id
+	$order LIMIT $limit OFFSET $offset
+;";
 $db->query($stm);
-$rows_Showcase2 = $db->resultset();
+$rows_Products = $db->resultset();
 ?>
 <!-- boxes -->
 <div class="boxes">
-<? foreach ($rows_Showcase2 as $row_Showcase2): ?>
-
-	<?php
-	// getting data from the table Products
-	$rows_Products = table_Products ('select_one', $row_Showcase2->ProductsLink, NULL, NULL, NULL, NULL, NULL);
-	foreach ($rows_Products as $row_Products) {
-		# code...
-	}
-	?>
+<? foreach ($rows_Products as $row_Products): ?>
 	<!-- box -->
 	<div class="box">
 		<div class="box-img">
@@ -64,6 +81,6 @@ $rows_Showcase2 = $db->resultset();
 		<!-- end of box-price -->
 	</div>
 	<!-- end of box -->
-<? endforeach; ?>
+	<? endforeach; ?>
 </div>
 <!-- end of boxes -->

@@ -15,13 +15,21 @@
         <!-- container -->
         <div class="container">
             <section id="top-banner"></section>
-            <section id="main-data">
+            <section id="discounts">
+                <div class="sub-title"></div>
+            </section>
+            <section id="fearturing">
                 <div class="sub-title">
                     <h3>Featuring</h3>
                 </div>
             </section>
+            <section id="new-arrivals">
+                <div class="sub-title">
+                    <h3>New Arrival</h3>
+                </div>
+            </section>
             <section id="nav-menu"></section>
-            <section id="nav-bar"></section>            
+            <section id="nav-bar"></section> 
         </div>
         <!-- end of container -->
     </div>
@@ -40,8 +48,16 @@ $(document).ready(function () {
         $("#top-banner").html(data);
     });
 
+    $.post("incl/select_discounts.php", function (data) {
+        $("#discounts").append(data);
+    })
+
     $.post("incl/select_showcase2.php", function (data) {
-        $("#main-data").append(data);
+        $("#fearturing").append(data);
+    });
+
+    $.post("incl/select_new_arrivals.php", function (data) {
+        $("#new-arrivals").append(data);
     });
 
     $.post("incl/nav.php", function (data) {
