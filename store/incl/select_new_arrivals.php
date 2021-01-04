@@ -76,7 +76,7 @@ $rows_Products = $db->resultset();
 				<!-- end of box-price-discount -->
 				<!-- box-price-norm  -->
 				<div class="box-price-norm">
-					<? echo number_format($row_Products->Price); ?> MMK
+					K- <? echo number_format($row_Products->Price); ?>
 				</div>
 				<!-- end of box-price-norm -->
 			</div>

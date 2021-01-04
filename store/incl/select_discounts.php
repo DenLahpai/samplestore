@@ -85,7 +85,7 @@ $rows_Products = $db->resultset();
 				
 				<!-- box-price-norm  -->
 				<div class="box-price-norm" style="text-decoration: line-through;">
-					<? echo number_format($row_Products->Price); ?> MMK
+					K- <? echo number_format($row_Products->Price); ?>
 					<?php  
 					$new_price = $row_Products->Price - ($row_Products->Price * $row_Products-> Discount / 100);				
 					?>
@@ -93,7 +93,7 @@ $rows_Products = $db->resultset();
 				<!-- end of box-price-norm -->
 				<!-- box-price-norm -->
 				<div class="box-price-norm" style="color: red">
-					<? echo number_format($new_price); ?> MMK
+					K- <? echo number_format($new_price); ?>
 				</div>
 				<!-- end of box-price-norm -->
 			</div>
