@@ -13,17 +13,16 @@ body {
     background: silver;
 }
 
-.header-bar {
-    display: flex;
-    width: 100%;
+header {
     background: var(--theme-color1);
-    justify-content: space-between;
+    width: 100%;
 }
 
-.header-bar-content {
+.header-bar {
     display: flex;
-    align-items: center;
-    padding: 6px;
+    justify-content: space-between;
+    align-content: center;
+    padding: 3px;
 }
 
 .header-bar-logo img {
@@ -31,25 +30,41 @@ body {
     height: auto;
 }
 
-.header-bar-menu {
-    display: flex;    
+.header-bar-content {
+    display: flex;
+    align-items: center;
+    padding-right: 6px;
 }
 
 .header-bar-menu-item {
+    margin-right: 12px;
     border-radius: 50%;
-    padding: 3px;
     border: 1px solid white;
-    margin-left: 24px;
     box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.6);
+}
+
+.header-bar-menu-item:nth-of-type(1) {
+    border-radius: 0px;
+    border: 0px;
+    box-shadow: 0px 0px 0px;
+}
+
+.header-bar-menu-item > input {
+    width: 90px;
+    border: 0px;
+    outline: 0px;
+    border-bottom: 1px solid #FFFFFF;
+    background: none;    
+}
+
+.header-bar-menu-item > img {
+    width: 30px;
+    height: 30px;
+    padding: 3px;
 }
 
 .header-bar-menu-item:active {
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
-}
-
-.header-bar-menu-item img {
-    width: 24px;
-    height: 24px;    
 }
 
 nav {
@@ -211,7 +226,7 @@ section {
     width: 120px;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
+    text-overflow: ellipsis;    
 }
 
 .box-price-discount div {
@@ -234,6 +249,39 @@ section {
     width: 24px;
     height: 24px;
     margin-right: 12px;
+}
+
+.search-result-desc {
+    margin: 12px 0px;
+    font-style: italic;
+}
+
+.pagination {
+    margin-top: 12px;
+}
+
+.pagination > input {
+    /*display: none;*/
+}
+
+.page-numbers {
+    display: flex;
+    justify-content: center;
+}
+
+
+.page-button {
+    background: var(--theme-color1);
+    padding: 6px;
+    display: grid;
+    place-items: center;
+    margin: 6px 12px;
+    font-weight: bold;
+    box-shadow: var(--box-shadow);    
+}
+
+.page-button:active {
+    box-shadow: var(--box-shadow-active);
 }
 
 /*styles for tablets*/

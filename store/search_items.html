@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/glider.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="Shortcut icon" href="docs/lotus-flower.png"/>
+    <title>Sample Store: Search</title>
+</head>
+<body>
+	<header></header>
+	<!-- wrapper -->
+	<div class="wrapper">
+		<!-- container -->
+		<div class="container">
+			<section id="main-data">
+				<div class="sub-title">
+					<h3>Search</h3>
+				</div>
+			</section>
+			<section id="nav-menu"></section>
+			<section id="nav-bar"></section>
+		</div>
+		<!-- end of container -->
+	</div>
+	<!-- end of wrapper -->
+</body>
+</html>
+<script src="../scripts/jquery.js"></script>
+<script src="../scripts/glider.js"></script>
+<script src="../scripts/main.js"></script>
+<script>
+$(document).ready(function () {
+	const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const Search = urlParams.get('Search');
+
+    $.post("incl/header.php", function (data) {
+    	$("header").html(data);
+    });
+
+    $.post("incl/search_items.php", {Search: Search}, function (data) {
+    	$("#main-data").append(data);
+    });
+
+    $.post("incl/nav.php", function (data) {
+        $("#nav-bar").html(data);
+    });
+
+    $.post("incl/menu_collection.php", function (data) {
+        $("#nav-menu").html(data);
+    });
+
+});
+</script>

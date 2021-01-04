@@ -1,45 +1,89 @@
-<div class="glider-contain multiple">
-<button class="glider-prev">
-                            <
-                        </button>
-    <div class="glider">        
-        <div>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt, sint a, et ipsa facilis doloremque unde voluptates iusto quo, placeat nulla quisquam magnam exercitationem laboriosam maiores provident. Quod, eaque iure?</p>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #slider {
+            margin: 0 auto;
+            width: 800px;
+            max-width: 100%;
+            text-align: center;
+        }
+
+        #slider input[type=radio] {
+            display: none;
+        }
+        #slider label {
+            cursor:: pointer;
+            text-decoration: none;
+        }
+
+        #slides {
+            padding: 30px;
+            border: 3px solid #ccc;
+            position: relative;
+            z-index: 1;
+        }
+        #overflow {
+            width: 100%;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div id="slider">
+        <input type="radio" name="slider" id="slide1" checked>
+        <input type="radio" name="slider" id="slide2">
+        <input type="radio" name="slider" id="slide3">
+        <div id="slides">
+            <div id="overflow">
+                <div class="inner">
+                    <div class="slide slide_1">
+                        <div class="slide-content">
+                            <h2>Slide 1</h2>
+                            <p>Content for Slide 1</p>
+                        </div>
+                    </div>
+
+                    <div class="slide slide_2">
+                        <div class="slide-content">
+                            <h2>Slide 2</h2>
+                            <p>Content for Slide 2</p>
+                        </div>
+                    </div>
+
+                    <div class="slide slide_3">
+                        <div class="slide-content">
+                            <h2>Slide 3</h2>
+                            <p>Content for Slide 3</p>
+                        </div>
+                    </div>
+
+                    <div class="slide slide_4">
+                        <div class="slide-content">
+                            <h2>Slide 4</h2>
+                            <p>Content for Slide 4</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
-        <div>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veritatis corrupti illo sint cumque recusandae vel aliquid odit, optio, odio doloremque totam. Laudantium nisi, animi incidunt autem placeat veritatis soluta facilis.</p>
+        <div id="controls">
+            <label for="slide1"></label>
+            <label for="slide2"></label>
+            <label for="slide3"></label>
+            <label for="slide4"></label>
         </div>
-        <div>
-            <p>fdsafdsf;l</p>
+        <div id="bullets">
+            <label for="slide1"></label>
+            <label for="slide2"></label>
+            <label for="slide3"></label>
+            <label for="slide4"></label>
         </div>
     </div>
-    <button>></button>
-    <div id="dots" class="glider-dots"></div>
-</div>
-
-<!-- <script src="scripts/jquery.js"></script> -->
-<script src="scripts/glider.js"></script>
-<script src="scripts/main.js"></script>
-<script>
-$(document).ready(function () {
-	$.post("incl/header.php", function (data) {
-        $("header").html(data);
-    });
-
-    // $.post("incl/test.php", function (data) {
-    //     $(".glider").html(data);
-    // });
-
-    new Glider(document.querySelector('.glider'), {
-        slidesToShow: 1,
-        dots: '#dots',
-        draggable: true,
-        arrows: {
-        prev: '.glider-prev',
-        next: '.glider-next'
-        }
-    });
-});
-
-
-</script>
+</body>
+</html>

@@ -12,7 +12,7 @@ $rows_Cat1 = $db->resultset();
 			<?php 	$rowCount = table_Products ('row_Count_for_each_cat1', $row_Cat1->Cat1, NULL, NULL, NULL, NULL, NULL); ?>
 			<!-- menu-collection-item -->
 			<div class="menu-collection-item">
-				<div class="menu-collection-item-name">
+				<div class="menu-collection-item-name" onclick="window.location.href='browse_items.html?Cat1=<? echo $row_Cat1->Cat1; ?>'">
 					<?php echo $row_Cat1->Cat1; ?>
 				</div>
 				<div class="menu-collection-item-count">
