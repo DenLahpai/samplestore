@@ -10,7 +10,6 @@ $rows_Showcase2 = $db->resultset();
 <!-- boxes -->
 <div class="boxes">
 <? foreach ($rows_Showcase2 as $row_Showcase2): ?>
-
 	<?php
 	// getting data from the table Products
 	$rows_Products = table_Products ('select_one', $row_Showcase2->ProductsLink, NULL, NULL, NULL, NULL, NULL);
@@ -20,48 +19,52 @@ $rows_Showcase2 = $db->resultset();
 	?>
 	<!-- box -->
 	<div class="box">
-		<div class="box-img">
-			<?php
-			//checking if img is png or jpg (if jpg = thbnail)
-			$ext = explode ('.', $row_Products->MainImg);
-			$file_ext = strtolower(end($ext));
-			if ($file_ext == 'png') {
-				$path = "../images/".$row_Products->MainImg;
-			}
-			else {
-				$path = "../images/thumbnails/".$row_Products->MainImg;
-			}
-			?>
-			<img src="<? echo $path;?>" alt="">
-		</div>
-		<!-- box-desc -->
-		<div class="box-desc">
-			<!-- box-desc-title -->
-			<div class="box-desc-title">
-				<h4>
-					<? echo $row_Products->Name; ?>
-				</h4>
+		<!-- box-contents -->
+		<div>
+			<div class="box-img">
+				<?php
+				//checking if img is png or jpg (if jpg = thbnail)
+				$ext = explode ('.', $row_Products->MainImg);
+				$file_ext = strtolower(end($ext));
+				if ($file_ext == 'png') {
+					$path = "../images/".$row_Products->MainImg;
+				}
+				else {
+					$path = "../images/thumbnails/".$row_Products->MainImg;
+				}
+				?>
+				<img src="<? echo $path;?>" alt="">
 			</div>
-			<!-- end of box-desc-title -->
-			<!-- box-desc-body -->
-			<div class="box-desc-body">
-				<? echo $row_Products->BrandsName; ?>
+			<!-- box-desc -->
+			<div class="box-desc">
+				<!-- box-desc-title -->
+				<div class="box-desc-title">
+					<h4>
+						<? echo $row_Products->Name; ?>
+					</h4>
+				</div>
+				<!-- end of box-desc-title -->
+				<!-- box-desc-body -->
+				<div class="box-desc-body">
+					<? echo $row_Products->BrandsName; ?>
+				</div>
+				<!-- end of box-desc-body -->			
 			</div>
-			<!-- end of box-desc-body -->			
-		</div>
-		<!-- end of box-desc -->
-		<!-- box-price -->
-		<div class="box-price">
-			<!-- box-price-discount -->
-			<div class="box-price-discount"></div>
-			<!-- end of box-price-discount -->
-			<!-- box-price-norm  -->
-			<div class="box-price-norm">
-				<? echo number_format($row_Products->Price); ?> MMK
+			<!-- end of box-desc -->
+			<!-- box-price -->
+			<div class="box-price">
+				<!-- box-price-discount -->
+				<div class="box-price-discount"></div>
+				<!-- end of box-price-discount -->
+				<!-- box-price-norm  -->
+				<div class="box-price-norm">
+					K- <? echo number_format($row_Products->Price); ?>
+				</div>
+				<!-- end of box-price-norm -->
 			</div>
-			<!-- end of box-price-norm -->
+			<!-- end of box-price -->
 		</div>
-		<!-- end of box-price -->
+		<!-- end of box-contents -->
 	</div>
 	<!-- end of box -->
 <? endforeach; ?>

@@ -190,15 +190,16 @@ section {
 }
 
 .box {
-    display: grid;
-    place-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     border: 1px solid silver;
     border-radius: 6px 6px 3px 3px;
 }
 
 .box-img {
     width: 120px;
-    height:160px;
+    height: 160px;
     display: grid;
     overflow: hidden;    
 }
@@ -215,9 +216,12 @@ section {
 
 .box-desc-title h4 {
     width: 120px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    height: 3em;
+    display: grid;
+    place-items: center;
+    /* white-space: nowrap;
+    overflow: hidden; */
+    /* text-overflow: ellipsis; */
 }
 
 .box-desc-body {
@@ -258,10 +262,6 @@ section {
 
 .pagination {
     margin-top: 12px;
-}
-
-.pagination > input {
-    /*display: none;*/
 }
 
 .page-numbers {
