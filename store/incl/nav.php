@@ -12,7 +12,7 @@
     		<div class="nav-item-desc">Collection</div>
     	</div>
     	
-    	<div class="nav-item">
+    	<div class="nav-item" onclick="Toggle('.menu-target');">
     		<span style="font-size: 2em;">&#9892;</span>
     	</div>
 

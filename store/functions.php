@@ -52,11 +52,21 @@ function table_Products ($job, $var1, $var2, $var3, $order, $limit, $offset) {
 			$db->query($stm);
 			$db->bind(":var1", $var1);
 			return $db->rowCount();
-			break;		
+			break;	
+
+		case 'row_Count_for_each_TargetsId':
+			# $var1 = TargetsId 		
+			$stm = "SELECT * FROM Products WHERE TargetsId = :var1 ;";
+			$db->query($stm);
+			$db->bind(":var1", $var1);
+			return $db->rowCount();
+			break;
 		
 		default:
 			# code...
 			break;
 	}
 }
+
+
 ?>

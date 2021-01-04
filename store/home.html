@@ -67,6 +67,10 @@ $(document).ready(function () {
     $.post("incl/menu_collection.php", function (data) {
         $("#nav-menu").html(data);
     });
+
+    $.post("incl/menu_target.php", function (data) {
+        $("#nav-menu").append(data);
+    });
 });
 </script>
 </html>
