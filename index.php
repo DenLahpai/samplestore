@@ -1,9 +1,6 @@
 <?php
 require_once "store/functions.php";
-$d = date('dM');
-$_SESSION['link'] = uniqid($d.'_', true);
-$ip = $_SERVER['REMOTE_ADDR'];
-getSession($ip);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,3 +30,5 @@ getSession($ip);
     </div>
 </body>
 </html>
+
+http://localhost/sites/samplestore/store/view_item.html?link=Prd_5ff098afa811d7.30896923

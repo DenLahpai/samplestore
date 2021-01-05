@@ -1,8 +1,9 @@
 <?php
+session_start();
 require_once "conn.php";
 
 // function to get sessions data 
-function getSession ($var1) {
+function insertSession ($var1) {
     $db = new Database();
 
     $stm = "INSERT INTO Sessions SET 

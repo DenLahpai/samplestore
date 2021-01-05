@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../css/glider.css">
     <link rel="stylesheet" href="../css/main.css">
     <link rel="Shortcut icon" href="docs/lotus-flower.png"/>
-    <title>Sample Store: Browse Items</title>
+	<title>Samplestore: Browse Items</title>
 </head>
 <body>
 	<header></header>
@@ -18,7 +18,7 @@
 			<section id="nav-menu"></section>
 			<section id="nav-bar"></section>
 		</div>
-		<!-- end ofcontainer -->
+		<!-- end of container -->
 	</div>
 	<!-- end of wrapper -->
 </body>
@@ -29,13 +29,13 @@
 $(document).ready(function () {
 	const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    const Cat1 = urlParams.get('Cat1');
+    const TargetsId = urlParams.get('Tgt');
 
     $.post("incl/header.php", function (data) {
     	$("header").html(data);
     });
     
-    $.post("incl/browse_items.php", {Cat1: Cat1}, function (data) {
+    $.post("incl/browse_items_by_targets.php", {TargetsId: TargetsId}, function (data) {
     	$("#main-data").html(data);
     });
 

@@ -81,8 +81,7 @@ $rows_Products = $db->resultset();
 			<!-- end of box-desc -->
 			<!-- box-price -->
 			<div class="box-price">
-				<!-- box-price-discount -->
-				
+				<!-- box-price-discount -->				
 				<!-- box-price-norm  -->
 				<div class="box-price-norm" style="text-decoration: line-through;">
 					K- <? echo number_format($row_Products->Price); ?>

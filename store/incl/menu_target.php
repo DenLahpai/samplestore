@@ -12,7 +12,7 @@ $rows_Targets = $db->resultset();
 			<?php 	$rowCount = table_Products ('row_Count_for_each_TargetsId', $row_Targets->Id, NULL, NULL, NULL, NULL, NULL); ?>
 			<!-- menu-collection-item -->
 			<div class="menu-collection-item">
-				<div class="menu-collection-item-name" onclick="window.location.href='browse_items.html?Tgt=<? echo $row_Targets->Target; ?>'">
+				<div class="menu-collection-item-name" onclick="window.location.href='browse_items_by_targets.html?Tgt=<? echo $row_Targets->Id; ?>'">
 					<?php echo $row_Targets->Target; ?>
 				</div>
 				<div class="menu-collection-item-count">

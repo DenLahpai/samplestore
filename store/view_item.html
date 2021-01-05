@@ -1,45 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
+	<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" href="../css/glider.css">
     <link rel="stylesheet" href="../css/main.css">
-    <link rel="Shortcut icon" href="docs/lotus-flower.png"/>
-    <title>Sample Store: Welcome</title>
+     <link rel="Shortcut icon" href="docs/lotus-flower.png"/>
+	<title>View Item</title>
 </head>
 <body>
-    <header></header>
-    <!-- wrapper -->
-    <div class="wrapper">
-        <!-- container -->
-        <div class="container">
-            <section id="top-banner"></section>
-            <section id="discounts">
-                <div class="sub-title"></div>
-            </section>
-            <section id="fearturing">
-                <div class="sub-title">
-                    <h3>Featuring</h3>
-                </div>
-            </section>
-            <section id="new-arrivals">
-                <div class="sub-title">
-                    <h3>New Arrival</h3>
-                </div>
-            </section>
-            <section id="nav-menu"></section>
-            <section id="nav-bar"></section> 
-        </div>
-        <!-- end of container -->
-    </div>
-    <!-- end of wrapper -->
+	<header></header>
+	<!-- wrapper -->
+	<div class="wrapper">
+		<!-- container -->
+		<div class="container">
+			<section id="main-data"></section>
+		</div>
+		<!-- end of container -->
+	</div>
+	<!-- end of wrapper -->
 </body>
 <script src="../scripts/jquery.js"></script>
 <script src="../scripts/glider.js"></script>
 <script src="../scripts/main.js"></script>
 <script>
 $(document).ready(function () {
+
+	const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const link = urlParams.get('link');
+
 	$.post("incl/header.php", function (data) {
         $("header").html(data);
     });
@@ -72,7 +64,33 @@ $(document).ready(function () {
         $("#nav-menu").append(data);
     });
 
+    $.post("incl/view_item.php", {link: link}, function (data) {
+    	$("#main-data").html(data);
+    });
+
     $.post("incl/add_session.php");
 });
 </script>
+<script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<!-- Initialize Swiper -->
+<script>
+var swiper = new Swiper('.swiper-container', {
+    effect: 'coverflow',
+    grabCursor: true,
+    centeredSlides: true,
+    slidesPerView: 'auto',
+    coverflowEffect: {
+    rotate: 60,
+    stretch: 0,
+    depth: 200,
+    modifier: 1,
+    slideShadows: true,
+    },
+    pagination: {
+    el: '.swiper-pagination',
+    },
+});
+</script>
+
 </html>

@@ -1,89 +1,69 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="test.css">
     <title>Document</title>
-    <style>
-        #slider {
-            margin: 0 auto;
-            width: 800px;
-            max-width: 100%;
-            text-align: center;
-        }
-
-        #slider input[type=radio] {
-            display: none;
-        }
-        #slider label {
-            cursor:: pointer;
-            text-decoration: none;
-        }
-
-        #slides {
-            padding: 30px;
-            border: 3px solid #ccc;
-            position: relative;
-            z-index: 1;
-        }
-        #overflow {
-            width: 100%;
-            overflow: hidden;
-        }
-    </style>
 </head>
 <body>
-    <div id="slider">
-        <input type="radio" name="slider" id="slide1" checked>
-        <input type="radio" name="slider" id="slide2">
-        <input type="radio" name="slider" id="slide3">
-        <div id="slides">
-            <div id="overflow">
-                <div class="inner">
-                    <div class="slide slide_1">
-                        <div class="slide-content">
-                            <h2>Slide 1</h2>
-                            <p>Content for Slide 1</p>
-                        </div>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <!-- card -->
+                <div class="card">
+                    <div class="sliderText" onclick="alert('hi');">
+                        <h3>Slide One</h3>
                     </div>
-
-                    <div class="slide slide_2">
-                        <div class="slide-content">
-                            <h2>Slide 2</h2>
-                            <p>Content for Slide 2</p>
-                        </div>
+                    <div class="content">
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur ad, neque obcaecati, facere nesciunt delectus quasi eos? Unde earum non commodi consequatur illum corrupti totam, deleniti, quod maiores, similique eaque illo? Exercitationem nemo, facilis ullam autem magnam. Beatae sint placeat maiores unde esse atque sit impedit eius, est porro animi ipsa aspernatur exercitationem recusandae, reiciendis illum sequi voluptate architecto voluptatibus.
+                        </p>
+                        <a href="#">Read More</a>
                     </div>
-
-                    <div class="slide slide_3">
-                        <div class="slide-content">
-                            <h2>Slide 3</h2>
-                            <p>Content for Slide 3</p>
-                        </div>
-                    </div>
-
-                    <div class="slide slide_4">
-                        <div class="slide-content">
-                            <h2>Slide 4</h2>
-                            <p>Content for Slide 4</p>
-                        </div>
-                    </div>
-
                 </div>
+                <!-- end of card -->                
+            </div>
+            <div class="swiper-slide">
+                <!-- card -->
+                <div class="card">
+                    <div class="sliderText">
+                        <h3>Slide Two</h3>
+                    </div>
+                    <div class="content">
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur ad, neque obcaecati, facere nesciunt delectus quasi eos? Unde earum non commodi consequatur illum corrupti totam, deleniti, quod maiores, similique eaque illo? Exercitationem nemo, facilis ullam autem magnam. Beatae sint placeat maiores unde esse atque sit impedit eius, est porro animi ipsa aspernatur exercitationem recusandae, reiciendis illum sequi voluptate architecto voluptatibus.
+                        </p>
+                        <a href="#">Read More</a>
+                    </div>
+                </div>
+                <!-- end of card -->                
             </div>
         </div>
-        <div id="controls">
-            <label for="slide1"></label>
-            <label for="slide2"></label>
-            <label for="slide3"></label>
-            <label for="slide4"></label>
-        </div>
-        <div id="bullets">
-            <label for="slide1"></label>
-            <label for="slide2"></label>
-            <label for="slide3"></label>
-            <label for="slide4"></label>
-        </div>
     </div>
+    
 </body>
+<script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <!-- Initialize Swiper -->
+  <script>
+    var swiper = new Swiper('.swiper-container', {
+      effect: 'coverflow',
+      grabCursor: true,
+      centeredSlides: true,
+      slidesPerView: 'auto',
+      coverflowEffect: {
+        rotate: 50,
+        stretch: 0,
+        depth: 100,
+        modifier: 1,
+        slideShadows: true,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+      },
+    });
+  </script>
 </html>
