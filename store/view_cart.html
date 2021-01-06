@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="Shortcut icon" href="docs/lotus-flower.png"/>
+	<title>View Cart</title>
+</head>
+<body>
+	<header></header>
+	<!-- wrapper -->
+	<div class="wrapper">
+		<!-- container -->
+		<div class="container">
+			<section id="main-data">
+				<div class="sub-menu">
+					<h3>Your Cart</h3>
+				</div>
+			</section>
+			<section id="nav-menu"></section>
+            <section id="nav-bar"></section>
+		</div>
+		<!-- end of container -->
+	</div>
+	<!-- end of wrapper -->
+</body>
+<script src="../scripts/jquery.js"></script>
+<script src="../scripts/main.js"></script>
+<script>
+$(document).ready(function() {
+	$.post("incl/header.php", function (data) {
+		$("header").html(data);
+	});
+
+	$.post("incl/view_cart.php", function (data) {
+		$("#main-data").append(data);
+	});
+
+	$.post("incl/nav.php", function (data) {
+        $("#nav-bar").html(data);
+    });
+
+    $.post("incl/menu_collection.php", function (data) {
+        $("#nav-menu").html(data);
+    });
+
+    $.post("incl/menu_target.php", function (data) {
+        $("#nav-menu").append(data);
+    });
+});
+</script>
+</html>

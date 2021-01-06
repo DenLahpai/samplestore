@@ -40,5 +40,4 @@ if (isset($_SESSION['link'])) {
 		echo "The item is already in your cart! You can adjust the quatity of your items in your cart before check out!";
 	}
 }
-
 ?>

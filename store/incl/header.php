@@ -35,7 +35,7 @@ $rowCount = $db->rowCount();
         <div class="header-bar-menu-item">
             <img src="docs/search.png" alt="" onclick="searchItems();">
         </div>                     
-        <div class="header-bar-menu-item">
+        <div class="header-bar-menu-item" onclick="window.location.href='view_cart.html'; ">
             <img src="docs/cart.png" alt="">
             <?php if ($rowCount > 0): ?>
                 <div class="rowCount-Cart"><? echo $rowCount; ?></div>

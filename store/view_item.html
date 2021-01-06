@@ -17,6 +17,8 @@
 		<!-- container -->
 		<div class="container">
 			<section id="main-data"></section>
+            <section id="nav-menu"></section>
+            <section id="nav-bar"></section>
 		</div>
 		<!-- end of container -->
 	</div>
@@ -34,22 +36,6 @@ $(document).ready(function () {
 
 	$.post("incl/header.php", function (data) {
         $("header").html(data);
-    });
-
-    $.post("incl/select_showcase1.php", function (data) {
-        $("#top-banner").html(data);
-    });
-
-    $.post("incl/select_discounts.php", function (data) {
-        $("#discounts").append(data);
-    })
-
-    $.post("incl/select_showcase2.php", function (data) {
-        $("#fearturing").append(data);
-    });
-
-    $.post("incl/select_new_arrivals.php", function (data) {
-        $("#new-arrivals").append(data);
     });
 
     $.post("incl/nav.php", function (data) {
