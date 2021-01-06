@@ -92,13 +92,15 @@ if (isset($_REQUEST['link'])) {
                 //getting the discount rate
                 $discounted = $row_Products->Price - ($row_Products->Price * $row_Products->Discount / 100);
                 echo "<h4 style='text-decoration: line-through; font-style: italic; font-weight: normal'>K- ".number_format($row_Products->Price)."</h4>";
-                echo "<h4>K- ".number_format($discounted)."</h4>";
+                echo "<h4 style='color: red;'>K- ".number_format($discounted)."</h4>";
             }
             ?>
             </div>
             <!-- end for view-product-price-box -->
             <div class="view-product-cart">
-                Add to Cart                
+                <div class="add-cart">
+                    Add to Cart        
+                </div>
             </div>
         </div>
         <!-- view-product-details -->
@@ -203,4 +205,13 @@ var swiper = new Swiper('.swiper-container', {
     el: '.swiper-pagination',
     },
 });
+
+$(".add-cart").on("click", function() {
+    $.post("incl/add_cart.php", {
+        link: '<? echo $_POST["link"]; ?>'}, function (data) {
+            location.reload();
+            alert(data);
+        });
+});
+
 </script>
