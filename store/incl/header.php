@@ -11,7 +11,7 @@ if (empty($_SESSION['link'])) {
 
 //getting rowCount of items in the shoppping cart
 $db = new Database ();
-$stm = "SELECT Id FROM Cart WHERE SessionLink = :SessionLink ;";
+$stm = "SELECT Id FROM Cart WHERE SessionLink = :SessionLink AND Status = 1;";
 $db->query($stm);
 $db->bind(":SessionLink", $_SESSION['link']);
 $rowCount = $db->rowCount();

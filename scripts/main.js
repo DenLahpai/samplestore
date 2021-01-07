@@ -27,19 +27,60 @@ function changePage (page) {
 /****** function to calculate total *******/
 function calculateTotal(cls) {
 	var subtotal = document.getElementsByClassName(cls);
-	var i;
-	for (i=0; i < subtotal.length; i++) {
-		alert(subtotal[i].value);//TODO
-	}
+	
+	var sum = 0;
+	$('.' + cls).each(function () {
+		sum += parseFloat(this.value);
+	});
+
+	$("#grand-total").html(sum);	
 }
 
 /***** function to update price of an item according to qty ******/
-function updatePrice (qty, link) {
+function updatePrice (qty, cls, link) {
+	if (qty <= 0) {
+		alert('Please enter proper number!');
+	}
 	$.post("incl/update_price.php", {
 		qty: qty,
 		link: link
 		}, function(data) {
 			document.getElementById('sub_' + link).value = data;
+			calculateTotal(cls);
+			alert(data);	
 		}
 	);
+}
+
+/****** function to remove an item form the cart ******/
+function removeItem (link) {
+	var r = confirm("Are you sure to remove the item?");
+	if (r == true) {
+		$.post("incl/remove_item_cart.php", {
+			link: link
+			}, function (data) {
+				if (!data) {
+					location.reload();
+				}
+				else {
+					alert(data);
+				}
+			}	
+		);
+	}
+	else {
+		alert('NO');
+	}
+}
+
+/****** function to validate email  ******/
+// Note function copied from Stackoverflow.com
+function validateEmail(sEmail) {
+    var reEmail = /^(?:[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+\.)*[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+@(?:(?:(?:[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!\.)){0,61}[a-zA-Z0-9]?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!$)){0,61}[a-zA-Z0-9]?)|(?:\[(?:(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\]))$/;
+
+    if(!sEmail.match(reEmail)) {
+    alert("Invalid email address!");
+    return false;
+    }
+    return true;
 }

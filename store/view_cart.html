@@ -13,9 +13,12 @@
 	<div class="wrapper">
 		<!-- container -->
 		<div class="container">
-			<section id="main-data">
+			<section id="order-list">
 				<div class="sub-menu">
 					<h3>Your Cart</h3>
+				</div>
+				<div class="button-menu">
+					<button type="button" onclick="window.location.href= 'customer_form.html' ">Confirm Your Order</button>
 				</div>
 			</section>
 			<section id="nav-menu"></section>
@@ -34,7 +37,7 @@ $(document).ready(function() {
 	});
 
 	$.post("incl/view_cart.php", function (data) {
-		$("#main-data").append(data);
+		$("#order-list .sub-menu").append(data);
 	});
 
 	$.post("incl/nav.php", function (data) {

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="Shortcut icon" href="docs/lotus-flower.png"/>
+	<title>Your Info</title>
+</head>
+<body>
+	<header></header>
+	<!-- wrapper -->
+	<div class="wrapper">
+		<!-- container -->
+		<div class="container">
+			<section id="main-data">
+				<div class="sub-title">
+					<h3>Your Info</h3>
+				</div>
+				<div class="client-form">
+					<form action="#" id="client-form" method="post">
+						<div>
+							Title:
+							<select name="Title" id="Title">
+								<option value="Mr">Mr.</option>
+								<option value="Mrs">Mrs.</option>
+								<option value="Ms">Ms.</option>
+							</select>
+						</div>
+						<div>
+							<input type="text" name="Name" id="Name" placeholder="Your Name">
+						</div>
+						<div>
+							<input type="text" name="Email" id="Email" placeholder="Email" onblur="validateEmail (this.value);">
+						</div>
+						<div>
+							<input type="text" name="Mobile" id="Mobile" placeholder="Mobile No">
+						</div>
+						<div>
+							<textarea name="Address" id="Address" cols="30" rows="10" placeholder="Address"></textarea>
+						</div>
+						<div>
+							<input type="text" name="Town" id="Town" placeholder="Town/City">
+						</div>
+						<div>
+							<textarea name="Note" id="Note" cols="30" rows="3" placeholder="Deliver Note"></textarea>
+						</div>
+						<div id="msg">
+							
+						</div>
+						<div>
+							<button type="button" id="btn-submit">Submit</button>
+						</div>						
+					</form>
+				</div>
+			</section>
+			<section id="nav-menu"></section>
+            <section id="nav-bar"></section>
+		</div>
+		<!-- end of container -->
+	</div>
+	<!-- end of wrapper -->
+</body>
+<script src="../scripts/jquery.js"></script>
+<script src="../scripts/main.js"></script>
+<script>
+$(document).ready(function() {
+	$.post("incl/header.php", function (data) {
+		$("header").html(data);
+	});
+
+	$.post("incl/nav.php", function (data) {
+        $("#nav-bar").html(data);
+    });
+
+    $.post("incl/menu_collection.php", function (data) {
+        $("#nav-menu").html(data);
+    });
+
+    $.post("incl/menu_target.php", function (data) {
+        $("#nav-menu").append(data);
+    });
+
+    $("#btn-submit").on("click", function () {
+    	var Name = $("#Name");
+    	var Mobile = $("#Mobile");
+    	var Address = $("#Address");
+    	var Town = $("#Town");
+    	var error = false;
+
+    	if (Name.val() == "" || Name.val() == null || Name.val() == " ") {
+    		var msg = "<span style='color: red'>Please enter your name!</span>";
+    		Name.addClass("input-error");
+    		var error = true;
+    	}
+    	else {
+    		Name.removeClass("input-error");
+    		var error = false;
+    	}
+
+    	if (Mobile.val() == "" || Mobile.val() == null || Mobile.val() == " ") {
+    		var msg = "<span style='color: red'>Please enter your mobile number!</span>";
+    		Name.addClass("input-error");
+    		var error = true;
+    	}
+    	else {
+    		Mobile.removeClass("input-error");
+    		var error = false;
+    	}
+
+    	if (Town.val() == "" || Town.val() == null || Town.val() == " ") {
+    		var msg = "<span style='color: red'>Please enter your city or town!</span>";
+    		Town.addClass("input-error");
+    		var error = true;
+    	} 
+    	else {
+    		Town.removeClass("input-error");
+    		var error = false;
+    	}
+
+
+    	if (error == false) {
+    		$.ajax({
+    			url: 'incl/add_customer.php', 
+    			type: 'post',
+    			data: $("#client-form").serialize(),
+    			success: function(data) {
+    				if (!data) {
+    					window.location.href = 'invoice.html';
+    				}
+    				else {
+    					alert(data);
+    				}
+    			}
+    		});
+    	}
+    });
+});
+</script>
+</html>

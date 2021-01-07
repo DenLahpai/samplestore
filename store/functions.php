@@ -69,5 +69,36 @@ function table_Products ($job, $var1, $var2, $var3, $order, $limit, $offset) {
 	}
 }
 
+//function to get data from the table Orders
+function table_Orders ($job, $var1, $var2, $var3, $order, $limit, $offet) {
 
+	$db = new Database();
+
+	switch ($job) {
+		case 'insert':
+			# var1 = OrdersLink
+			# var2 = CustomersLink
+			# var3 = ProductsLink
+			$stm = "INSERT INTO Orders SET 
+				OrdersLink = :OrdersLink,
+				CustomersLink = :CustomersLink,
+				ProductsLink = :ProductsLink
+			;";
+			$db->query($stm);
+			$db->bind(":OrdersLink", $var1);
+			$db->bind(":CustomersLink", $var2);
+			$db->bind(":ProductsLink", $var3);
+			if ($db->execute()) {
+				$i = true;
+			}
+			else {
+				echo "<span style='color: red'>There was a connection erro! Please try again!</span>";
+			}
+			break;
+		
+		default:
+			# code...
+			break;
+	}
+}
 ?>

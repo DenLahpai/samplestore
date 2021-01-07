@@ -46,10 +46,10 @@ else {
  					}
  					?>
  					<tr>
- 						<td><div>&#10008;</div></td>
+ 						<td><div onclick="removeItem('<? echo $row_Cart->ProductsLink; ?>')">&#10008;</div></td>
  						<td><? echo $row_Products->Name.": ".$row_Products->Color.", ".$row_Products->Size; ?></td>
  						<td>
- 							<input type="number" class="qty" step="1" value="1" onchange="updatePrice(this.value, '<? echo $row_Cart->ProductsLink; ?>');">
+ 							<input type="number" class="qty" step="1" value="1" onchange="updatePrice(this.value, 'subtotal', '<? echo $row_Cart->ProductsLink; ?>');">
  						</td>
  						<td>
  							<?php  
@@ -61,16 +61,21 @@ else {
  								$subtotal = $row_Products->Price;
  							}
  							?>
- 							<input type="text" class="subtotal" id="sub_<? echo $row_Cart->ProductsLink; ?>"  value="<? echo $subtotal; ?>" readonly>
+ 							<input type="text" class="subtotal" id="sub_<? echo $row_Cart->ProductsLink; ?>" name="sub_<? echo $row_Cart->ProductsLink; ?>" value="<? echo $subtotal; ?>" readonly>
  						</td>
  					</tr>
  				<?php endforeach ?>
- 				<tr>
+ 				<tr style="border-top: 2px solid silver;">
  					<td colspan="3" style="text-align: center;">Grand Total:</td>
- 					<td><button type="button" onclick="calculateTotal('subtotal');">test</button></td>
+ 					<td style="text-align: right"><div id="grand-total"></div></td>
  				</tr>
  			</tbody>
 		</table>
 	</div>
 </div>
 <!-- end of item-list-contain -->
+<script>
+$(document).ready(function () {
+	calculateTotal ('subtotal');
+});	
+</script>

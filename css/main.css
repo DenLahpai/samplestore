@@ -440,6 +440,56 @@ section {
     width: 7em;
 }
 
+.button-menu {
+    display: block;
+    text-align: center;
+    margin-top: 12px;
+}
+
+.button-menu button {
+    padding: 6px 12px;
+    border: 1px solid #000000;
+    background: var(--theme-color1);
+    border-radius: 3px;
+    box-shadow: var(--box-shadow);
+}
+
+.button-menu button:active {
+    box-shadow: var(--box-shadow-active);
+}
+
+.client-form div {
+    margin: 12px;
+}
+
+.client-form div input {
+    border: 0px;
+    outline: 0px;
+    border-bottom: 3px solid silver;
+    padding: 6px;
+}
+
+.client-form textarea {
+    resize: vertical;
+    padding: 3px;
+}
+
+.client-form div button {
+    background: var(--theme-color1);
+    padding: 12px 6px;
+    border-radius: 6px;
+    border: 3px solid #000;
+    box-shadow: var(--box-shadow);
+}
+
+.client-form div button:active {
+    box-shadow: var(--box-shadow-active);
+}
+
+.input-error {
+    background: red
+}
+
 .pagination {
     margin-top: 12px;
 }
