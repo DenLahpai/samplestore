@@ -9,7 +9,7 @@ if (isset($_POST['link'])) {
 		SessionLink = :SessionLink
 	;";
 	$db->query($stm);
-	$db->bind(":Qty", $_POST['qty']);
+	$db->bind(":Qty", $_POST['Qty']);
 	$db->bind(":link", $_POST['link']);
 	$db->bind(":SessionLink", $_SESSION['link']);
 	$db->execute();
@@ -23,10 +23,10 @@ if (isset($_POST['link'])) {
 	if ($row_Products->Discount > 0) {
 		// applying discount
 		$discounted = $row_Products->Price - ($row_Products->Price * $row_Products->Discount / 100);
-		echo $new_price = $discounted * $_POST['qty'];	
+		echo $new_price = $discounted * $_POST['Qty'];	
 	}
 	else {
-		echo $new_price = $row_Products->Price * $_POST['qty'];		
+		echo $new_price = $row_Products->Price * $_POST['Qty'];		
 	}
 }
 else {

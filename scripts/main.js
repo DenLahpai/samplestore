@@ -37,17 +37,26 @@ function calculateTotal(cls) {
 }
 
 /***** function to update price of an item according to qty ******/
-function updatePrice (qty, cls, link) {
-	if (qty <= 0) {
-		alert('Please enter proper number!');
-	}
+function updatePrice (i , cls, link) {
+	var Qty = $("#Qty" + i);
+	if (Qty.val() == "" || Qty.val() == " " || Qty.val() == null || Qty.val() < 0) {
+		Qty.val(0);
+	}	
+
 	$.post("incl/update_price.php", {
-		qty: qty,
+		Qty: Qty.val(),
 		link: link
 		}, function(data) {
-			document.getElementById('sub_' + link).value = data;
+			$("#subtotal" + i).val(data);
 			calculateTotal(cls);
-			alert(data);	
+			if (data < 1) {
+				Qty.addClass("input-error");
+				$("#subtotal" + i).addClass('input-error');
+			}
+			else {
+				Qty.removeClass("input-error");
+				$("#subtotal" + i).removeClass('input-error');
+			}
 		}
 	);
 }
@@ -83,4 +92,21 @@ function validateEmail(sEmail) {
     return false;
     }
     return true;
+}
+
+/****** function to create Orders and Orderlist ******/
+function createOrder () {
+	//checking if there is any zeros
+	var n = $(".Qty").length;
+	
+	for (var i = 1; i <= n; i++) {
+		if ($("#Qty" + i).val() == 0) {
+			$("#Qty" + i).addClass("input-error");
+			alert("Please correct the Qty or remove the item highlighted in red to continue!");
+		}
+		else {
+			$("#Qty" + i).removeClass("input-error");
+		}
+	}
+	
 }

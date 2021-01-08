@@ -40,6 +40,7 @@
 <script src="../scripts/main.js"></script>
 <script>
 $(document).ready(function () {
+       
 	$.post("incl/header.php", function (data) {
         $("header").html(data);
     });
@@ -71,8 +72,7 @@ $(document).ready(function () {
     $.post("incl/menu_target.php", function (data) {
         $("#nav-menu").append(data);
     });
-
-    $.post("incl/add_session.php");
+    
 });
 </script>
 </html>

@@ -3,9 +3,10 @@ require_once "../functions.php";
 
 if (empty($_SESSION['link'])) {
 	$d = date('dM');
-	$_SESSION['link'] = uniqid($d.'_', true);
 	$ip = $_SERVER['REMOTE_ADDR'];
-	insertSession($ip);
+	$rdm = $d.'_'.md5($ip);
+	$_SESSION['link'] = uniqid($rdm.'_', true);
+	insertSession($ip, $_SESSION['link']);
 }
 
 ?>

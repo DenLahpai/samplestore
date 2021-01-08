@@ -3,7 +3,7 @@ session_start();
 require_once "conn.php";
 
 // function to get sessions data 
-function insertSession ($var1) {
+function insertSession ($ip, $session) {
     $db = new Database();
 
     $stm = "INSERT INTO Sessions SET 
@@ -11,8 +11,8 @@ function insertSession ($var1) {
         Ip = :Ip
     ;";
     $db->query($stm);
-    $db->bind(":SessionLink", $_SESSION['link']);
-    $db->bind(":Ip", $var1);
+    $db->bind(":SessionLink", $session);
+    $db->bind(":Ip", $ip);
     $db->execute();
 }
 

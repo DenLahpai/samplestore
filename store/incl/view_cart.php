@@ -3,8 +3,8 @@ require_once "../functions.php";
 
 if (empty($_SESSION['link'])) {
 	$d = date('dM');
-	$_SESSION['link'] = uniqid($d.'_', true);
 	$ip = $_SERVER['REMOTE_ADDR'];
+	$_SESSION['link'] = uniqid($d.'_', true);
 	insertSession($ip);
 }
 
@@ -17,7 +17,7 @@ $rows_Cart = $db->resultset();
 $rowCount = $db->rowCount();
 
 if ($rowCount == 0 ) {
-	alert("Please add some items to your cart and come back!");
+	echo "Please add some items to your cart and come back!";
 }
 else {
 	foreach ($rows_Cart as $row_Cart) {
@@ -38,7 +38,10 @@ else {
 				</tr>	
 			</thead>
  			<tbody>
- 				<?php foreach ($rows_Cart as $row_Cart): ?>
+ 				<?php
+ 				$i = 1; 
+ 				foreach ($rows_Cart as $row_Cart): 
+ 				?>
  					<? 
  					$rows_Products = table_Products ('select_one', $row_Cart->ProductsLink, NULL, NULL, NULL, NULL, NULL); 
  					foreach ($rows_Products as $row_Products) {
@@ -46,10 +49,13 @@ else {
  					}
  					?>
  					<tr>
- 						<td><div onclick="removeItem('<? echo $row_Cart->ProductsLink; ?>')">&#10008;</div></td>
+ 						<td>
+ 							<div onclick="removeItem('<? echo $row_Cart->ProductsLink; ?>')">&#10008;</div>
+ 							<input type="hidden" id="ProductsLink<? echo $i;?>" name="ProductsLink<? echo $i;?>" value="<? echo $row_Cart->ProductsLink; ?>">
+ 						</td>
  						<td><? echo $row_Products->Name.": ".$row_Products->Color.", ".$row_Products->Size; ?></td>
  						<td>
- 							<input type="number" class="qty" step="1" value="1" onchange="updatePrice(this.value, 'subtotal', '<? echo $row_Cart->ProductsLink; ?>');">
+ 							<input type="number" class="Qty" id="Qty<? echo $i; ?>" name="Qty<? echo $i; ?>" step="1" min=1  value="<? echo $row_Cart->Qty; ?>" onchange="updatePrice(<? echo $i; ?>, 'subtotal', '<? echo $row_Cart->ProductsLink; ?>');">
  						</td>
  						<td>
  							<?php  
@@ -61,10 +67,13 @@ else {
  								$subtotal = $row_Products->Price;
  							}
  							?>
- 							<input type="text" class="subtotal" id="sub_<? echo $row_Cart->ProductsLink; ?>" name="sub_<? echo $row_Cart->ProductsLink; ?>" value="<? echo $subtotal; ?>" readonly>
+ 							<input type="text" class="subtotal" id="subtotal<? echo $i; ?>" name="subtotal<? echo $i; ?>" value="<? echo $subtotal * $row_Cart->Qty; ?>" readonly>
  						</td>
  					</tr>
- 				<?php endforeach ?>
+ 				<?php
+ 					$i++; 
+ 					endforeach; 
+ 				?>
  				<tr style="border-top: 2px solid silver;">
  					<td colspan="3" style="text-align: center;">Grand Total:</td>
  					<td style="text-align: right"><div id="grand-total"></div></td>
@@ -74,6 +83,9 @@ else {
 	</div>
 </div>
 <!-- end of item-list-contain -->
+<div class="button-menu">
+	<button type="button" onclick="createOrder();">Confirm Your Order</button>
+</div>
 <script>
 $(document).ready(function () {
 	calculateTotal ('subtotal');
