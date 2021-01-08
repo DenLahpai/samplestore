@@ -1,94 +1,37 @@
-/****** function to get data from the table  ******/
-function pagination (table) {
-    var limit = 10;    
-    var page = Number($("#current_page").val());
-    var Search = $("#Search").val();
+$obj_pdf = new TCPDF('p', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+    $obj_pdf->SetCreator(PDF_CREATOR);
+    //Title of the document
+    $obj_pdf->SetTitle("Export HTML Table data to PDF using TCPDF in PHP");
+    //header image logo and tile of doc.
+    $obj_pdf->SetHeaderData('', '', PDF_HEADER_TITLE, PDF_HEADER_STRING);
+    //FONT style and size
+    $obj_pdf->SetHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+    $obj_pdf->SetFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+    $obj_pdf->SetDefaultMonospacedFont('helvetica');
+    $obj_pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+    $obj_pdf->SetMargins(PDF_MARGIN_LEFT, '5', PDF_MARGIN_RIGHT);
+    $obj_pdf->setPrintHeader(false); // if true print header & footer
+    $obj_pdf->setPrintFooter(false);
+    $obj_pdf->SetAutoPageBreak(TRUE, 10); //2nd arguement is distce frm pg break
+    $obj_pdf->SetFont('helvetica', '', 12);
+    $obj_pdf->AddPage();
 
-    if (!Search) {
-        var source = "row_count.php";
-    }    
-    else {
-        var source = "search_" + table + "_row_count.php";
-    }
+    $content = '';
 
-    getData(table);
+    $content .= '
+        <table border="1" cellspacing="0" cellpadding="5">
+            <tr>
+                <th>Title</th>
+                <th>Name</th>
+                <th>Mobile</th>
+                <th>Address</th>
+            </tr>
+    ';
 
-    $.post("includes/" + source, {  
-        Table: table,
-        Search: Search
-        }, function (data) {
-            var numRows = data;
-            //calculating number of pages
-            var totalPages = Math.ceil(numRows / limit);
-           // var totalPages = 25; //DUMMY to test pagination
-                     
-            if (page == 1) {
-                var page1 = Number(page);
-                var page2 = Number(page + 1);
-                var page3 = Number(page + 2);
-                var page4 = Number(page + 3);
-                // var page5 = Number(page + 4);
-                // var page6 = Number(page + 5);
-                //hiding previous button
-                $("#previous").attr('disabled', true);
-            }
+    $content .= fetch_data();
 
-            else if (page == totalPages) {
-                var page1 = Number(page - 3);
-                var page2 = Number(page -2);
-                var page3 = Number(page -1)
-                var page4 = Number(page);
-                //hiding next button
-                $("#next").attr('disabled', true); 
-            }
+    $content .= "</table>";
 
-            else {
-                var page1 = Number(page - 1);
-                var page2 = Number(page);
-                var page3 = Number(page + 1);
-                var page4 = Number(page + 2);
-                // var page5 = Number(page + 3);
-                // var page6 = Number(page + 4);   
-                // showing previous button
-                $("#previous").removeAttr('disabled');             
-            } 
+    $obj_pdf->writeHTML($content);
 
-            if (page == totalPages) {
-                //hiding next button
-                $("#next").attr('disabled', true);
-            }
-            else {
-                //showing next button
-                $("#next").removeAttr('disabled');
-            }
-
-            // setting up the page numbers
-            $("#page1").val(page1);
-            $("#page2").val(page2);
-            $("#page3").val(page3);
-            $("#page4").val(page4);
-            // $("#page5").val(page5);
-            // $("#page6").val(page6);
-
-            var i = 1;
-            while (i <= 4) {
-                var page_num = $("#page" + i).val();
-                if (page_num > totalPages) {
-                    $("#page" + i).attr('disabled', true);
-                }
-                else {
-                    $("#page" + i).removeAttr('disabled');  
-                }
-                if (page_num == page) {
-                    $("#page" + i).attr('disabled', true);                    
-                }
-                else {
-                    $("#page" + i).removeAttr('disabled');
-                }
-                i++;
-            }           
-        }    
-    );
-    //getting data
-}
-
+    $obj_pdf->Output("sample.pdf", "I");
