@@ -98,15 +98,36 @@ function validateEmail(sEmail) {
 function createOrder () {
 	//checking if there is any zeros
 	var n = $(".Qty").length;
-	
-	for (var i = 1; i <= n; i++) {
-		if ($("#Qty" + i).val() == 0) {
-			$("#Qty" + i).addClass("input-error");
-			alert("Please correct the Qty or remove the item highlighted in red to continue!");
+
+	//getting $OrdersLink 
+	$.post("incl/add_Orders.php", function (data) {
+		if (!data) {
+			alert("There was a connection error! Please try again!");
+			// Note: nothing is returned if there is an error! 
 		}
 		else {
-			$("#Qty" + i).removeClass("input-error");
+			var OrdersLink = data;
+			for (var i = 1; i <= n; i++) {
+				if ($("#Qty" + i).val() == 0) {
+					$("#Qty" + i).addClass("input-error");
+					alert("Please correct the Qty or remove the item highlighted in red to continue!");
+				}
+				else {
+					$("#Qty" + i).removeClass("input-error");
+					$.post("incl/add_Orders_Lists.php", {
+						OrdersLink: OrdersLink,
+						ProductsLink: $("#ProductsLink" + i).val(),
+						Qty: $("#Qty" + i).val(),
+						subtotal: $("#subtotal" + i).val(),
+						}, function (data) {
+							alert(data);
+						}
+					);
+				}
+			}
 		}
-	}
+	});
+	
+	
 	
 }

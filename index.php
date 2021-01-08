@@ -30,5 +30,3 @@ require_once "store/functions.php";
     </div>
 </body>
 </html>
-
-http://localhost/sites/samplestore/store/view_item.html?link=Prd_5ff098afa811d7.30896923

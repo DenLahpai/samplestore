@@ -51,6 +51,7 @@ else {
  					<tr>
  						<td>
  							<div onclick="removeItem('<? echo $row_Cart->ProductsLink; ?>')">&#10008;</div>
+ 							
  							<input type="hidden" id="ProductsLink<? echo $i;?>" name="ProductsLink<? echo $i;?>" value="<? echo $row_Cart->ProductsLink; ?>">
  						</td>
  						<td><? echo $row_Products->Name.": ".$row_Products->Color.", ".$row_Products->Size; ?></td>
