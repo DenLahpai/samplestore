@@ -85,14 +85,15 @@ header {
 nav {
     padding: 9px;
     background: rgba(171, 177, 186, 0.6);
-    border-radius: 6px;   
+    border-radius: 6px;
 }
 
 .nav-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-column-gap: 1em;
+    grid-column-gap: 1em;        
 }
+
 
 .nav-item {
     display: grid;
@@ -302,7 +303,7 @@ section {
     height: auto;
 }
 
- .view-product-desc {
+.view-product-desc {
     padding: 12px;
 }
 
@@ -484,6 +485,19 @@ section {
 
 .client-form div button:active {
     box-shadow: var(--box-shadow-active);
+}
+
+.invoice-head-content {
+    display: flex;
+   
+}
+
+.invoice-head-content-logo {
+    width: 120px;
+}
+
+.invoice-head-content-logo img {
+    width: 100%;
 }
 
 .input-error {

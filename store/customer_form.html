@@ -65,6 +65,11 @@
 <script src="../scripts/main.js"></script>
 <script>
 $(document).ready(function() {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const link = urlParams.get('link');
+
+
 	$.post("incl/header.php", function (data) {
 		$("header").html(data);
 	});
@@ -121,12 +126,12 @@ $(document).ready(function() {
 
     	if (error == false) {
     		$.ajax({
-    			url: 'incl/add_customer.php', 
+    			url: 'incl/add_customer.php?link=' + link, 
     			type: 'post',
     			data: $("#client-form").serialize(),
     			success: function(data) {
     				if (!data) {
-    					window.location.href = 'invoice.html';
+    					window.location.href = 'incl/invoice.php?link=' + link;
     				}
     				else {
     					alert(data);

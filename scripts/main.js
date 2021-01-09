@@ -100,12 +100,13 @@ function createOrder () {
 	var n = $(".Qty").length;
 
 	//getting $OrdersLink 
-	$.post("incl/add_Orders.php", function (data) {
+	$.post("incl/add_Orders.php", {Total: $("#grand-total").html()}, function (data) {
 		if (!data) {
 			alert("There was a connection error! Please try again!");
 			// Note: nothing is returned if there is an error! 
 		}
 		else {
+			
 			var OrdersLink = data;
 			for (var i = 1; i <= n; i++) {
 				if ($("#Qty" + i).val() == 0) {
@@ -114,13 +115,18 @@ function createOrder () {
 				}
 				else {
 					$("#Qty" + i).removeClass("input-error");
-					$.post("incl/add_Orders_Lists.php", {
+					$.post("incl/add_Orders_List.php", {
 						OrdersLink: OrdersLink,
 						ProductsLink: $("#ProductsLink" + i).val(),
 						Qty: $("#Qty" + i).val(),
-						subtotal: $("#subtotal" + i).val(),
+						Subtotal: $("#subtotal" + i).val(),
 						}, function (data) {
-							alert(data);
+							if (!data) {
+								window.location.href = 'customer_form.html?link=' + OrdersLink;
+							}
+							else {
+								alert(data);
+							}
 						}
 					);
 				}

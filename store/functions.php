@@ -95,10 +95,78 @@ function table_Orders ($job, $var1, $var2, $var3, $order, $limit, $offet) {
 				echo "<span style='color: red'>There was a connection erro! Please try again!</span>";
 			}
 			break;
+
+		case 'select_one':
+			# var1 = OrdersLink
+			$stm = "SELECT * FROM Orders WHERE OrdersLink = :OrdersLink ;";
+			$db->query($stm);
+			$db->bind(":OrdersLink", $var1);
+			if ($db->execute()) {
+				return $db->resultset();
+			}
+			break;		
 		
 		default:
 			# code...
 			break;
 	}
 }
+
+//function to use data from the table Invoices 
+function table_Invoices ($job, $var1, $var2, $var3, $order, $limit, $offset) {
+	$db = new Database();
+
+	switch ($job) {
+		case 'generate_invoice_no':
+			$stm = "SELECT * FROM Invoices ;";
+			$db->query($stm);
+			$rowCount = $db->rowCount();
+			$num = $rowCount + 1;
+			if ($num < 9) {
+				$zeros = '000';
+			}
+			elseif ($num < 99) {
+				$zeros = '00';
+			}
+			elseif ($num < 999) {
+				$zeros = '0';
+			}
+			$ym = date("y-m");
+			return $InvoiceNo = $ym.$zeros.$num;
+			break;
+
+		case 'select_one':
+			# var1 = InvoicesLink
+			$stm = "SELECT * FROM Invoices WHERE InvoicesLink = :InvoicesLink ;";
+			$db->query($stm);
+			$db->bind(":InvoicesLink", $var1);
+			return $db->resultset();
+			break;	
+		
+		default:
+			# code...
+			break;
+	}
+}
+
+
+//function to use data from the table Orders_List
+function table_Orders_List ($job, $var1, $var2, $var3, $order, $limit, $offset) {
+	$db = new Database();
+
+	switch ($job) {
+		case 'select_one':
+			# $var1 = OrdersLink
+			$stm = "SELECT * FROM Orders_List WHERE OrdersLink = :OrdersLink ;";
+			$db->query($stm);
+			$db->bind(":OrdersLink", $var1);
+			return $db->resultset();
+			break;
+		
+		default:
+			# code...
+			break;
+	}
+}
+
 ?>

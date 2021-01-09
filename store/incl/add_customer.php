@@ -2,13 +2,15 @@
 require_once "../functions.php";
 if (isset($_POST)) {
 	//generating CustomersLink
-	$d = date("d-M");
-	$CustomersLink = uniqid("Cl_".$d."_", true);
+	$rows_Orders = table_Orders ('select_one', $_REQUEST['link'], NULL, NULL, NULL, NULL, NULL);
+	foreach ($rows_Orders as $row_Orders) {
+		# code...
+	}
 
 	$db = new Database();
 	$stm = "INSERT INTO Customers SET 
 		CustomersLink = :CustomersLink,
-		SessionLink = :SessionLink,
+		OrdersLink = :OrdersLink,
 		Title = :Title,
 		Name = :Name, 
 		Email = :Email, 
@@ -18,8 +20,8 @@ if (isset($_POST)) {
 		Note = :Note 
 	;";
 	$db->query($stm);
-	$db->bind(":CustomersLink", $CustomersLink);
-	$db->bind(":SessionLink", $_SESSION['link']);
+	$db->bind(":CustomersLink", $row_Orders->CustomersLink);
+	$db->bind(":OrdersLink", $_REQUEST['link']);
 	$db->bind(":Title", $_POST['Title']);
 	$db->bind(":Name", trim($_POST['Name']));
 	$db->bind(":Email", trim($_POST['Email']));
@@ -28,23 +30,10 @@ if (isset($_POST)) {
 	$db->bind(":Town", trim($_POST['Town']));
 	$db->bind(":Note", trim($_POST['Note']));
 	if ($db->execute()) {
-
-		//generating OrdersLink
-		$OrdersLink = uniqid("Ord_".$d."_", true);
-
-		//getting data from the table Cart 
-		$stm = "SELECT * FROM Cart WHERE 
-			SessionLink = :SessionLink 
-			AND Status = 1 
-		;";
-		$db->query($stm);
-		$db->bind(":SessionLink", $_SESSION['link']);
-		$rows_Cart = $db->resultset();
-
-		foreach ($rows_Cart as $row_Cart) {
-			table_Orders ('insert', $OrdersLink, $CustomersLink, $row_Cart->ProductsLink, NULL, NULL, NULL);
-		}
-		
+		return true;
+	}
+	else {
+		echo "There was a connection error! Please try again!";
 	}
 }
 ?>
