@@ -169,4 +169,23 @@ function table_Orders_List ($job, $var1, $var2, $var3, $order, $limit, $offset) 
 	}
 }
 
+//function to use data from the table Customers 
+function table_Customers ($job, $var1, $var2, $var3, $order, $limit, $offset) {
+	$db = new Database();
+
+	switch ($job) {
+		case 'select_one':
+			# $var1 = CustomersLink
+			$stm = "SELECT * FROM Customers WHERE CustomersLink = :CustomersLink ;";
+			$db->query($stm);
+			$db->bind(":CustomersLink", $var1);
+			return $db->resultset();
+			break;
+		
+		default:
+			# code...
+			break;
+	}
+}
+
 ?>

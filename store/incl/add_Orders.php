@@ -12,7 +12,6 @@ if ($_SESSION['link']) {
 	//generating InvoiceLink
 	$InvoicesLink = uniqid('Inv_', true);
 
-
 	//inserting data to the table Orders 
 	$db = new Database();
 	$stm = "INSERT INTO Orders SET 
