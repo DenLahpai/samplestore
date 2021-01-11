@@ -21,6 +21,7 @@
 			</section>
 			<section id="nav-menu"></section>
 			<section id="nav-bar"></section>
+			<footer></footer>
 		</div>
 		<!-- end of container -->
 	</div>
@@ -50,7 +51,10 @@ $(document).ready(function () {
 
     $.post("incl/menu_collection.php", function (data) {
         $("#nav-menu").html(data);
+	});
+	
+	$.post("incl/footer.php", function (data) {
+        $("footer").html(data);
     });
-
 });
 </script>

@@ -16,7 +16,8 @@
 		<div class="container">
 			<section id="main-data"></section>
 			<section id="nav-menu"></section>
-			<section id="nav-bar"></section>
+            <section id="nav-bar"></section>
+            <footer></footer>
 		</div>
 		<!-- end ofcontainer -->
 	</div>
@@ -49,6 +50,10 @@ $(document).ready(function () {
 
     $.post("incl/menu_target.php", function (data) {
         $("#nav-menu").append(data);
+    });
+
+    $.post("incl/footer.php", function (data) {
+        $("footer").html(data);
     });
 
 });

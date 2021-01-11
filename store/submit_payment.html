@@ -21,7 +21,7 @@
 			<section id="main-data">
 				<h4>Please submit the proof (bank slip or screen shot) of your payment!</h4>
 				<div class="payment-form">
-					<form action="incl/submit_payment.php" method="post" enctype="multipart/form-data">
+					<form action="#" method="post" enctype="multipart/form-data">
 						<div style="text-align: center;">
                             <label for="Image">Upload Image</label>
                             <input type="file" style="display: none;" id="Image" Name="Image" onchange="imagePreview(this);">
@@ -35,6 +35,7 @@
 					</form>
 				</div>
 			</section>
+			<footer></footer>
 		</div>
 		<!-- end of container -->
 	</div>
@@ -46,7 +47,38 @@
 $(document).ready(function (data) {
 	const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    const link = urlParams.get('link');
+	const link = urlParams.get('link');
+
+	$.post("incl/footer.php", function (data) {
+        $("footer").html(data);
+    });
+	
+	$("#btn-submit").on("click", function (e) {
+		e.preventDefault();
+		if ($("#Image").val() == null || $("#Image").val() == "") {
+			alert("Please choose an image file to upload!");
+		}
+		else {
+			var fdata = new FormData();
+            var files = $("#Image")[0].files[0];
+			fdata.append('Image', files);
+			$.ajax ({
+				url: "incl/submit_payment.php?link=" + link,
+				type: "post",
+				data: fdata,
+				contentType: false,
+				processData: false,
+				success: function (data) {
+					if (!data) {
+						window.location.href = 'thank_you.html';
+					}
+					else {
+						alert(data);
+					}
+				}
+			});
+		}
+	});
 });
 </script>
 </html>

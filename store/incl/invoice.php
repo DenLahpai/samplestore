@@ -199,7 +199,7 @@ $content .= '<br>';
 $content .= '<div class="link" style="margin-top: 12px;">';
 $content .= 'After processsing your payment, 
 please submit the proof of your payment at the link below.<br>';
-$content .= '<a href="https://denlp.com/samplestore/store/submit_payment.php?InvoiceNo='.$row_Invoices->InvoiceNo.'">https://denlp.com/samplestore/store/submit_payment.php?InvoiceNo='.$row_Invoices->InvoiceNo.'</a>';
+$content .= '<a href="https://denlp.com/samplestore/store/submit_payment.php?link='.$row_Invoices->InvoicesLink.'">https://denlp.com/samplestore/store/submit_payment.php?InvoiceNo='.$row_Invoices->InvoicesLink.'</a>';
 // this needs and absolute path once on the webserver.... IMPORTANT
 $content .= '</div>';
 

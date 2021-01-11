@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="Shortcut icon" href="docs/lotus-flower.png"/>
+	<title>Thank You!</title>
+</head>
+<body>
+    <!-- wrapper -->
+    <div class="wrapper">
+        <!-- container -->
+        <div class="container">
+            <section id="page-title">
+                <div class="page-title">
+                    <h2>Thank you!</h2>
+                </div>
+            </section>
+            <section class="main-data">
+                <div>
+                    <p>Thank you for your payment! We will process and get back to you as soon as possible!</p>
+                </div>
+            </section>
+            <footer></footer>
+        </div>
+        <!-- end of container -->
+    </div>
+    <!-- end of wrapper -->
+</body>
+<script src="../scripts/jquery.js"></script>
+<script src="../scripts/scripts.js"></script>
+<script>
+$(document).ready(function () {
+    $.post("incl/footer.php", function (data) {
+        $("footer").html(data);
+    });
+});
+</script>
+</html>

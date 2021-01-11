@@ -9,6 +9,8 @@
     --box-shadow-active: 3px 3px 3px rgba(0, 0, 0, 0.3);
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+
 body {
     background: silver;
 }
@@ -558,6 +560,25 @@ section {
 
 .page-button:active {
     box-shadow: var(--box-shadow-active);
+}
+
+footer > div {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-family: 'Audiowide', cursive;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+    background:rgba(0, 0, 0, 0.6);
+    font-size: 0.9em;
+}
+
+footer > div a {
+    color: #54ff54;
+    opacity: 1;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 /*styles for tablets*/

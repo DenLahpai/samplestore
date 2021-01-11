@@ -19,6 +19,7 @@
 			<section id="main-data"></section>
             <section id="nav-menu"></section>
             <section id="nav-bar"></section>
+            <footer></footer>
 		</div>
 		<!-- end of container -->
 	</div>
@@ -55,7 +56,10 @@ $(document).ready(function () {
     });
 
     $.post("incl/add_view_product.php", {link: link});
-    
+
+    $.post("incl/footer.php", function (data) {
+        $("footer").html(data);
+    });    
 });
 </script>
 <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
