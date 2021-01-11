@@ -1,5 +1,65 @@
 <?php 
-require_once "../functions.php"; 
+class Database {
+    private $database;
+    private $stm;
+
+    //connect to db
+    public function __construct() {
+
+        try {
+            $this->database = new PDO("mysql: host=localhost;
+                port=3601;  dbname=denlpmm_samplestore; charset=UTF8",
+                "denlpmm_Store_Admin", "LinkCorp@21");
+            $this->database->setAttribute(PDO:: ATTR_ERRMODE, PDO:: ERRMODE_EXCEPTION);
+            $this->database->setAttribute(PDO:: ATTR_DEFAULT_FETCH_MODE, PDO:: FETCH_OBJ);
+        }
+        catch (PDOException $e){
+            throw new Exception($e->getMessage());
+        }
+    }
+
+    public function query($query) {
+        $this->stm = $this->database->prepare($query);
+    }
+
+    public function bind($params, $value) {
+        // if(is_null($type)) {
+        //     switch (true) {
+        //         case is_int($value):
+        //             $type = PDO:: PARAM_INT;
+        //             break;
+        //         case is_bool($value):
+        //              $type = PDO:: PARAM_BOOL;
+        //              break;
+        //         case is_null($value):
+        //             $type = PDO:: PARAM_NULL;
+        //         default:
+        //             $type = PDO:: PARAM_STR;
+        //             break;
+        //     }
+        // }
+        $this->stm->bindParam($params, $value);
+    }
+
+    public function execute() {
+        return $this->stm->execute();
+    }
+
+    public function resultset() {
+        $this->execute();
+        return $this->stm->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function resultsetArray() {
+        $this->execute();
+        return $this->stm->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function rowCount() {
+        $this->execute();
+        return $this->stm->rowCount();
+    }
+} 
 
 function fetch_data () {
     $db = new Database();
@@ -57,9 +117,9 @@ if (isset($_POST['create_pdf'])) {
 
     $obj_pdf->writeHTML($content);
 
-    $obj_pdf->Output("/opt/lampp/htdocs/sites/samplestore/sample.pdf", "FD");
+    // $obj_pdf->Output("/opt/lampp/htdocs/sites/samplestore/sample.pdf", "FD");
     //this needs an absolute path once on the web server.... IMPORTANT
-
+    $obj_pdf->Output("/home/denlpmm/public_html/samplestore/Invoices/InvoiceNo.pdf", "FD");
 }
 ?>
 <!DOCTYPE html>

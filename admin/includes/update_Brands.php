@@ -22,6 +22,9 @@ if (isset($_REQUEST['link'])) {
             <label for="Image">Upload Image</label>
             <input type="file" style="display: none;" name="Image" id="Image" onchange="imagePreview(this);">
         </div>
+        <div style="text-align: center;">
+            <button type="button" id="btn-submit" class="medium-button" onclick="updateBrands('<? echo $_REQUEST['link']?>');">Submit</button>
+        </div>  
         <div class="image_preview"  style="text-align: center;">
             <img id="image_preview">
         </div>
@@ -30,12 +33,13 @@ if (isset($_REQUEST['link'])) {
             <label for="Image" style="text-align: center;">Change Image</label>
             <input type="file" style="display: none;" name="Image" id="Image" onchange="imagePreview(this);">   
         </div>
+        <div style="text-align: center;">
+            <button type="button" id="btn-submit" class="medium-button" onclick="updateBrands('<? echo $_REQUEST['link']?>');">Submit</button>
+        </div>  
         <div class="image_preview"  style="text-align: center;">
             <img id="image_preview" src="<? echo "../logos/".$row_Brands->Image; ?>">
         </div>
-        <?php endif; ?>    
-        <div style="text-align: center;">
-            <button type="button" id="btn-submit" class="medium-button" onclick="updateBrands('<? echo $_REQUEST['link']?>');">Submit</button>
-        </div>                        
+        <?php endif; ?>
+                              
     </form>    
 </div>

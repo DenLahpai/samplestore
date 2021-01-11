@@ -8,12 +8,14 @@ if (isset($_REQUEST['Search']) || !empty($_REQUEST['Search'])) {
     $db = new Database();
     $stm = "SELECT Products.Id FROM Products 
         LEFT OUTER JOIN Brands ON Products.BrandsId = Brands.Id
+        LEFT OUTER JOIN Targets ON Products.TargetsId = Targets.Id
         WHERE CONCAT (
             Products.ProductsCode, 
             Brands.BrandsName, 
             Brands.Country,
             Products.Name, 
-            Products.Gender,
+            Products.Cat1,
+            Targets.Target,
             Products.Size,
             Products.Color,
             Products.Price, 

@@ -1,16 +1,9 @@
 <?php
-session_start();
-
-//setting up the time zone
-date_default_timezone_set("Asia/Yangon");
-
 class Database {
     private $database;
     private $stm;
-
     //connect to db
     public function __construct() {
-
         try {
             $this->database = new PDO("mysql: host=localhost;
                 port=3601;  dbname=denlpmm_samplestore; charset=UTF8",
@@ -22,11 +15,9 @@ class Database {
             throw new Exception($e->getMessage());
         }
     }
-
     public function query($query) {
         $this->stm = $this->database->prepare($query);
     }
-
     public function bind($params, $value) {
         // if(is_null($type)) {
         //     switch (true) {
@@ -45,29 +36,25 @@ class Database {
         // }
         $this->stm->bindParam($params, $value);
     }
-
     public function execute() {
         return $this->stm->execute();
     }
-
     public function resultset() {
         $this->execute();
         return $this->stm->fetchAll(PDO::FETCH_OBJ);
     }
-
     public function resultsetArray() {
         $this->execute();
         return $this->stm->fetchAll(PDO::FETCH_ASSOC);
     }
-
     public function rowCount() {
         $this->execute();
         return $this->stm->rowCount();
     }
 }
-
+//setting up the time zone
+date_default_timezone_set("Asia/Yangon");
 //Uncomment the two lines below to get error reporting as a dev enviroment.
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-
 ?>

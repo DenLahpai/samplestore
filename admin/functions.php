@@ -1,6 +1,6 @@
 <?php 
+session_start();
 require_once "conn.php";
-
 //function to use data from the table Users 
 function table_Users ($job, $var1, $var2, $var3, $order, $limit) {
     $db = new Database();
@@ -320,7 +320,8 @@ function table_Products ($job, $var1, $var2, $var3, $order, $limit, $offset) {
                     Brands.BrandsName, 
                     Brands.Country, 
                     Products.Name, 
-                    Products.Gender,
+                    Products.Cat1,
+                    Targets.Target,
                     Products.Description,
                     Products.Size, 
                     Products.Color,
@@ -437,6 +438,4 @@ function CreateThumbnail($pic, $thumb, $thumbwidth, $quality = 100) {
     ImageDestroy($im1);
     ImageDestroy($im2);
 }
-
-
 ?>

@@ -27,7 +27,7 @@
 						<div class="card-title">
 							<h2>Home</h2>
 							<div>
-								<img src="../images/home.svg" alt="">
+								<img src="../home.svg" alt="">
 							</div>
 						</div>
 						<div class="card-body">
@@ -63,7 +63,7 @@
 						<div class="card-title">
 							<h2>Products</h2>
 							<div style="font-size: 3em; color: black; ">
-								<img src="../images/t-shirt-181707.png" alt="">
+								<img src="../products.png" alt="">
 							</div>
 						</div>
 						<div class="card-body">

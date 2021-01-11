@@ -45,7 +45,7 @@ $rows_Brands = table_Brands ('select_all', NULL, NULL, NULL, $order, $limit, $of
 	                ?>
 	                	<img src="<? echo '../logos/'.$row_Brands->Image; ?>" alt="" onclick="<? echo "window.location.href='../logos/".$row_Brands->Image."'";?>">
 	                <? else: ?>
-	                    <img src="<? echo '../logos/thumbnails/'.$row_Brands->Image; ?>" alt="" onclick="<? echo "window.location.href='../logos/".$row_Brands->Image."'";?>">
+	                    <img src="<? echo '../logos/thumbnails/'.$row_Brands->Image; ?>" alt="" onclick="<? echo "window.location.href='../logos/thumbnails".$row_Brands->Image."'";?>">
 	                <? endif; ?>
 	            <? else: ?>
 	               <div class="" onclick="<? echo "window.location.href='update_Brands.html?link=".$row_Brands->BrandsLink."'"; ?>">

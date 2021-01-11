@@ -190,15 +190,15 @@ if (isset($_REQUEST['link'])) {
                         Status:
                         <? echo $row_Products->Status; ?>
                     </div>
+                    <div>
+                        <a href="../store/view_item.html?link=<? echo $_REQUEST['link']?>" target="_blank">View in the Store</a>
+                    </div>
                     <div style="border: 1px solid #000000;">
                         Sales: <br><br>
                         <input type="checkbox" id="Showcase1" name="Showcase1"  >
                         <label for="Showcase1">Hot Item</label><br><br><br>
                         <input type="checkbox" id="Showcase2" name="Showcase2">
-                        <label for="Showcase2">Featuring</label>
-                        <!-- <div style="text-align: center">
-                            <button type="button" class="btn-medium" id="btn-Showcase" style="padding: 6px 18px;">Update</button>
-                        </div> -->
+                        <label for="Showcase2">Featuring</label>                        
                     </div>
                     <div style="text-align: center;">
                         <h3>Create Variants</h3>                        

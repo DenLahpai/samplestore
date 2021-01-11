@@ -48,7 +48,7 @@ if (isset($_REQUEST['Search']) || !empty($_REQUEST['Search'])) {
 					<? echo $row_Products->Cat1; ?>
 				</div>
 				<div>
-					<? echo $row_Products->Gender; ?>
+					<? echo $row_Products->Target; ?>
 					| <? echo $row_Products->Size; ?>
 				</div>
 				<div>
