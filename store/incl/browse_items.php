@@ -71,7 +71,7 @@ $total_pages = ceil($rowCount / $limit);
 <div class="boxes">
 <? foreach ($rows_Products as $row_Products): ?>
 	<!-- box -->
-	<div class="box">
+	<div class="box" onclick="window.location.href='view_item.html?link=<? echo $row_Products->ProductsLink; ?>'">
 		<!-- box-contents -->
 		<div class="box-contents">
 			<div class="box-img">

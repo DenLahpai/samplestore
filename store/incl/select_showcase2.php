@@ -18,7 +18,7 @@ $rows_Showcase2 = $db->resultset();
 	}
 	?>
 	<!-- box -->
-	<div class="box">
+	<div class="box" onclick="window.location.href='view_item.html?link=<? echo $row_Showcase2->ProductsLink; ?>'">
 		<!-- box-contents -->
 		<div>
 			<div class="box-img">
