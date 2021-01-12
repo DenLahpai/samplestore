@@ -5,10 +5,25 @@
 	</div>
 	<div class="nav-bar-mid"></div>
 	<div class="nav-bar-right">
-		<div class="settings-button">&#9881;</div>
+		<div class="settings-button" onclick="Toggle('.setting-menu');">&#9881;</div>
 	</div>
 </div>
 <!-- end of nav-bar -->
+<!-- setting-menu -->
+<div class="setting-menu">
+	<div class="setting-menu-items">
+		<div class="setting-menu-item" onclick="window.location.href='update_Users.html';">
+			Update Info	
+		</div>
+		<div class="setting-menu-item" onclick="window.location.href='change_password.html';">
+			Change Password
+		</div>
+		<div class="setting-menu-item" onclick="window.location.href='logout.php';">
+			Logout
+		</div>
+	</div>	
+</div>
+<!-- end of setting-menu -->
 <!-- modal-menu -->
 <div id="modal-menu" class="modal-menu">
 	<div class="modal-menu-header">

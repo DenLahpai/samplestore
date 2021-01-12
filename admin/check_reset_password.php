@@ -1,5 +1,5 @@
 <?php
-require_once "../conn.php";
+require_once "conn.php";
 $rowCount = 3;
 ?>
 <!DOCTYPE html>

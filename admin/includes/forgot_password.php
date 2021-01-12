@@ -12,7 +12,7 @@ if ($rowCount == 1) {
     }
     
     //generating link
-    $link = "check_reset_password.php?Email=".$row_Users->Email."&uchk=".$row_Users->Password;
+    $link = "https://denlp.com/samplestore/admin/check_reset_password.php?Email=".$row_Users->Email."&uchk=".$row_Users->Password;
 
     // sending email to the user
     $mail_header = "FROM: No Reply <noreply@mydomain.com>\r\n";
@@ -29,15 +29,18 @@ if ($rowCount == 1) {
     $message .= "<a href=\"$link\">".$link."</a>";
     $message .= "<br>";
     $message .= "<span style='color: red'>If you did not request to reset your password, please contact us asap!</span>";
-    echo $message;
-    // if (mail($_POST['Email'], $subject, $message, $mail_header)) {
-    //     //if email has been sent successfully,
-    //     echo "<span style='color: blue;'>An email has been sent to your mail! Please do not forget to check your junk mail box as well. :)</span>";
-    // }
-    // else {
-    //     // For connection error!
-    //     echo "<span style='color: red;'>There was a connection error! Please try again!</span>";
-    // }	
+
+    //for testing on local server
+    // echo $message;
+
+    if (mail($_POST['Email'], $subject, $message, $mail_header)) {
+        //if email has been sent successfully,
+        echo "<span style='color: blue;'>An email has been sent to your mail! Please do not forget to check your junk mail box as well. :)</span>";
+    }
+    else {
+        // For connection error!
+        echo "<span style='color: red;'>There was a connection error! Please try again!</span>";
+    }	
 }
 else {
     // meaing the email and mobiles provided are not found in the database

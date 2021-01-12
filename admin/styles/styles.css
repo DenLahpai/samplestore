@@ -5,6 +5,8 @@
 	--products-color: rgba(250, 219, 57, 1);
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+
 * {
 	margin: 0px;
 	padding: 0px;
@@ -21,6 +23,7 @@ body{
 	padding: 6px;
 	display: flex;
 	justify-content: space-between;
+	border-bottom: 1px solid #FFFFFF;
 }
 
 .hamburger {
@@ -56,6 +59,29 @@ body{
 	padding: 3px;
 	cursor: pointer;
 }
+
+.setting-menu {
+	position: absolute;
+	right: 0;
+	/*display: none;*/
+}
+
+.setting-menu-items {
+	background: var(--header-bar);	
+}
+
+.setting-menu-item {
+	border-bottom: 3px solid #FFFFFF;
+	color: #FFFFFF;
+	padding: 12px 6px;
+	cursor: pointer;
+}
+
+.setting-menu-item:active {
+	color: var(--header-bar);
+	background: #FFFFFF;
+}
+
 
 .wrapper {
 	background: var(--wrapper-color);
@@ -123,6 +149,7 @@ section {
 	text-align: right;
 	color: red;
 	font-size: 3em;
+	cursor: pointer;
 }
 
 .modal-menu-body > div > a {
@@ -211,6 +238,7 @@ section {
     justify-content: space-between;
     border-radius: 12px;
 	box-shadow: 6px 6px 6px rgba(0,0, 0, 0.6);
+	cursor: pointer;
 }
 
 .card:active {
@@ -640,6 +668,13 @@ footer {
 	margin-top: 120px;
 	background: #FFFFFF;
 	padding-top: 60px;
+}
+
+.noobz {
+	font-family: 'Audiowide', cursive;
+	color: #54ff54;
+	text-decoration: none;
+	background: rgba(0, 0, 0, 0.6);
 }
 
 /*styles for tablets*/

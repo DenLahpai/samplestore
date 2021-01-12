@@ -632,3 +632,56 @@ function setTwoNumberDecimal(num, Id) {
     num = parseFloat(num).toFixed(2);
     document.getElementById(Id).value = num;
 }
+
+// function to update Users 
+function updateUsers() {
+    var Name = $("#Name");
+    var Mobile = $("#Mobile");
+    var Email = $("#Email");
+    var StoresName = $("#StoresName");
+    var Password = $("#Password");
+
+    Name.removeClass('input-error');
+    Mobile.removeClass('input-error');
+    Email.removeClass('input-error');
+    StoresName.removeClass('input-error');
+    Password.removeClass('input-error');
+    var error = false;
+
+    if (Name.val() == "" || Name.val() == " " || Name.val() == null) {
+        error = true;
+        Name.addClass('input-error');
+    }
+
+    if (Mobile.val() == "" || Mobile.val() == " " || Mobile.val() == null) {
+        error = true;
+        Mobile.addClass('input-error');
+    }
+
+    if (Email.val() == "" || Email.val() == " " || Email.val() == null) {
+        error = true;
+        Email.addClass('input-error');
+    }
+
+    if (Password.val() == "" || Password.val() == " " || Password.val() == null) {
+        error = true;
+        Password.addClass('input-error');
+    }
+
+    if (error == true) {
+        var msg = "<span style='color: red;'>Please fill out all the field(s) in red!</span>";
+        $("#sys_message").html(msg);
+    }
+
+    if (error == false) {
+        $.ajax({
+            url: "includes/updating_Users.php",
+            method: 'post',
+            data: $("#Users-form").serialize(),
+            success: function (data) {
+                $("#sys_message").html(data);
+            }
+        });
+    }
+
+}
