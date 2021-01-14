@@ -76,7 +76,7 @@
 					<!-- Products-card -->
 					<div class="card" id="Products-card" onclick="window.location.href='Products.html';">
 						<div class="card-title">
-							<h2>Products</h2>
+							<h2 style="font-size: 90%;">Products</h2>
 							<div style="font-size: 3em; color: black; ">
 								<img src="../products.png" alt="">
 							</div>
@@ -95,7 +95,7 @@
 					</div>
 					<!-- end of Products-cards -->
 
-					<!-- Products-card -->
+					<!-- Orders-card -->
 					<div class="card" id="Orders-card" onclick="window.location.href='Orders.html';">
 						<div class="card-title">
 							<h2>Orders</h2>
@@ -115,7 +115,29 @@
 							</div>
 						</div>
 					</div>
-					<!-- end of Products-cards -->
+					<!-- end of Orders-cards -->
+
+					<!-- Payments-card -->
+					<div class="card" id="Payments-card" onclick="window.location.href='Payments.html';">
+						<div class="card-title">
+							<h2 style="font-size: 90%">Payments</h2>
+							<div style="font-size: 3em; color: black; ">
+								<img src="../payments.png" alt="">
+							</div>
+						</div>
+						<div class="card-body">
+							View the payments submitted by your clients, here. 
+						</div>
+						<div class="card-command">
+							<div class=counter>
+								<div id="Payments-rowCount"></div>
+							</div>
+							<div>
+								Entries
+							</div>
+						</div>
+					</div>
+					<!-- end of Orders-cards -->
 
 				</div>
 			<!-- end of cards -->
@@ -149,5 +171,6 @@
     }
     getRowCount ('Brands');
     getRowCount ('Products');
-    getRowCount ('Orders');
+	getRowCount ('Orders');
+	getRowCount ('Payments');
 </script>

@@ -559,6 +559,24 @@ function table_Targets ($job, $var1, $var2, $var3, $order, $limit, $offset) {
     }
 }
 
+// function to use data from the table Payments
+function table_Payments ($job, $var1, $var2, $var3, $order, $limit, $offset) {
+    $db = new Database();
+
+    switch ($job) {
+        case 'select_all':
+            # code...
+            $stm = "SELECT * FROM Payments ORDER BY Created DESC ;";
+            $db->query($stm);
+            return $db->resultset();
+            break;
+        
+        default:
+            # code...
+            break;
+    }
+}
+
 // function to create thumbnail
 function CreateThumbnail($pic, $thumb, $thumbwidth, $quality = 100) {
     $im1=ImageCreateFromJPEG($pic);

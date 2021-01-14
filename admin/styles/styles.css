@@ -4,6 +4,7 @@
 	--brands-color: rgba(207, 117, 255, 1);
 	--products-color: rgba(250, 219, 57, 1);
 	--orders-color: rgba(237, 112, 113, 1);
+	--payments-color: rgba(141, 211, 132, 1);
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
@@ -377,6 +378,11 @@ section {
 
 #Orders-card {
 	background-color: var(--orders-color);
+	color: #FFFFFF;
+}
+
+#Payments-card {
+	background-color: var(--payments-color);
 	color: #FFFFFF;
 }
 
