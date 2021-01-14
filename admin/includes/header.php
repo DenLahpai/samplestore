@@ -95,6 +95,28 @@
 					</div>
 					<!-- end of Products-cards -->
 
+					<!-- Products-card -->
+					<div class="card" id="Orders-card" onclick="window.location.href='Orders.html';">
+						<div class="card-title">
+							<h2>Orders</h2>
+							<div style="font-size: 3em; color: black; ">
+								<img src="../orders.png" alt="">
+							</div>
+						</div>
+						<div class="card-body">
+							View the orders received from the store. 
+						</div>
+						<div class="card-command">
+							<div class=counter>
+								<div id="Orders-rowCount"></div>
+							</div>
+							<div>
+								Entries
+							</div>
+						</div>
+					</div>
+					<!-- end of Products-cards -->
+
 				</div>
 			<!-- end of cards -->
 		</div>
@@ -127,4 +149,5 @@
     }
     getRowCount ('Brands');
     getRowCount ('Products');
+    getRowCount ('Orders');
 </script>

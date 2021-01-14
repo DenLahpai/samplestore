@@ -332,6 +332,166 @@ function table_Products ($job, $var1, $var2, $var3, $order, $limit, $offset) {
             $db->bind(":Search", $var1);
             return $db->resultset();
             break;
+
+        case 'select_one':
+            # var1 = ProductsLink
+            $stm = "SELECT
+                Products.ProductsCode, 
+                Brands.BrandsName,
+                Brands.Country, 
+                Products.Name,
+                Products.Size, 
+                Products.Color,
+                Products.Status 
+                FROM Products LEFT OUTER JOIN Brands ON Products.BrandsId = Brands.Id
+                WHERE ProductsLink = :ProductsLink
+            ;"; 
+            $db->query($stm);
+            $db->bind(":ProductsLink", $var1);
+            return $db->resultset();
+            break;
+        
+        default:
+            # code...
+            break;
+    }
+}
+
+//function to use data from the table Orders 
+function table_Orders ($job, $var1, $var2, $var3, $order, $limit, $offset) {
+    $db = new Database();
+
+    switch ($job){
+    	case 'select_all':
+            $stm = "SELECT * FROM Orders $order LIMIT $limit OFFSET $offset ;";
+    	    $db->query($stm);
+    	    return $db->resultset();
+    	    break;
+
+        case 'search':
+            $stm = "SELECT
+                Orders.OrdersLink, 
+                Orders.CustomersLink,
+                Orders.InvoicesLink, 
+                Orders.Status, 
+                Orders.Created,
+                Orders.Updated,
+                Customers.Title,
+                Customers.Name AS CustomersName,
+                Customers.Email,
+                Customers.Mobile,
+                Customers.Address, 
+                Customers.Town,
+                Customers.Note,
+                Orders_List.Qty,
+                Orders_List.Subtotal,
+                Products.ProductsCode,
+                Brands.BrandsName, 
+                Products.Name AS ProductsName, 
+                Products.Size, 
+                Products.Color,
+                Products.Description
+                FROM Orders
+                LEFT OUTER JOIN Orders_List ON Orders.OrdersLink = Orders_List.OrdersLink
+                LEFT OUTER JOIN Customers ON Orders.CustomersLink = Customers.CustomersLink
+                LEFT OUTER JOIN Products ON Orders_List.ProductsLink = Products.ProductsLink
+                LEFT OUTER JOIN Brands ON Products.BrandsId = Brands.Id
+                WHERE CONCAT (
+                    Customers.Name, 
+                    Customers.Email,
+                    Customers.Mobile,
+                    Customers.Address,
+                    Customers.Town,
+                    Customers.Note,
+                    Brands.BrandsName, 
+                    Products.Name,
+                    Products.Size,
+                    Products.Color,
+                    Products.Description
+                ) LIKE :Search
+            ;";
+            $db->query($stm);
+            $db->bind(":Search", $var1);
+            return $db->resultset();
+            break;
+
+        case 'select_one':
+            # $var1 = OrdersLink
+            $stm = "SELECT * FROM Orders WHERE OrdersLink = :link ;";
+            $db->query($stm);
+            $db->bind(":link", $var1);
+            return $db->resultset();
+            break;
+
+        default:
+            # code... 
+            break;    
+    }
+}
+
+//function to use data from the table Customers
+function table_Customers ($job, $var1, $var2, $var3, $order, $limit, $offset) {
+    $db = new Database();
+
+    switch ($job) {
+        case 'select_one':
+            # $var1 = CustomersLink
+            $stm = "SELECT * FROM Customers WHERE CustomersLink = :CustomersLink ;";
+            $db->query($stm);
+            $db->bind(":CustomersLink", $var1);
+            if ($db->execute()) {
+                return $db->resultset();
+            }
+            break;
+        
+        default:
+            # code...
+            break;
+    }
+}
+
+//function to use data from the table Orders_List
+function table_Orders_List ($job, $var1, $var2, $var3, $order, $limit, $offet) {
+    $db = new Database();
+
+    switch ($job) {
+        case 'select_one_order':
+            # $var1 = $OrdersLink
+            $stm = "SELECT 
+                Orders_List.Qty,
+                Orders_List.Subtotal,
+                Products.ProductsCode, 
+                Products.Name,
+                Brands.BrandsName,
+                Products.Size, 
+                Products.Color
+                FROM Orders_List LEFT OUTER JOIN Products ON Orders_List.ProductsLink = Products.ProductsLink
+                LEFT OUTER JOIN Brands ON Products.BrandsId = Brands.Id  
+                WHERE Orders_List.OrdersLink = :OrdersLink
+            ;";
+            $db->query($stm);
+            $db->bind(":OrdersLink", $var1);
+            return $db->resultset();
+            break;
+        
+        default:
+            # code...
+            break;
+    }
+}
+
+// functoin to use data from the table Invoices 
+function table_Invoices ($job, $var1, $var2, $var3, $order, $limit, $offset) {
+    $db = new Database();
+
+    switch ($job) {
+        case 'select_one':
+            # $var1 = $InvoicesLink
+            $stm = "SELECT * FROM Invoices WHERE InvoicesLink = :InvoicesLink ;";
+            $db->query($stm);
+            $db->bind(":InvoicesLink", $var1);
+            return $db->resultset();
+            break;
         
         default:
             # code...
@@ -398,7 +558,6 @@ function table_Targets ($job, $var1, $var2, $var3, $order, $limit, $offset) {
             break;
     }
 }
-
 
 // function to create thumbnail
 function CreateThumbnail($pic, $thumb, $thumbwidth, $quality = 100) {

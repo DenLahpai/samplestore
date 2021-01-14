@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="styles/styles.css">
+	<link rel="Shortcut icon" href="../logo_small.png"/>
+	<title>Orders</title>
+	<style>
+		.sub-menu-bar, .sub-menu-item, #search-form, #sort-form, #search-form input, .img-upload {
+			background-color: var(--orders-color);
+			color: #FFFFFF;
+		}
+
+		.card-title > div > div {
+			background: var(--orders-color);
+			color: #FFFFFF;
+			cursor: pointer;
+		}
+		.page-button {
+			background: var(--orders-color);
+			color: #FFFFFF;
+			border: 1px solid #000000;
+		}
+	</style>
+</head>
+<body>
+	<!-- wrapper -->
+	<div class="wrapper">
+		<header></header>
+		<!-- main-content -->
+		<div class="main-content">
+			<section id="page-title">
+				<div class="page-title">
+					<h1>Orders</h1>
+				</div>
+			</section>
+			<section id="sub-menu">
+				<!-- sub-menu -->
+				<div class="sub-menu">
+					<div class="sub-menu-bar">
+						<div class="sub-menu-switch" onclick="Toggle('.sub-menu-items-container');">
+							<h2>Menu</h2>
+						</div>
+						<div class="sub-menu">
+							<div class="sub-menu-items-container">
+								<div class="sub-menu-items">
+									<div class="sub-menu-item" onclick="Toggle('#search-form');">
+										Search
+									</div>
+									<div class="sub-menu-item" onclick="Toggle('#sort-form');">
+										Sort									
+									</div>
+									<div class="sub-menu-item" onclick="exportTable('Orders')">Xls</div>
+								</div>							
+							</div>
+						</div>
+					</div>
+					<div id="search-form">
+						<input type="text" name="Search" id="Search">
+						<button type="button" onclick="pagination ('Orders');">Search</button>
+					</div>
+					<div id="sort-form">
+						<select name="order" id="order" onchange="pagination('Orders');">
+							<option value="ORDER BY Status ASC">Status A &#8645; Z</option>
+	                        <option value="ORDER BY Status DESC">Status Z &#8645; A</option>
+	                        <option value="ORDER BY Created ASC">Received 1 &#8645; 9</option>
+	                        <option value="ORDER BY Created DESC">Received 9 &#8645; 1</option>
+						</select>
+					</div>
+				</div>
+				<!-- end of sub-menu -->				
+			</section>
+			<section id="main-data"></section>
+			<section id="pagination">
+                <div>
+                    <input type="hidden" id="current_page" value="1">
+                </div>
+                <div class="pages">
+                    <input type="button" id="previous" class="page-button" onclick="previousPage('Orders');" value="<<" >
+                    <input type="button" class="page-button" id="page1" value="" onclick="changeCurrentPage(this.value, 'Orders');">
+                    <input type="button" class="page-button" id="page2" value="" onclick="changeCurrentPage(this.value, 'Orderss');">
+                    <input type="button" class="page-button" id="page3" value="" onclick="changeCurrentPage(this.value, 'Orders');">
+                    <input type="button" class="page-button" id="page4" value="" onclick="changeCurrentPage(this.value, 'Orders');">
+                    <input type="button" id="next" class="page-button" onclick="nextPage('Orders');"  value=">>">
+                </div>
+            </section>
+		</div>
+		<!-- end of main-content  -->
+		<footer></footer>
+	</div>
+	<!-- end of wrapper -->
+</body>
+<script src="../scripts/jquery.js"></script>
+<script src="../scripts/scripts.js"></script>
+<script>
+$(document).ready(function() {
+
+	$.post("includes/header.php", function (data) {
+		$("header").html(data);
+	});
+
+	$.post("includes/select_Orders.php", function (data) {
+		$("#main-content").html(data);
+	});
+
+	$.post("includes/footer.php", function (data) {
+		$("footer").html(data);
+	});
+
+	checkSession();
+	pagination ('Orders');
+});
+</script>
+</html>

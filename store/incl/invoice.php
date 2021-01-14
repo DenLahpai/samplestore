@@ -206,7 +206,7 @@ $content .= '</div>';
 $obj_pdf->writeHTML($content);
 
 //for local server
-$obj_pdf->Output("/opt/lampp/htdocs/sites/samplestore/sample.pdf", "FD");
+$obj_pdf->Output("/opt/lampp/htdocs/sites/samplestore/Invoices/Invoice-$row_Invoices->InvoiceNo.pdf", "FD");
 
 // $obj_pdf->Output("/home/denlpmm/public_html/samplestore/Invoices/Invoice-$row_Invoices->InvoiceNo.pdf", "FD");
 ?>

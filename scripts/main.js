@@ -132,8 +132,5 @@ function createOrder () {
 				}
 			}
 		}
-	});
-	
-	
-	
+	});	
 }
