@@ -139,6 +139,28 @@
 					</div>
 					<!-- end of Orders-cards -->
 
+					<!-- Invoices-card -->
+					<div class="card" id="Invoices-card" onclick="window.location.href='Invoices.html';">
+						<div class="card-title">
+							<h2>Invoices</h2>
+							<div style="font-size: 3em; color: black; ">
+								<img src="../invoices.png" alt="">
+							</div>
+						</div>
+						<div class="card-body">
+							View the invoices generated with each order
+						</div>
+						<div class="card-command">
+							<div class=counter>
+								<div id="Invoices-rowCount"></div>
+							</div>
+							<div>
+								Entries
+							</div>
+						</div>
+					</div>
+					<!-- end of Orders-cards -->
+
 				</div>
 			<!-- end of cards -->
 		</div>
@@ -173,4 +195,5 @@
     getRowCount ('Products');
 	getRowCount ('Orders');
 	getRowCount ('Payments');
+	getRowCount ('Invoices')
 </script>

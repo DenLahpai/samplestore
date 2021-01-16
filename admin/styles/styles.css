@@ -4,7 +4,8 @@
 	--brands-color: rgba(207, 117, 255, 1);
 	--products-color: rgba(250, 219, 57, 1);
 	--orders-color: rgba(237, 112, 113, 1);
-	--payments-color: rgba(141, 211, 132, 1);
+	--payments-color: rgb(52, 168, 83, 1);
+	--invoices-color: rgba(236, 241 ,250, 1);
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
@@ -386,6 +387,11 @@ section {
 	color: #FFFFFF;
 }
 
+#Invoices-card {
+	background-color: var(--invoices-color);
+	color: #000000;
+}
+
 .products-boxes {
 	display: grid;
 	grid-gap: 1em;
@@ -691,6 +697,84 @@ section {
 .view-orders-summary div {
 	margin-top: 12px;
 }
+
+.Invoices-container a {
+	text-decoration: none;
+	color: #000000;
+}
+
+.Invoice-box {
+	background: #FFFFFF;
+	box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.6);
+	border-radius: 24px;
+	padding: 12px;
+	text-align: left;
+}
+
+.Invoice-box:active {
+	box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+}
+
+.Invoice-box div {
+	padding: 6px;
+}
+
+.Invoice-box-header {
+	display: flex;
+	justify-content: space-between;
+	background: var(--invoices-color);
+	border-radius: 12px;
+}
+
+.Invoice-box-header-date {
+	font-style: italic;
+	font-size: 90%;
+	text-align: right;
+}
+
+.payments-box {
+	border-radius: 24px;
+	box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.6);
+	padding: 12px;
+	text-align: left;
+}
+
+.payments-box:active {
+	box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+}
+
+.payments-box div {
+	padding: 6px;
+}
+
+.payments-box-header {
+	display: flex;
+	justify-content: space-between;
+	color: #FFFFFF;
+	background: var(--payments-color);
+	border-radius: 6px;
+}
+
+.payments-box-footer {
+	display: flex;
+	justify-content: space-between;
+}
+
+.payments-box-footer a {
+	padding: 6px 12px;
+	background: var(--payments-color);
+	border: 1px solid #000000;
+	color: #FFFFFF;
+	font-weight: bold;
+	text-decoration: none;
+	box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.6);
+	border-radius: 3px;
+}
+
+.payments-box-footer a:active {
+	box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+} 
+
 .page-button {
 	width: 30px;
 	height: 30px;

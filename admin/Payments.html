@@ -7,6 +7,23 @@
 	<link rel="stylesheet" href="styles/styles.css">
 	<link rel="Shortcut icon" href="../logo_small.png"/>
     <title>Payments</title>
+    <style>
+        .sub-menu-bar, .sub-menu-item, #search-form, #sort-form, #search-form input, .img-upload {
+            background-color: var(--payments-color);
+            color: #FFFFFF;
+        }
+
+        .card-title > div > div {
+            background: var(--payments-color);
+            color: #FFFFFF;
+            cursor: pointer;
+        }
+        .page-button {
+            background: var(--payments-color);
+            color: #000000;
+            border: 1px solid #000000;
+        }
+    </style>
 </head>
 <body>
     <!-- wrapper -->
@@ -14,7 +31,53 @@
         <header></header>
         <!-- main-content -->
         <div class="main-content">
+            <section id="page-title">
+                <div class="page-title">
+                    <h1>Payments</h1>
+                </div>
+            </section>
+            <section id="sub-menu">
+                <!-- sub-menu -->
+                <div class="sub-menu">
+                    <!-- sub-menu-contents -->
+                    <div class="sub-menu-contents">
+                        <div class="sub-menu-bar">
+                            <div class="sub-menu-switch" onclick="Toggle('.sub-menu-items-container');">
+                                <h2>Menu</h2>
+                            </div>
+                            <div class="sub-menu">
+                                <div class="sub-menu-items-container">
+                                    <div class="sub-menu-item" onclick="Toggle('#sort-form');">Sort</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="sort-form">
+                            <select name="order" id="order" onchange="pagination('Payments');">
+                                <option value="ORDER BY Invoices.Created DESC">Create 9 &#8645; 1</option>
+                                <option value="ORDER BY Invoices.Created ASC">Create 1 &#8645; 9</option>
+                                <option value="ORDER BY Invoices.Updated DESC" selected>Update 9 &#8645; 1</option>    
+                                <option value="ORDER BY Invoices.Updated ASC">Update 1 &#8645; 9</option>       
+                            </select>
+                        </div>
+                    </div>
+                    <!-- end of sub-menu-contents -->
+                </div>
+                <!-- end of sub-menu -->
+            </section>
             <section id="main-data"></section>
+            <section id="pagination">
+                <div>
+                    <input type="hidden" id="current_page" value="1">
+                </div>
+                <div class="pages">
+                    <input type="button" id="previous" class="page-button" onclick="previousPage('Products');" value="<<" >
+                    <input type="button" class="page-button" id="page1" value="" onclick="changeCurrentPage(this.value, 'Products');">
+                    <input type="button" class="page-button" id="page2" value="" onclick="changeCurrentPage(this.value, 'Products');">
+                    <input type="button" class="page-button" id="page3" value="" onclick="changeCurrentPage(this.value, 'Products');">
+                    <input type="button" class="page-button" id="page4" value="" onclick="changeCurrentPage(this.value, 'Products');">
+                    <input type="button" id="next" class="page-button" onclick="nextPage('Products');"  value=">>">
+                </div>
+            </section>
         </div>
         <!-- end of main-content -->
         <footer></footer>
@@ -30,11 +93,7 @@ $(document).ready(function () {
 		$("header").html(data);
     });
     
-    $.post("includes/select_Payments.php", function (data){
-        $("#main-data").html(data);
-    });
-
-	$.post("includes/footer.php", function (data) {
+    $.post("includes/footer.php", function (data) {
 		$("footer").html(data);
 	});
 

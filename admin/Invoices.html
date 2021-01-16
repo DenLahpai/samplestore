@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="styles/styles.css">
+	<link rel="Shortcut icon" href="../logo_small.png"/>
+	<title>Invoices</title>
+</head>
+<body>
+	<!-- wrapper -->
+	<div class="wrapper">
+		<header></header>
+		<!-- main-content -->
+		<div class="main-content">
+			<section id="page-title">
+				<div class="page-title">
+					<h1>Invoices</h1>
+				</div>
+			</section>
+			<section id="main-data"></section>
+			 <section id="pagination">
+                <div>
+                    <input type="hidden" id="current_page" value="1">
+                </div>
+                <div class="pages">
+                    <input type="button" id="previous" class="page-button" onclick="previousPage('Products');" value="<<" >
+                    <input type="button" class="page-button" id="page1" value="" onclick="changeCurrentPage(this.value, 'Products');">
+                    <input type="button" class="page-button" id="page2" value="" onclick="changeCurrentPage(this.value, 'Products');">
+                    <input type="button" class="page-button" id="page3" value="" onclick="changeCurrentPage(this.value, 'Products');">
+                    <input type="button" class="page-button" id="page4" value="" onclick="changeCurrentPage(this.value, 'Products');">
+                    <input type="button" id="next" class="page-button" onclick="nextPage('Products');"  value=">>">
+                </div>
+            </section>
+		</div>
+		<!-- end of main-content -->
+	</div>
+	<!-- end of wrapper -->
+</body>
+<script src="../scripts/jquery.js"></script>
+<script src="../scripts/scripts.js"></script>
+<script>
+$(document).ready(function () {
+	
+	$.post("includes/header.php", function (data) {
+		$("header").html(data);
+	});
+
+	$.post("includes/footer.php", function (data) {
+		$("footer").html(data);
+	});
+
+	checkSession();
+	pagination ('Invoices');
+});
+</script>
+</html>

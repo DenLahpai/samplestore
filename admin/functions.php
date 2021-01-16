@@ -492,6 +492,23 @@ function table_Invoices ($job, $var1, $var2, $var3, $order, $limit, $offset) {
             $db->bind(":InvoicesLink", $var1);
             return $db->resultset();
             break;
+
+        case 'select_all':
+            # code...
+            $stm = "SELECT 
+                Invoices.InvoicesLink,
+                Invoices.InvoiceNo,
+                Invoices.Total,
+                Invoices.Status,
+                Invoices.Method,
+                Invoices.Created,
+                Invoices.Updated,
+                Invoices.PaidOn
+                FROM Invoices $order LIMIT $limit OFFSET $offset
+            ;";
+            $db->query($stm);
+            return $db->resultset();
+            break;    
         
         default:
             # code...
@@ -566,7 +583,17 @@ function table_Payments ($job, $var1, $var2, $var3, $order, $limit, $offset) {
     switch ($job) {
         case 'select_all':
             # code...
-            $stm = "SELECT * FROM Payments ORDER BY Created DESC ;";
+            $stm = "SELECT Payments.InvoicesLink, 
+                Payments.Image, 
+                Invoices.InvoiceNo,
+                Invoices.Status,
+                Invoices.Method,
+                Invoices.PaidOn,
+                Invoices.Created,
+                Invoices.Updated
+                FROM Payments LEFT OUTER JOIN Invoices ON Invoices.InvoicesLink = Payments.InvoicesLink
+                $order LIMIT $limit OFFSET $offset;
+            ;";
             $db->query($stm);
             return $db->resultset();
             break;
