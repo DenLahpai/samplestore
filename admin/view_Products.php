@@ -161,7 +161,8 @@ if (isset($_REQUEST['link'])) {
                 <!-- view-product-desc -->
                 <div class="view-product-desc">
                     <div>
-                        Code:  <? echo $row_Products->ProductsCode; ?>
+                        Code:  <? echo md5('Testing345');  
+                        // echo $row_Products->ProductsCode; ?>
                     </div>
                     <div>
                         Category: <? echo $row_Products->Cat1; ?>
@@ -196,7 +197,7 @@ if (isset($_REQUEST['link'])) {
                     <div style="border: 1px solid #000000;">
                         Sales: <br><br>
                         <input type="checkbox" id="Showcase1" name="Showcase1"  >
-                        <label for="Showcase1">Hot Item</label><br><br><br>
+                        <label for="Showcase1">Trending</label><br><br><br>
                         <input type="checkbox" id="Showcase2" name="Showcase2">
                         <label for="Showcase2">Featuring</label>                        
                     </div>

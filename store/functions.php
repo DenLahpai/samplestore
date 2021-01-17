@@ -3,16 +3,18 @@ session_start();
 require_once "conn.php";
 
 // function to get sessions data 
-function insertSession ($ip, $session) {
+function insertSession ($ip, $device, $session) {
     $db = new Database();
 
     $stm = "INSERT INTO Sessions SET 
-        SessionLink = :SessionLink, 
-        Ip = :Ip
+        SessionLink = :SessionLink,
+        Ip = :Ip,
+        Device = :Device
     ;";
     $db->query($stm);
     $db->bind(":SessionLink", $session);
     $db->bind(":Ip", $ip);
+    $db->bind(":Device", $device);
     $db->execute();
 }
 

@@ -88,6 +88,10 @@ body{
 	background: var(--wrapper-color);
 }
 
+.main-content {
+	background: #FFFFFF;
+}
+
 section {
 	text-align: center;
 	padding: 6px;
@@ -867,6 +871,10 @@ footer {
 
 /*styles for tablets*/
 @media screen and (min-width: 768px) {
+
+	.main-content {
+		margin: 0px 120px;
+	}
     
     .boxes {
     	grid-template-columns: repeat(3, 1fr);
@@ -889,6 +897,10 @@ footer {
 /*styles for computers*/
 @media screen and (min-width: 992px) {
 
+	.main-content {
+		margin: 0px 240px;
+	}
+	
     .boxes {
     	grid-template-columns: repeat(5, 1fr);
     }
