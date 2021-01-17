@@ -63,7 +63,7 @@ $rows_Payments = table_Payments ('select_all', NULL, NULL, NULL, $order, $limit,
 						<a href="../payments/<? echo $row_Payments->Image?>" target="_blank">View Doc</a>
 					</div>
 					<div class="payments-box-footer-button">
-						<a href="">Update</a>
+						<a href="update_Payments.html?link=<? echo $row_Payments->InvoicesLink ; ?>">Update</a>
 					</div>
 				</div>
 			</div>	

@@ -597,6 +597,24 @@ function table_Payments ($job, $var1, $var2, $var3, $order, $limit, $offset) {
             $db->query($stm);
             return $db->resultset();
             break;
+
+        case 'select_one':
+            # var1 = InvoicesLink
+            $stm = "SELECT Payments.InvoicesLink, 
+                Payments.Image, 
+                Invoices.InvoiceNo,
+                Invoices.Status,
+                Invoices.Method,
+                Invoices.PaidOn,
+                Invoices.Created,
+                Invoices.Updated
+                FROM Payments LEFT OUTER JOIN Invoices ON Invoices.InvoicesLink = Payments.InvoicesLink
+                WHERE Payments.InvoicesLink = :InvoicesLink
+            ;";
+            $db->query($stm);
+            $db->bind(":InvoicesLink", $var1);
+            return $db->resultset();
+            break;    
         
         default:
             # code...

@@ -542,8 +542,7 @@ function removeImg (Img) {
             else {
                 alert(data);
             }
-        }
-        
+        }        
     );
 }
 
@@ -587,7 +586,6 @@ function rowCountShowcase (num) {
         }, function (data) {
             $("label[for='Showcase1']").append(" (" + data + " spots remain.)");
         }
-
     );
 }
 
@@ -612,8 +610,7 @@ function updateShowcase (num, link) {
                 $("#sys_message").html(data);   
             }
         }
-    );
-    
+    );    
 }
 
 /****** function to select Targets ******/
@@ -683,5 +680,35 @@ function updateUsers() {
             }
         });
     }
+}
 
+//function to update payment status
+function updatePayments () {
+    var Status = $("#Status");
+    var Method = $("#Method");
+    var PaidOn = $("#PaidOn");
+    var error = false;
+    
+    if (Status.val() == "" || Status.val() == " " || Status.val() == null) {
+        Status.attr("input-error");
+        error = true;
+        var msg  = "<span style='color: red;'>The filed Status cannot be blank!</span>";
+        $("#sys_message").html(msg);
+    }
+
+    if (error == false) {
+        $.ajax({
+            url: "includes/updating_Payments.php",
+            method: "post",
+            data: $("#payments-form").serialize(),
+            success: function (data) {
+                if (!data) {
+                    location.reload();
+                }
+                else {
+                    $("#sys_message").html(data);
+                }
+            }
+        });
+    }
 }
