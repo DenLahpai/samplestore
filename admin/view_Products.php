@@ -192,6 +192,14 @@ if (isset($_REQUEST['link'])) {
                         <? echo $row_Products->Status; ?>
                     </div>
                     <div>
+                        <span style='color: red'>
+                            <input type="checkbox" id="Soldout" name="Soldout">
+                            <label for="Soldout"> Mark as SOLD OUT!!!</label>
+                        </span>
+                        <br>
+                        The items will be shown in the store with a lable sold out! It will not be able to be added in a cart!
+                    </div>
+                    <div>
                         <a href="../store/view_item.html?link=<? echo $_REQUEST['link']?>" target="_blank">View in the Store</a>
                     </div>
                     <div style="border: 1px solid #000000;">
@@ -278,7 +286,8 @@ $(document).ready(function () {
 
     checkShowcases (link);
     rowCountShowcase (1);
-	checkSession();    
+	checkSession();
+    check_Soldout(link);
 });
 
 new Glider(document.querySelector('.glider'), {

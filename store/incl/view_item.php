@@ -98,9 +98,13 @@ if (isset($_REQUEST['link'])) {
             </div>
             <!-- end for view-product-price-box -->
             <div class="view-product-cart">
-                <div class="add-cart">
-                    Add to Cart        
-                </div>
+                <?php if ($row_Products->Status != 'Soldout'): ?>
+                    <div class="add-cart">
+                        Add to Cart        
+                    </div>
+                <?php else: ?>
+                    <div style="color: red">Sold Out!!!</div>    
+                <?php endif ?>
             </div>
         </div>
         <!-- view-product-details -->
@@ -129,10 +133,12 @@ if (isset($_REQUEST['link'])) {
                 Color
                 FROM Products WHERE 
                 ProductsCode = :ProductsCode AND 
+                Size = :Size AND 
                 Color != :Color
             ;";
             $db->query($stm);
             $db->bind(":ProductsCode", $row_Products->ProductsCode);
+            $db->bind(":Size", $row_Products->Size);
             $db->bind(":Color", $row_Products->Color);
             $rowCount_Colors = $db->rowCount();
             $rows_Colors = $db->resultset();
@@ -156,11 +162,13 @@ if (isset($_REQUEST['link'])) {
                 ProductsLink, 
                 Size
                 FROM Products WHERE 
-                ProductsCode = :ProductsCode
-                AND Size != :Size
+                ProductsCode = :ProductsCode AND 
+                Color = :Color AND 
+                Size != :Size
             ;";
                 $db->query($stm);
             $db->bind(":ProductsCode", $row_Products->ProductsCode);
+            $db->bind(":Color", $rows_Products->Color);
             $db->bind(":Size", $row_Products->Size);
             $rowCount_Sizes = $db->rowCount();
             $rows_Sizes = $db->resultset();
@@ -171,7 +179,7 @@ if (isset($_REQUEST['link'])) {
                 <? foreach ($rows_Sizes as $row_Sizes): ?>
                 <div class="link-size">
                     <a href="view_item.html?link=<? echo $row_Sizes->ProductsLink ?>">
-                        <?php echo $row_Products->Size; ?>
+                        <?php echo $row_Sizes->Size; ?>
                     </a>
                 </div>
                 <? endforeach; ?>

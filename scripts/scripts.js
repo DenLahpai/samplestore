@@ -613,6 +613,44 @@ function updateShowcase (num, link) {
     );    
 }
 
+/****** function to change status Soldout ******/
+function updateSoldout (link) {
+    var Soldout = document.getElementById('Soldout');
+    if (Soldout.checked == true) {
+        var Status = "Soldout";
+    }
+    else {
+        var Status = 'Available';
+    }
+
+    $.post("includes/update_Status.php", {
+        link: link, 
+        Status: Status
+    }, function (data) {
+        if (!data) {
+            location.reload();
+        }
+        else {
+            alert(data);
+        }
+    });
+}
+
+/****** function to check Status Soldout or not ******/
+function check_Soldout (link) {
+    $.post("includes/check_Soldout.php", {
+        link: link
+    }, function (data) {
+        if (data == 1) {
+            $("#Soldout").prop("checked", true);
+        }
+
+        else {
+            $("#Soldout").prop("checked", false);
+        }
+    });
+}
+
 /****** function to select Targets ******/
 function selectTargets (selected) {
     $.post ("includes/select_Targets.php", {
