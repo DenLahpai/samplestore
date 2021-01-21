@@ -200,6 +200,16 @@ if (isset($_REQUEST['link'])) {
                         The items will be shown in the store with a lable sold out! It will not be able to be added in a cart!
                     </div>
                     <div>
+                        <div>
+                            Copy and past the link below in your Facebook post.             
+                        </div>
+                        <div class="ads-link">
+                            <p>
+                            <? echo "https://samplestore.denlp.com/store/incl/fb_ads_view_item.php?link=".$_REQUEST['link']; ?>
+                            </p>
+                        </div>
+                    </div>
+                    <div>
                         <a href="../store/view_item.html?link=<? echo $_REQUEST['link']?>" target="_blank">View in the Store</a>
                     </div>
                     <div style="border: 1px solid #000000;">
@@ -284,6 +294,10 @@ $(document).ready(function () {
         updateShowcase (2, link);
     });
 
+    $("#Soldout").on("change", function (){
+        updateSoldout(link);
+    });
+    
     checkShowcases (link);
     rowCountShowcase (1);
 	checkSession();

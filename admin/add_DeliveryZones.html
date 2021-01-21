@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UFT-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="styles/styles.css">
+	<link rel="Shortcut icon" href="../logo_small.png"/>
+	<title>Add Delivery Zones</title>
+</head>
+<body>
+	<!-- wrapper -->
+	<div class="wrapper">
+		<header></header>
+		<!-- main-content -->
+		<div class="main-content">
+			<section id="page-title">
+				<div class="page-title">
+					<h1>Add Deliver Zone</h1>
+				</div>
+			</section>
+			<section id="main-data">
+				<div class="form">
+					<form action="#" method="post" id="myform">
+						<div>
+							<input type="text" id="Town" name="Town" placeholder="Town / City">
+						</div>
+						<div>
+							<input type="text" id="Township" name="Township" placeholder="Township">
+							<br>
+							<span style="font-style: italic; ">Note: do not put anything in township if the delivery fees for all townships of Yangon are the same.</span>
+						</div>
+						<div>
+							<input type="number" id="Fees" name="Fees" placeholder="Fees">
+						</div>
+						<div>
+							<input type="text" id="Remark" name="Remark" placeholder="Direct to home? Or Express bus station only?">
+						</div>
+						<div>
+							<button type="button" class="medium-button" id="btn-submit">Submit</button>
+						</div>
+					</form>
+				</div>
+			</section>
+			<section id="sys_message"></section>
+		</div>
+		<!-- end of main-content -->
+		<footer></footer>
+	</div>
+	<!-- end of wrapper -->
+</body>
+<script src="../scripts/jquery.js"></script>
+<script src="../scripts/scripts.js"></script>
+<script>
+$(document).ready(function () {
+	
+	$.post("includes/header.php", function (data) {
+		$("header").html(data);
+	});
+
+	$.post("includes/footer.php", function (data) {
+		$("footer").html(data);
+	});
+
+	checkSession();
+
+	$("#btn-submit").on("click", function () {
+		var Town = $("#Town");
+		var Fees = $("#Fees");
+		var Remark = $("#Remark");
+		var error = false;
+
+		if (Town.val() == "" || Town.val() == " " || Town.val() == null) {
+			error = true;
+			var msg1 = "<span style='color: red;'>Please enter a town or city where you deliver!</span>";
+			$("#sys_message").append(msg1);
+		}
+
+		if (Fees.val() == "" || Fees.val() == " ") {
+			error = true;
+			document.getElementById('Fees').value = 0;
+			var msg2 = "<br><span style='color: red'>No delivery fees provided! Are you sure?</span>";
+			$("#sys_message").append(msg2);
+		}
+
+		if (Remark.val() == "" || Remark.val() == " " || Remark.val() == null) {
+			error = true; 
+			var msg3 = "<br><span style='color: red'>Please precise whether you deliver directly to home or only to bus station!</span>";
+			$("#sys_message").append(msg3);
+		}
+
+		if (error == false) {
+			$.ajax ({
+				url: "includes/add_DeliveryZones.php",
+				type: "post", 
+				data: $("#myform").serialize(),
+				success: function (data) {
+					if (!data) {
+						window.location.href = 'DeliveryZones.html';
+					}
+					else {
+					$("#sys_message").html(data);
+					}
+				},
+			});
+		}
+	});
+});
+</script>
+</html>

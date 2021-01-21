@@ -95,6 +95,28 @@
 					</div>
 					<!-- end of Products-cards -->
 
+					<!-- Delivery Fees-card -->
+					<div class="card" id="Delivery-Zone-card" onclick="window.location.href='DeliveryZones.html';">
+						<div class="card-title">
+							<h2 style="font-size: 90%">Delivery Zones</h2>
+							<div style="font-size: 3em; color: black; ">
+								<img src="../deliveryzones.png" alt="">
+							</div>
+						</div>
+						<div class="card-body">
+							Define your delivery zones and delivery fees, here!
+						</div>
+						<div class="card-command">
+							<div class=counter>
+								<div id="Delivery_Fees-rowCount"></div>
+							</div>
+							<div>
+								Entries
+							</div>
+						</div>
+					</div>
+					<!-- end of Orders-cards -->
+
 					<!-- Orders-card -->
 					<div class="card" id="Orders-card" onclick="window.location.href='Orders.html';">
 						<div class="card-title">
@@ -190,10 +212,12 @@
         if (e.target == modalmenu) {
             modalmenu.style.display = 'none';
         }
-    }
+	}
+	
     getRowCount ('Brands');
     getRowCount ('Products');
 	getRowCount ('Orders');
 	getRowCount ('Payments');
-	getRowCount ('Invoices')
+	getRowCount ('Invoices');
+	getRowCount ('Delivery_Fees');
 </script>

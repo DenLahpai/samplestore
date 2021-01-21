@@ -168,7 +168,7 @@ if (isset($_REQUEST['link'])) {
             ;";
                 $db->query($stm);
             $db->bind(":ProductsCode", $row_Products->ProductsCode);
-            $db->bind(":Color", $rows_Products->Color);
+            $db->bind(":Color", $row_Products->Color);
             $db->bind(":Size", $row_Products->Size);
             $rowCount_Sizes = $db->rowCount();
             $rows_Sizes = $db->resultset();

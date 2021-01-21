@@ -6,6 +6,7 @@
 	--orders-color: rgba(237, 112, 113, 1);
 	--payments-color: rgb(52, 168, 83, 1);
 	--invoices-color: rgba(236, 241 ,250, 1);
+	--delivery-zones-color: rgba(92, 64, 51, 1);
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
@@ -396,6 +397,11 @@ section {
 	color: #000000;
 }
 
+#Delivery-Zone-card {
+	background-color: var(--delivery-zones-color);
+	color: #FFFFFF;
+}
+
 .products-boxes {
 	display: grid;
 	grid-gap: 1em;
@@ -572,6 +578,18 @@ section {
 	padding: 30px;
 }
 
+.ads-link {
+	margin-top: 12px;
+	padding: 12px;
+	background: silver;
+	width: 100%;
+	border-radius: 3px;
+}
+
+.ads-link p {
+	word-wrap: break-word;
+}
+
 .products-cmd {
 	padding: 6px 12px;
 	background: var(--products-color);
@@ -603,6 +621,26 @@ section {
 
 .color-boxes > div {
 	margin: 18px;
+}
+
+.Delivery-Zones-box {
+	border: 1px solid silver;
+	border-radius: 6px;
+	box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.6);
+}
+
+.Delivery-Zones-box:active {
+	box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+}
+
+.Delivery-Zones-box div {
+	padding: 6px;
+}
+
+.Delivery-Zones-box-header div {
+	background: var(--delivery-zones-color);
+	color: #FFFFFF;
+	border-radius: 6px;
 }
 
 .orders-container ul li {

@@ -750,3 +750,44 @@ function updatePayments () {
         });
     }
 }
+
+//function to update Delivery_Fees
+function updateDelivery_Fees () {
+    var Town = $("#Town");
+    var Fees = $("#Fees");
+    var Remark = $("#Remark");
+    var error = false;
+
+    if (Town.val() == "" || Town.val() == " " || Town.val() == null) {
+        error = true;
+        var msg1 = "<span style='color: red;'>Please enter a town or city where you deliver!</span>";
+		$("#sys_message").append(msg1);
+	}
+
+    if (Fees.val() == "" || Fees.val() == " ") {
+        error = true;
+        document.getElementById('Fees').value = 0;
+        var msg2 = "<br><span style='color: red'>No delivery fees provided! Are you sure?</span>";
+        $("#sys_message").append(msg2);
+    }
+
+    if (Remark.val() == "" || Remark.val() == " " || Remark.val() == null) {
+        error = true; 
+        var msg3 = "<br><span style='color: red'>Please precise whether you deliver directly to home or only to bus station!</span>";
+        $("#sys_message").append(msg3);
+    }
+
+    $.ajax ({
+        url: "includes/updating_DeliveryZones.php",
+        type: "post",
+        data: $("#myform").serialize(),
+        success: function (data) {
+            if (!data) {
+                location.reload();
+            }
+            else {
+                alert(data);
+            }
+        }
+    });
+}

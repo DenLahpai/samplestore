@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="styles/styles.css">
+	<link rel="Shortcut icon" href="../logo_small.png"/>
+    <title>Delivery Zones</title>
+    <style>
+        .sub-menu-switch {
+            color: #FFFFFF;
+            background-color: var(--delivery-zones-color);
+            font-size: 3em;
+            box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.6);
+        }
+
+        .sub-menu-switch:active {
+            box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+        }
+        @media screen and (min-width: 992px) {
+            .sub-menu-switch{
+                display: block;
+            } 
+        
+        }
+    </style>
+</head>
+<body>
+    <!-- wrapper -->
+    <div class="wrapper">
+        <header></header>
+        <!-- main-content -->
+        <div class="main-content">
+            <section id="sub-menu">
+                <div class="sub-menu-content">
+                    <div class="sub-menu-bar">
+                        <div class="sub-menu-switch" onclick="window.location.href='add_DeliveryZones.html';">
+                            +
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="main-data"></section>
+        </div>
+        <!-- end of main-content -->
+        <footer></footer>
+    </div>
+    <!-- end of wrapper -->
+</body>
+<script src="../scripts/jquery.js"></script>
+<script src="../scripts/scripts.js"></script>
+<script>
+$(document).ready(function () {
+	
+	$.post("includes/header.php", function (data) {
+		$("header").html(data);
+	});
+
+	$.post("includes/footer.php", function (data) {
+		$("footer").html(data);
+    });
+    
+    $.post("includes/select_DeliveryZones.php", function (data) {
+        $("#main-data").html(data);
+    });
+
+	getOptions ('Brands');
+
+	selectTargets(null);
+
+	checkSession();
+});
+</script>
+</html>

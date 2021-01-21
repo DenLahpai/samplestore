@@ -70,6 +70,9 @@ else {
 				}
 				?>
 				<img src="<? echo $path;?>" alt="">
+				<? if ($row_Products->Status == 'Soldout'): ?>
+					<div class="on-img">Sold Out</div>
+				<? endif; ?>
 			</div>
 			<!-- box-desc -->
 			<div class="box-desc">
