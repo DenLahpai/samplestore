@@ -94,43 +94,107 @@ function validateEmail(sEmail) {
     return true;
 }
 
+
+//function to apply delivery fees 
+function applyDeliFees(link) {
+    $.post('incl/select_table_row_Delivery_Fees.php', {
+		link: link
+	}, function (data) {
+		$("#deli-fees").html(data);
+		calculateTotal ('subtotal');
+	});
+}
+
 /****** function to create Orders and Orderlist ******/
 function createOrder () {
 	//checking if there is any zeros
 	var n = $(".Qty").length;
+	var Name = $("#Name");
+	var Mobile = $("#Mobile");
+	var Address = $("#Address");
+	var Delivery_FeesLink = $("#Delivery_FeesLink");
 
-	//getting $OrdersLink 
-	$.post("incl/add_Orders.php", {Total: $("#grand-total").html()}, function (data) {
-		if (!data) {
-			alert("There was a connection error! Please try again!");
-			// Note: nothing is returned if there is an error! 
-		}
-		else {
-			
-			var OrdersLink = data;
-			for (var i = 1; i <= n; i++) {
-				if ($("#Qty" + i).val() == 0) {
-					$("#Qty" + i).addClass("input-error");
-					alert("Please correct the Qty or remove the item highlighted in red to continue!");
-				}
-				else {
-					$("#Qty" + i).removeClass("input-error");
-					$.post("incl/add_Orders_List.php", {
-						OrdersLink: OrdersLink,
-						ProductsLink: $("#ProductsLink" + i).val(),
-						Qty: $("#Qty" + i).val(),
-						Subtotal: $("#subtotal" + i).val(),
-						}, function (data) {
-							if (!data) {
-								window.location.href = 'customer_form.html?link=' + OrdersLink;
-							}
-							else {
-								alert(data);
-							}
+	var error = false;
+
+	if (Name.val() == "" || Name.val() == " " || Name.val() == null) {
+		error = true;
+		var msg = "<span style='color: red;'>Please enter your name!</span>";
+		$("#sys_message").html(msg);
+		Name.addClass("input-error");
+	}
+
+	if (Mobile.val() == "" || Mobile.val() == " " || Mobile.val() == null) {
+		error = true;
+		var msg = "<span style='color: red;'>Please enter your phone number!</span>";
+		$("#sys_message").html(msg);
+		Mobile.addClass("input-error");
+	}
+
+	if (Address.val() == "" || Address.val() == " " || Address.val() == null) {
+		error = true;
+		var msg = "<span style='color: red;'>Please enter your address!</span>";
+		$("#sys_message").html(msg);
+		Address.addClass("input-error");
+	}
+
+	if (Delivery_FeesLink.val() == "" || Delivery_FeesLink.val() == " " || Delivery_FeesLink.val() == null) {
+		error = true;
+		var msg = "<span style='color: red;'>Please enter choose your town!</span>";
+		$("#sys_message").html(msg);
+		Delivery_FeesLink.addClass("input-error");
+	}
+	
+	if (error == false) {
+		// adding Orders, Invoices and getting $OrdersLink 
+		$.post("incl/add_Orders.php", {
+			Total: $("#grand-total").html(),
+			}, function (data) {
+			if (!data) {
+				alert("There was a connection error! Please try again!");
+				// Note: nothing is returned if there is an error! 
+			}
+			else {			
+				var OrdersLink = data;
+				//adding customer and Invoiced_Delivery_Fees
+				$.ajax({
+					url: "incl/add_Customers.php?link=" + OrdersLink,
+					type: "post",
+					data: $("#client-form").serialize(),
+					success: function (data) {
+						if (!data) {
+							window.location.href = 'incl/invoice.php?link=' + OrdersLink;
 						}
-					);
+						else {
+							alert(data);
+						}
+					}
+
+				});
+
+				for (var i = 1; i <= n; i++) {
+					if ($("#Qty" + i).val() == 0) {
+						$("#Qty" + i).addClass("input-error");
+						alert("Please correct the Qty or remove the item highlighted in red to continue!");
+					}
+					else {
+						$("#Qty" + i).removeClass("input-error");
+						$.post("incl/add_Orders_List.php", {
+							OrdersLink: OrdersLink,
+							ProductsLink: $("#ProductsLink" + i).val(),
+							Qty: $("#Qty" + i).val(),
+							Subtotal: $("#subtotal" + i).val(),
+							}, function (data) {
+								if (!data) {
+									// window.location.href = 'customer_form.html?link=' + OrdersLink;
+								}
+								else {
+									alert(data);
+								}
+							}
+						);
+					}
 				}
 			}
-		}
-	});	
+		});	
+	}	
 }

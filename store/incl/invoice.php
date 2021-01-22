@@ -32,6 +32,7 @@ $rows_Orders = $db->resultset();
 foreach ($rows_Orders as $row_Orders) {
  	# code...
 }
+
 // getting data from the table Invoices
 $stm = "SELECT * FROM Invoices WHERE InvoicesLink = :InvoicesLink ;";
 $db->query($stm);
@@ -41,7 +42,7 @@ foreach ($rows_Invoices as $row_Invoices) {
  	# code...
 }
 
-//getting data from the tabel Customers
+//getting data from the table Customers
 $stm = "SELECT * FROM Customers WHERE CustomersLink = :CustomersLink ;";
 $db->query($stm);
 $db->bind(":CustomersLink", $row_Orders->CustomersLink);	
@@ -49,6 +50,24 @@ $rows_Customers = $db->resultset();
 foreach ($rows_Customers as $row_Customers) {
 	# code...
 }
+
+//getting data from the table Invoiced_Delivery_Fees
+$stm = "SELECT  
+	Invoiced_Delivery_Fees.Delivery_FeesLink, 
+	Invoiced_Delivery_Fees.Fees, 
+	Delivery_Fees.Township, 
+	Delivery_Fees.Town, 
+	Delivery_Fees.Remark
+	FROM Invoiced_Delivery_Fees 
+	LEFT OUTER JOIN Delivery_Fees ON Invoiced_Delivery_Fees.Delivery_FeesLink = Delivery_Fees.Delivery_FeesLink WHERE 
+	InvoicesLink = :InvoicesLink ;";
+$db->query($stm);
+$db->bind(":InvoicesLink", $row_Orders->InvoicesLink);
+$rows_Invoiced_Delivery_Fees = $db->resultset();
+foreach ($rows_Invoiced_Delivery_Fees as $row_Invoiced_Delivery_Fees) {
+	# code...
+}
+
 //functoin to fetch data from the table Orders_List;
 function fetch_data ($link) {
 	$db = new Database();
@@ -150,8 +169,14 @@ $content .= '</tr>';
 $content .= '</thead>';
 $content .= '<tbody>';
 
-$content .= fetch_data($_REQUEST['link']);	
+$content .= fetch_data($_REQUEST['link']);
 
+$content .= '<tr>';
+$content .= '<td>Delivery Fees: '.$row_Invoiced_Delivery_Fees->Township.' '.$row_Invoiced_Delivery_Fees->Town.'<br>';
+$content .= '('.$row_Invoiced_Delivery_Fees->Remark.')</td>';
+$content .= '<td></td>';
+$content .= '<td style="text-align: right;">'.$row_Invoiced_Delivery_Fees->Fees.'</td>';
+$content .= '</tr>';
 $content .= '</tbody>';	
 $content .= '</table>';
 $content .= '<table cellpadding="6">';

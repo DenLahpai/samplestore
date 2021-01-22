@@ -50,7 +50,7 @@ else {
  					?>
  					<tr>
  						<td>
- 							<div onclick="removeItem('<? echo $row_Cart->ProductsLink; ?>')">&#10008;</div>
+ 							<div style="cursor: pointer;" onclick="removeItem('<? echo $row_Cart->ProductsLink; ?>')">&#10008;</div>
  							
  							<input type="hidden" id="ProductsLink<? echo $i;?>" name="ProductsLink<? echo $i;?>" value="<? echo $row_Cart->ProductsLink; ?>">
  						</td>
@@ -68,26 +68,65 @@ else {
  								$subtotal = $row_Products->Price;
  							}
  							?>
- 							<input type="text" class="subtotal" id="subtotal<? echo $i; ?>" name="subtotal<? echo $i; ?>" value="<? echo $subtotal * $row_Cart->Qty; ?>" readonly>
+ 							<input type="number" class="subtotal" id="subtotal<? echo $i; ?>" name="subtotal<? echo $i; ?>" value="<? echo $subtotal * $row_Cart->Qty; ?>" readonly>
  						</td>
  					</tr>
  				<?php
  					$i++; 
  					endforeach; 
- 				?>
- 				<tr style="border-top: 2px solid silver;">
- 					<td colspan="3" style="text-align: center;">Grand Total:</td>
- 					<td style="text-align: right"><div id="grand-total"></div></td>
- 				</tr>
+				?>	
+					<tr id="deli-fees">
+						
+					</tr>
+					<tr style="border-top: 2px solid silver;">
+						<td colspan="3" style="text-align: center;">Grand Total:</td>
+						<td style="text-align: right"><div id="grand-total"></div></td>
+					</tr>
  			</tbody>
 		</table>
 	</div>
 </div>
 <!-- end of item-list-contain -->
+<div class="client-form">
+	<form action="#" id="client-form" method="post">
+		<div>
+			Title:
+			<select name="Title" id="Title">
+				<option value="Mr">Mr.</option>
+				<option value="Mrs">Mrs.</option>
+				<option value="Ms">Ms.</option>
+			</select>
+		</div>
+		<div>
+			<input type="text" name="Name" id="Name" placeholder="Your Name">
+		</div>
+		<div>
+			<input type="text" name="Email" id="Email" placeholder="Email" onblur="validateEmail (this.value);">
+		</div>
+		<div>
+			<input type="text" name="Mobile" id="Mobile" placeholder="Mobile No">
+		</div>
+		<div>
+			<textarea name="Address" id="Address" cols="30" rows="10" placeholder="Address"></textarea>
+		</div>
+		<div>
+			<select name="Delivery_FeesLink" id="Delivery_FeesLink" onchange="applyDeliFees(this.value);">
+				<option value="Select Township"></option>
+			</select>
+		</div>
+		<div>
+			<textarea name="Note" id="Note" cols="30" rows="3" placeholder="Deliver Note"></textarea>
+		</div>
+		<div id="msg">
+					 
+		</div>						
+	</form>
+</div>
 <div class="button-menu">
 	<button type="button" onclick="createOrder();">Confirm Your Order</button>
 </div>
 <script>
+
 $(document).ready(function () {
 	calculateTotal ('subtotal');
 });	

@@ -71,6 +71,26 @@ function table_Products ($job, $var1, $var2, $var3, $order, $limit, $offset) {
 	}
 }
 
+//function to get data from the table Delivery_Fees
+function table_Delivery_Fees ($job, $var1, $var2, $var3, $order, $limit, $offset) {
+
+	$db = new Database();
+
+	switch ($job) {
+		case 'select_one':
+			# $var1 = Delivery_FeesLink
+			$stm = "SELECT * FROM Delivery_Fees WHERE Delivery_FeesLink = :var1 ;";
+			$db->query($stm);
+			$db->bind(":var1", $var1);
+			return $db->resultset();
+			break;
+		
+		default:
+			# code...
+			break;
+	}
+}
+
 //function to get data from the table Orders
 function table_Orders ($job, $var1, $var2, $var3, $order, $limit, $offet) {
 

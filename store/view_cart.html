@@ -18,6 +18,7 @@
 					<h3>In Your Cart</h3>
 				</div>				
 			</section>
+			<section id="sys_message"></section>
 			<section id="nav-menu"></section>
 			<section id="nav-bar"></section>
 		</div>
@@ -52,7 +53,11 @@ $(document).ready(function() {
 	
 	$.post("incl/footer.php", function (data) {
         $("footer").html(data);
-    });
+	});
+	
+	$.post('incl/select_option_Delivery_Fees.php', function (data) {
+		$("#Delivery_FeesLink").html(data);
+	});
 });
 </script>
 </html>

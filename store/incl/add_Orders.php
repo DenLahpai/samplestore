@@ -29,7 +29,7 @@ if ($_SESSION['link']) {
 		
 		// generating InvoiceNo
 		$InvoiceNo = table_Invoices ('generate_invoice_no', NULL, NULL, NULL, NULL, NULL, NULL);
-		//adding data to the table Invoices 
+		//Inserting data to the table Invoices 
 		$stm = "INSERT INTO Invoices SET 
 			InvoicesLink = :InvoicesLink,
 			InvoiceNo = :InvoiceNo, 
@@ -43,6 +43,7 @@ if ($_SESSION['link']) {
 			echo $OrdersLink;
 		}
 	}
+
 	// Note: nothing is returned if there is an error! 
 }
 ?>
